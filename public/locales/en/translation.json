@@ -1,0 +1,31 @@
+{
+  "login": {
+    "title": "Log in",
+    "remember_me": "Remember Me",
+    "forgot_password": "Forgot password?",
+    "submit_button": "Log In",
+    "fields": {
+      "email": {
+        "placeholder": "Enter Email"
+      },
+      "password": {
+        "placeholder": "Enter Password"
+      }
+    }
+  },
+  "header": {
+    "profile_section": {
+      "account_setting": "Account Settings",
+      "logout": "Logout"
+    }
+  },
+  "validations": {
+    "email":{
+      "required": "Email is required",
+      "format": "Email is invalid"
+    },
+    "password": {
+      "required": "Password is required"
+    }
+  }
+}

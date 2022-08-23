@@ -1,0 +1,31 @@
+{
+  "login": {
+    "title": "Iniciar sesión",
+    "remember_me": "Recordarme",
+    "forgot_password": "Has olvidado tu contraseña?",
+    "submit_button": "Iniciar sesión",
+    "fields": {
+      "email": {
+        "placeholder": "Ingrese su correo electrónico"
+      },
+      "password": {
+        "placeholder": "Ingrese su contraseña"
+      }
+    }
+  },
+  "header": {
+    "profile_section": {
+      "account_setting": "Configuraciones",
+      "logout": "Cerrar Sesión"
+    }
+  },
+  "validations": {
+    "email":{
+      "required": "Su correo electronico es obligatorio.",
+      "format": "Su correo electrónico es invalido."
+    },
+    "password": {
+      "required": "Su contraseña es obligatoria."
+    }
+  }
+}
