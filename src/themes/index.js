@@ -3,7 +3,7 @@ import componentStyleOverrides from './compStyleOverride';
 import themePalette from './palette';
 import themeTypography from './typography';
 import colors from './colors';
-import { UI_VARIABLES } from '../store/uiSlice'
+import { UI_VARIABLES } from 'store/uiSlice'
 
 export const theme = (customTheme) => {
   const themeOption = {

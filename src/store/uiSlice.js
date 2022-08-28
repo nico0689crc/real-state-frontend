@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { borderRadius } from '../constants/ui';
-import LOCALSTORAGE_ITEMS from "../constants/localStorageItems";
+import { borderRadius } from 'constants/ui';
+import LOCALSTORAGE_ITEMS from "constants/localStorageItems";
 
 export const UI_VARIABLES = {
   UI_MODE_DARK: "dark",
@@ -22,7 +22,7 @@ export const uiSlice = createSlice({
     changeModeUi(state, action) {
       const mode = state.mode === UI_VARIABLES.UI_MODE_DARK ? UI_VARIABLES.UI_MODE_LIGHT : UI_VARIABLES.UI_MODE_DARK;
       const storedData = JSON.parse(localStorage.getItem(LOCALSTORAGE_ITEMS.USER_DATA));
-      
+
       state.mode = mode;
 
       localStorage.setItem(

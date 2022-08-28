@@ -1,11 +1,12 @@
 import { useTheme } from '@mui/material/styles';
 import { useSelector } from 'react-redux';
-import { Box, ClickAwayListener, Divider, List, ListItemButton, ListItemIcon, ListItemText, Paper,
-         Popper, Typography
+import {
+  Box, ClickAwayListener, Divider, List, ListItemButton, ListItemIcon, ListItemText, Paper,
+  Popper, Typography
 } from '@mui/material';
-import { UI_VARIABLES } from '../../../store/uiSlice';
-import Transitions from '../../ui/extended/Transitions';
-import Card from '../../ui/Card/Card';
+import { UI_VARIABLES } from 'store/uiSlice';
+import Transitions from 'components/ui/extended/Transitions';
+import Card from 'components/ui/Card/Card';
 
 const Dropdown = ({
   anchorRef,
@@ -56,20 +57,20 @@ const Dropdown = ({
                     }}
                   >
                     {items.map((item, index) => (
-                      <ListItemButton 
-                        key={index} 
+                      <ListItemButton
+                        key={index}
                         onClick={item.onClick}
-                        sx={{ 
+                        sx={{
                           minWidth: '2rem',
                           '&:hover': {
                             color: UI_VARIABLES.UI_MODE_DARK ? theme.palette.primary[400] : theme.palette.primary[900],
                           },
                         }}
                       >
-                          <ListItemIcon sx={{minWidth: '2rem', color: 'inherit'}}>
-                            {item.icon}
-                          </ListItemIcon>
-                          <ListItemText primary={<Typography sx={{color: 'inherit'}}>{item.label}</Typography>} />
+                        <ListItemIcon sx={{ minWidth: '2rem', color: 'inherit' }}>
+                          {item.icon}
+                        </ListItemIcon>
+                        <ListItemText primary={<Typography sx={{ color: 'inherit' }}>{item.label}</Typography>} />
                       </ListItemButton>
                     ))}
                   </List>

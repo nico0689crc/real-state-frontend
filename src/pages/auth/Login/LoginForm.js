@@ -1,13 +1,13 @@
 import { useState } from 'react';
 import { useTheme } from "@mui/material/styles";
 import { useTranslation } from "react-i18next";
-import { 
-  FormControl, FormHelperText, Input, Box, InputAdornment, IconButton, FormGroup, 
-  FormControlLabel, Checkbox, Link, Button 
+import {
+  FormControl, FormHelperText, Input, Box, InputAdornment, IconButton, FormGroup,
+  FormControlLabel, Checkbox, Link, Button
 } from '@mui/material';
 
 import { MailOutline, KeyOutlined, VisibilityOutlined, VisibilityOffOutlined } from '@mui/icons-material';
-import MainCard from "../../../components/ui/Card/MainCard";
+import MainCard from "components/ui/Card/MainCard";
 
 const LoginForm = ({ form, onSubmit }) => {
   const { t } = useTranslation();
@@ -17,7 +17,7 @@ const LoginForm = ({ form, onSubmit }) => {
 
   const showPasswordHaldler = () => {
     setShowPassword((prevState) => !prevState)
-  } 
+  }
 
   return (
     <MainCard title={t("login.title")}>
@@ -68,7 +68,7 @@ const LoginForm = ({ form, onSubmit }) => {
         <FormGroup>
           <FormControlLabel control={<Checkbox defaultChecked />} label={t("login.remember_me")} />
         </FormGroup>
-        <Link href="recover-password" sx={{ 
+        <Link href="recover-password" sx={{
           color: theme.palette.primary.light,
           '&:hover': {
             color: theme.palette.primary.dark
@@ -76,13 +76,13 @@ const LoginForm = ({ form, onSubmit }) => {
         }} underline="none">{t("login.forgot_password")}</Link>
       </Box>
       <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', mt: 3 }}>
-        <Button 
+        <Button
           sx={{
-            borderRadius: 5, 
-            fontWeight: 600, 
+            borderRadius: 5,
+            fontWeight: 600,
             backgroundImage: `linear-gradient(to right, ${theme.palette.primary.dark} 0%, ${theme.palette.primary.main} 20%, ${theme.palette.primary.light} 100%)`
           }}
-          onClick={handleSubmit(onSubmit)} 
+          onClick={handleSubmit(onSubmit)}
           variant="contained">{t("login.submit_button")}</Button>
       </Box>
     </MainCard>

@@ -3,12 +3,12 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useTheme } from '@mui/material/styles';
 import { useTranslation } from "react-i18next";
 import { Avatar, Stack } from '@mui/material';
-import { authActions } from '../../../../../store/authSlice';
-import { uisActions, UI_VARIABLES } from '../../../../../store/uiSlice';
-import User1 from '../../../../../assets/images/users/user-round.svg';
+import { authActions } from 'store/authSlice';
+import { uisActions, UI_VARIABLES } from 'store/uiSlice';
+import User1 from 'assets/images/users/user-round.svg';
 import { IconLogout, IconSettings, IconSun, IconMoon } from '@tabler/icons';
-import CallToActionButton from '../../../../../components/custom/Button/CallToAction/CallToActionButton';
-import Dropdown from '../../../../../components/custom/Dropdown/Dropdown';
+import CallToActionButton from 'components/custom/Button/CallToAction/CallToActionButton';
+import Dropdown from 'components/custom/Dropdown/Dropdown';
 
 // ==============================|| PROFILE MENU ||============================== //
 

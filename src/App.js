@@ -2,12 +2,12 @@ import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { ThemeProvider } from '@mui/material/styles';
 import { CssBaseline, StyledEngineProvider } from '@mui/material';
-import ErrorBoundary from './components/core/ErrorBoundary/ErrorBoundary'
-import { theme } from './themes'
-import { QueryClientProvider } from "./contexts/QueryClient";
-import Routes from './routes';
-import { retrievUserDataActionCreator } from './store/userActionCreator'
-import { authActions } from './store/authSlice'
+import ErrorBoundary from 'components/core/ErrorBoundary/ErrorBoundary'
+import { theme } from 'themes'
+import { QueryClientProvider } from "contexts/QueryClient";
+import Routes from 'routes';
+import { retrievUserDataActionCreator } from 'store/userActionCreator'
+import { authActions } from 'store/authSlice'
 
 const App = () => {
   const dispatch = useDispatch();

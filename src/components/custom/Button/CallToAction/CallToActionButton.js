@@ -1,7 +1,7 @@
 import { forwardRef } from 'react';
 import { useSelector } from 'react-redux'
 import { useTheme } from '@mui/material/styles';
-import { UI_VARIABLES } from '../../../../store/uiSlice'
+import { UI_VARIABLES } from 'store/uiSlice'
 import { Avatar, ButtonBase } from '@mui/material';
 
 const CallToActionButton = forwardRef(({ icon, onClickHandler, sx = {}, ...props }, ref) => {

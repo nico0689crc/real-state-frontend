@@ -5,7 +5,7 @@ import { BrowserView, MobileView } from 'react-device-detect';
 import LogoSection from "../LogoSection";
 import MenuList from "./MenuList";
 
-import { drawerWidth } from '../../../../constants/ui';
+import { drawerWidth } from 'constants/ui';
 
 const Sidebar = ({ drawerOpen, drawerToggle, window }) => {
   const theme = useTheme();

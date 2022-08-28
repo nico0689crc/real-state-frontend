@@ -1,5 +1,5 @@
 import { QueryService } from "./QueryService";
-import API_ENDPOINTS from "../constants/endpoints";
+import API_ENDPOINTS from "constants/endpoints";
 
 class Auth extends QueryService {
   async login(input) {

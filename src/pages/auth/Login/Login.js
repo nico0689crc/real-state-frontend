@@ -3,9 +3,9 @@ import { useTranslation } from "react-i18next";
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as Yup from 'yup';
-import { useLoginMutation } from "../../../hooks/queries/authQueries";
-import { authActions } from '../../../store/authSlice';
-import AuthWrapper from "../AuthWrapper";
+import { useLoginMutation } from "hooks/queries/authQueries";
+import { authActions } from 'store/authSlice';
+import AuthWrapper from "pages/auth/AuthWrapper";
 import LoginForm from "./LoginForm";
 
 const Login = () => {
@@ -13,7 +13,7 @@ const Login = () => {
   const dispatch = useDispatch();
 
   const mutation = useLoginMutation();
-  
+
   const validationSchema = Yup.object().shape({
     email: Yup.string()
       .required(t("validations.email.required"))

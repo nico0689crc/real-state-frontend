@@ -2,8 +2,8 @@ import { Box } from '@mui/material';
 import { IconMenu2 } from '@tabler/icons';
 import LogoSection from '../LogoSection';
 import ProfileSection from '../Header/ProfileSection';
-import { drawerWidth } from '../../../../constants/ui'
-import CallToActionButton from '../../../../components/custom/Button/CallToAction/CallToActionButton';
+import { drawerWidth } from 'constants/ui'
+import CallToActionButton from 'components/custom/Button/CallToAction/CallToActionButton';
 
 const Header = ({ handleLeftDrawerToggle }) => {
   return (

@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import LOCALSTORAGE_ITEMS from "../constants/localStorageItems";
+import LOCALSTORAGE_ITEMS from "constants/localStorageItems";
 
 export const authSlice = createSlice({
   name: "auth",

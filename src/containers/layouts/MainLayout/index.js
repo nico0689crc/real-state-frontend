@@ -3,10 +3,10 @@ import { Outlet } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppBar, Box, CssBaseline, Toolbar, useMediaQuery } from '@mui/material';
 import { styled, useTheme } from '@mui/material/styles';
-import AppSuspense from '../../../components/core/AppSuspense'
-import { uisActions, UI_VARIABLES } from '../../../store/uiSlice';
-import { drawerWidth } from '../../../constants/ui';
-import colors from '../../../themes/colors'
+import AppSuspense from 'components/core/AppSuspense'
+import { uisActions, UI_VARIABLES } from 'store/uiSlice';
+import { drawerWidth } from 'constants/ui';
+import colors from 'themes/colors'
 
 import Sidebar from './Sidebar';
 import Header from './Header';
