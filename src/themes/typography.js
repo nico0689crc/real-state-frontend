@@ -9,6 +9,6 @@ export default function themeTypography(themeOption = null) {
       padding: '20px',
       marginTop: '65px',
       marginRight: 0,
-    } 
+    }
   };
 }

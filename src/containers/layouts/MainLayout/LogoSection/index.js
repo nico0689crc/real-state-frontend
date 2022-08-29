@@ -7,7 +7,7 @@ import API_ENDPOINTS from 'constants/endpoints';
 
 const LogoSection = () => {
   return (
-    <ButtonBase disableRipple component={Link} to={API_ENDPOINTS.HOME}>
+    <ButtonBase disableRipple component={Link} to={API_ENDPOINTS.DASHBOARD}>
       <Logo />
     </ButtonBase>
   )

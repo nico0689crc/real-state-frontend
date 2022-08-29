@@ -1,8 +1,8 @@
-import axiosInstance from "./axios.js";
+import { axiosAdminPath, axiosPublicPath } from "./axios.js";
 
 export class QueryService {
-  constructor(basePath) {
-    this.http = axiosInstance;
+  constructor(basePath, adminPath = false) {
+    this.http = adminPath ? axiosAdminPath() : axiosPublicPath();
     this.basePath = basePath;
   }
 
@@ -11,19 +11,15 @@ export class QueryService {
   };
 
   find = async params => {
-    const { size = 10, page = 1, include, filter = [] } = params;
+    const { page = {
+      size: "10",
+      number: "1"
+    } } = params;
 
     const queries = {
-      "page[size]": size,
-      "page[number]": page,
-      ...(Boolean(include) && { include: include.join(",") }),
+      "page[size]": page.size,
+      "page[number]": page.number
     };
-
-    if (filter.length > 0) {
-      for (const item of filter) {
-        queries[`filter[${item.field}]`] = item.criteria;
-      }
-    }
 
     const queryString = new URLSearchParams(queries).toString();
 
@@ -41,8 +37,7 @@ export class QueryService {
 
     return this.http
       .get(
-        `${this.basePath}/${id}${
-          queryString.length > 0 ? `?${queryString}` : ""
+        `${this.basePath}/${id}${queryString.length > 0 ? `?${queryString}` : ""
         }`
       )
       .then(res => res.data);

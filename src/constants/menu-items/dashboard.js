@@ -1,5 +1,5 @@
 // assets
-import { IconHome } from '@tabler/icons';
+import { IconBuildingWarehouse, IconDashboard } from '@tabler/icons';
 
 // ==============================|| DASHBOARD MENU ITEMS ||============================== //
 
@@ -9,11 +9,11 @@ const dashboard = {
   type: 'group',
   children: [
     {
-      id: 'home',
-      title: 'Home',
+      id: 'dashboard',
+      title: 'Dashboard',
       type: 'item',
       url: '',
-      icon: IconHome,
+      icon: IconDashboard,
       breadcrumbs: false
     },
     {
@@ -21,7 +21,7 @@ const dashboard = {
       title: 'Properties',
       type: 'item',
       url: 'properties',
-      icon: IconHome,
+      icon: IconBuildingWarehouse,
       breadcrumbs: false
     }
   ]

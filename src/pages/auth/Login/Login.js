@@ -3,7 +3,7 @@ import { useTranslation } from "react-i18next";
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as Yup from 'yup';
-import { useLoginMutation } from "hooks/queries/authQueries";
+import { useLoginMutation } from "hooks/queries/auth/authQueries";
 import { authActions } from 'store/authSlice';
 import AuthWrapper from "pages/auth/AuthWrapper";
 import LoginForm from "./LoginForm";

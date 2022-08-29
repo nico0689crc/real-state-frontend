@@ -1,7 +1,8 @@
 const API_ENDPOINTS = {
   LOGIN: "auth/sign_in",
   REGISTER: "auth",
-  HOME: "/",
+  DASHBOARD: "/",
+  PROPERTIES: "/properties",
   FORGOT_PASSWORD: "",
   RESET_PASSWORD: "",
   ACTIVATE_ACCOUNT: "",

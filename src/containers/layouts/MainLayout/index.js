@@ -61,7 +61,7 @@ const MainLayout = () => {
   }, [matchUpMd]);
 
   return (
-    <Box sx={{ display: 'flex', height: '100vh', width: '100vw' }}>
+    <Box sx={{ display: 'flex', width: '100vw' }}>
       <CssBaseline />
       <AppBar
         enableColorOnDark
