@@ -13,6 +13,11 @@
       }
     }
   },
+  "properties": {
+    "create": {
+      "page_header_title": "Add Property"
+    }
+  },
   "header": {
     "profile_section": {
       "account_setting": "Account Settings",

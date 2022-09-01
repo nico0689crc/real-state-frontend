@@ -3,7 +3,7 @@ import { Typography, Box, Pagination, CircularProgress, Grid } from '@mui/materi
 import usePropertiesQuery from "hooks/queries/properties/propertiesQuery";
 import PropertyItem from "./PropertyItem";
 
-const Properties = () => {
+const PropertiesList = () => {
   const [currentPage, setCurrentPage] = useState(1);
 
   const paginationOnChangeHandler = useCallback((event, page) => {
@@ -55,4 +55,4 @@ const Properties = () => {
   );
 };
 
-export default Properties;
+export default PropertiesList;
