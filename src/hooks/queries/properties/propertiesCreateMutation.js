@@ -1,4 +1,5 @@
-import { useMutation, queryClient } from "react-query";
+import { useMutation } from "react-query";
+import { useNavigate } from "react-router-dom";
 import { QueryService } from "lib/QueryService";
 import API_ENDPOINTS from "constants/endpoints";
 
@@ -6,15 +7,12 @@ const pathRequireAuthentication = true;
 const propertiesQueryServices = new QueryService(API_ENDPOINTS.PROPERTIES, pathRequireAuthentication);
 
 const useCreatePropertyMutation = () => {
+  const navigate = useNavigate();
   return useMutation(
     (data) => propertiesQueryServices.create(API_ENDPOINTS.PROPERTIES, data),
     {
       onSuccess: () => {
-        console.log("Creado!");
-        // router.push(`/${router?.query?.shop}${ROUTES.PRODUCTS}`);
-      },
-      onSettled: () => {
-        queryClient.invalidateQueries(API_ENDPOINTS.PROPERTIES);
+        navigate(API_ENDPOINTS.PROPERTIES, { replace: true });
       },
     }
   );
