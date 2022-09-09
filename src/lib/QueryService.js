@@ -46,4 +46,8 @@ export class QueryService {
   get = async url => {
     return this.http.get(url).then(res => res.data);
   };
+
+  create = async (url, data) => {
+    return this.http.post(url, data).then(res => res.data);
+  };
 }

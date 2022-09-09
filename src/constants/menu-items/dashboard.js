@@ -1,11 +1,11 @@
 // assets
-import { IconBuildingWarehouse, IconDashboard } from '@tabler/icons';
+import { IconBuildingWarehouse, IconDashboard, IconCirclePlus } from '@tabler/icons';
 
 // ==============================|| DASHBOARD MENU ITEMS ||============================== //
 
 const dashboard = {
   id: 'dashboard',
-  title: 'Dashboard',
+  title: 'MENU',
   type: 'group',
   children: [
     {
@@ -19,10 +19,26 @@ const dashboard = {
     {
       id: 'properties',
       title: 'Properties',
-      type: 'item',
-      url: 'properties',
+      type: 'collapse',
       icon: IconBuildingWarehouse,
-      breadcrumbs: false
+      children: [
+        {
+          id: 'properties_list',
+          title: 'Properties List',
+          type: 'item',
+          url: 'properties',
+          icon: IconBuildingWarehouse,
+          breadcrumbs: false
+        },
+        {
+          id: 'properties_new',
+          title: 'New Property',
+          type: 'item',
+          url: 'properties/create',
+          icon: IconCirclePlus,
+          breadcrumbs: false
+        },
+      ]
     }
   ]
 };

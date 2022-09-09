@@ -57,7 +57,7 @@ const NavItem = ({ item, level }) => {
         alignItems: 'flex-start',
         backgroundColor: level > 1 ? 'transparent !important' : 'inherit',
         py: level > 1 ? 1 : 1.25,
-        pl: `${level * 24}px`
+        pl: `${level * 20}px`
       }}
       selected={isCurrentPage}
       // onClick={() => itemHandler(item.id)}

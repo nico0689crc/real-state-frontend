@@ -1,6 +1,5 @@
 import PropTypes from 'prop-types';
 import { useState } from 'react';
-import { useSelector } from 'react-redux';
 
 // material-ui
 import { useTheme } from '@mui/material/styles';
@@ -17,8 +16,6 @@ import { IconChevronDown, IconChevronUp } from '@tabler/icons';
 
 const NavCollapse = ({ menu, level }) => {
     const theme = useTheme();
-    const customization = useSelector((state) => state.customization);
-
     const [open, setOpen] = useState(false);
     const [selected, setSelected] = useState(null);
 
@@ -60,10 +57,8 @@ const NavCollapse = ({ menu, level }) => {
         <>
             <ListItemButton
                 sx={{
-                    borderRadius: `${customization.borderRadius}px`,
                     mb: 0.5,
                     alignItems: 'flex-start',
-                    backgroundColor: level > 1 ? 'transparent !important' : 'inherit',
                     py: level > 1 ? 1 : 1.25,
                     pl: `${level * 24}px`
                 }}
@@ -73,7 +68,7 @@ const NavCollapse = ({ menu, level }) => {
                 <ListItemIcon sx={{ my: 'auto', minWidth: !menu.icon ? 18 : 36 }}>{menuIcon}</ListItemIcon>
                 <ListItemText
                     primary={
-                        <Typography variant={selected === menu.id ? 'h5' : 'body1'} color="inherit" sx={{ my: 'auto' }}>
+                        <Typography variant={'body1'} color="inherit" sx={{ my: 'auto' }}>
                             {menu.title}
                         </Typography>
                     }
