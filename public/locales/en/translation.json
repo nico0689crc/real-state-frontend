@@ -13,12 +13,54 @@
       }
     }
   },
+  "properties": {
+    "create": {
+      "page_header_title": "Add Property"
+    },
+    "validations": {
+      "title": {
+        "required": "A title is required.",
+        "min_length": "Should have a title of 30 characters as minimum.",
+        "max_length": "Should have a title of 80 characters as maximum."
+      },
+      "description": {
+        "required": "A description is required.",
+        "min_length": "Should have a description of 50 characters as minimum.",
+        "max_length": "Should have a description of 450 characters as maximum."
+      },
+      "address": {
+        "required": "An address is required.",
+        "min_length": "Should have an address of 50 characters as minimum."
+      },
+      "operating_since": {
+        "type_error_number": "A number is required.",
+        "positive_field": "A positive number is required"
+      },
+      "price": {
+        "type_error_number": "A number is required",
+        "positive_field": "A positive number is required"
+      },
+      "bedrooms": {
+        "type_error_number": "A number is required",
+        "positive_field": "A positive number is required"
+      },
+      "bathrooms": {
+        "type_error_number": "A number is required",
+        "positive_field": "A positive number is required"
+      },
+      "property_size": {
+        "type_error_number": "A number is required",
+        "positive_field": "A positive number is required"
+      }
+    }
+  },
   "header": {
     "profile_section": {
       "account_setting": "Account Settings",
       "logout": "Logout"
     }
   },
+
   "validations": {
     "email":{
       "required": "Email is required",

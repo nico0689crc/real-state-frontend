@@ -4,6 +4,9 @@ import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import Slider from 'react-slick';
 import MediaSlider from './MediaSlider';
 
+const ArrowBackIconCustom = ({ currentSlide, slideCount, ...props }) => <ArrowBackIcon {...props} />
+const ArrowForwardIconCustom = ({ currentSlide, slideCount, ...props }) => <ArrowForwardIcon {...props} />
+
 const settings = {
   dots: true,
   arrows: true,
@@ -11,8 +14,8 @@ const settings = {
   speed: 500,
   slidesToShow: 1,
   slidesToScroll: 1,
-  nextArrow: <ArrowForwardIcon />,
-  prevArrow: <ArrowBackIcon />
+  nextArrow: <ArrowForwardIconCustom />,
+  prevArrow: <ArrowBackIconCustom />
 };
 
 const SlickSlider = ({ medias, ...respProps }) => {
