@@ -10,9 +10,9 @@ jobs:
         with:
           fetch-depth: 0
       - name: Create Project Folder if not exist
-        run: mkdir -p /projects/real_estate/real-state-frontend/
+        run: mkdir -p /projects/real_estate/frontend/
       - name: Remove Project Folder content if exist
-        run: rm -rf /projects/real_estate/real-state-frontend/
+        run: rm -rf /projects/real_estate/frontend/
       - name: Move new folder to Project Folder
         run: cp -r /projects/real_estate/actions-runner/real_estate_frontend/real-state-frontend/real-state-frontend/* /projects/real_estate/frontend/
       - name: Copy environment variables files to Project Folder
