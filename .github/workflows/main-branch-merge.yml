@@ -18,4 +18,4 @@ jobs:
       - name: Copy environment variables files to Project Folder
         run: ln -s /projects/real_estate/envs/.env.production /projects/real_estate/frontend/.env.production
       - name: Build Docker Container
-        run: docker compose -f docker-compose-prod.yml up --build --detach
+        run: cd /projects/real_estate/frontend/ && docker container stop frontend-react-app-1 && docker compose -f docker-compose-prod.yml up --build --detach
