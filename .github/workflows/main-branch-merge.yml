@@ -9,10 +9,10 @@ jobs:
       - uses: actions/checkout@v3
         with:
           fetch-depth: 0
-      - name: Remove Previous Project Folder
-        run: rm -r /projects/real_estate/real-state-frontend/
-      - name: Create Project Folder
-        run: mkdir /projects/real_estate/real-state-frontend/
+      - name: Create Project Folder if not exist
+        run: mkdir -p /projects/real_estate/real-state-frontend/
+      - name: Remove Project Folder content if exist
+        run: rm -rf /projects/real_estate/real-state-frontend/
       - name: Move new folder to Project Folder
         run: cp -r /projects/real_estate/actions-runner/real_estate_frontend/real-state-frontend/real-state-frontend/* /projects/real_estate/real-state-frontend/
       # - name: Build Docker Container
