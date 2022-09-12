@@ -14,6 +14,6 @@ jobs:
       - name: Remove Project Folder content if exist
         run: rm -rf /projects/real_estate/real-state-frontend/
       - name: Move new folder to Project Folder
-        run: cp -r /projects/real_estate/actions-runner/real_estate_frontend/real-state-frontend/real-state-frontend/* /projects/real_estate/real-state-frontend/
+        run: cp -r /projects/real_estate/actions-runner/real_estate_frontend/real-state-frontend/real-state-frontend/*ls /projects/real_estate/frontend/
       # - name: Build Docker Container
       #   run: docker compose -f docker-compose-prod.yml up --build --detach
