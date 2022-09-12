@@ -9,6 +9,7 @@ import FiberManualRecordIcon from '@mui/icons-material/FiberManualRecord';
 // ==============================|| SIDEBAR MENU LIST ITEMS ||============================== //
 
 const NavItem = ({ item, level }) => {
+  // eslint-disable-next-line no-unused-vars
   const [isCurrentPage, setIsCurrentPage] = useState(false);
   const theme = useTheme();
   const customization = useSelector((state) => state.uiStore);

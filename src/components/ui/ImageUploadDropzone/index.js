@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useDropzone } from 'react-dropzone';
 import UploadModern from './UploadModern';
 import PreviewThumb from './PreviewThumb';
@@ -22,7 +22,7 @@ const ImageUploadDropzone = ({ uploadedFiles, setUploadedFiles }) => {
   });
   useEffect(() => {
     setUploadedFiles(dropzone.acceptedFiles);
-  }, [dropzone.acceptedFiles]);
+  }, [dropzone.acceptedFiles, setUploadedFiles]);
 
   const onDeleteUploadFile = (file) => {
     dropzone.acceptedFiles.splice(dropzone.acceptedFiles.indexOf(file), 1);
