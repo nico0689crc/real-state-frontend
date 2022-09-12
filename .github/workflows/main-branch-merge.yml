@@ -10,12 +10,14 @@ jobs:
         with:
           fetch-depth: 0
       - name: Create Project Folder if not exist
-        run: mkdir -p /projects/real_estate/frontend/
+        run: rm -r /projects/real_estate/frontend/ && mkdir /projects/real_estate/frontend/
       - name: Remove Project Folder content if exist
         run: rm -rf /projects/real_estate/frontend/*
       - name: Move new folder to Project Folder
         run: cp -r /projects/real_estate/actions-runner/real_estate_frontend/real-state-frontend/real-state-frontend/* /projects/real_estate/frontend/
+      - name: Remove Runner Action Folder content
+        run: rm -rf /projects/real_estate/actions-runner/real_estate_frontend/*
       - name: Copy environment variables files to Project Folder
         run: ln -s /projects/real_estate/envs/.env.production /projects/real_estate/frontend/.env.production
       - name: Build Docker Container
-        run: cd /projects/real_estate/frontend/ && docker container stop frontend-react-app-1 && docker compose -f docker-compose-prod.yml up --build --detach
+        run: cd /projects/real_estate/frontend/ && docker container stop frontend-react-app-1 && docker compose -f docker-compose-prod.yml up --build
