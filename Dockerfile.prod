@@ -3,7 +3,7 @@ WORKDIR /app
 COPY package.json .
 RUN npm install
 COPY . .
-RUN npm --max-old-space-size=2000 run build
+RUN npm run build
 
 FROM nginx:1.22.0
 COPY nginx.conf /etc/nginx/conf.d/default.conf
