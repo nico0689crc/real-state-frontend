@@ -10,7 +10,7 @@ const dashboard = {
   children: [
     {
       id: 'dashboard',
-      title: 'Dashboard',
+      title: 'Dashboard Arg',
       type: 'item',
       url: '',
       icon: IconDashboard,
