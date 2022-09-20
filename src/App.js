@@ -10,6 +10,9 @@ import { retrievUserDataActionCreator } from 'store/userActionCreator'
 import { authActions } from 'store/authSlice'
 
 const App = () => {
+  console.log(`Fron App ${process.env.REACT_APP_BACKEND_PUBLIC_URL}`);
+  console.log(`Fron App ${process.env}`);
+  console.log(`Fron App ${process}`);
   const dispatch = useDispatch();
   const customTheme = useSelector((state) => state.uiStore);
   const tokenExpirationDate = useSelector((state) => state.authStore.tokenExpirationDate);
