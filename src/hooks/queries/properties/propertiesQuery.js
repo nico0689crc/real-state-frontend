@@ -18,8 +18,7 @@ export const fetchProperties = async ({ queryKey, pageParam }) => {
 };
 const usePropertiesQuery = params => {
   return useQuery([API_ENDPOINTS.PROPERTIES, params], fetchProperties, {
-    keepPreviousData: true,
-    retry: false
+    refetchOnWindowFocus: false,
   });
 };
 

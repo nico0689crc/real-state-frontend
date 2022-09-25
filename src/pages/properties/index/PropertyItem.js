@@ -13,7 +13,7 @@ const PropertyItem = ({ property, ...restProps }) => {
 
   return (
     <Grid item xs={12} sm={6} lg={4} zeroMinWidth>
-      <Paper elevation={1} sx={{ display: 'flex', flexDirection: 'column', borderRadius: '10px' }}>
+      <Paper elevation={1} sx={{ display: 'flex', flexDirection: 'column', borderRadius: '10px', height: '100%' }}>
         <Box sx={{ position: 'relative', height: '300px' }}>
           <SlickSlider medias={property.media} />
           <IconButton aria-label="favorite" size='small' sx={{
@@ -69,43 +69,47 @@ const PropertyItem = ({ property, ...restProps }) => {
               }
             }} />
         </Box>
-        <Box sx={{ display: 'flex', flexDirection: 'column', padding: '20px' }}>
+        <Box sx={{ display: 'grid', gridTemplateRows: 'repeat(3, auto) 80px auto 1fr', padding: '20px', flexGrow: '1' }}>
           <Typography sx={{ fontWeight: '500', fontFamily: 'Roboto, sans-serif', fontSize: '14px' }} variant="caption" display="block" gutterBottom noWrap={true}>{property.address}</Typography>
           <Typography sx={{ fontWeight: '700', fontFamily: 'Montserrat, sans-serif' }} variant="h6" gutterBottom noWrap={true}>{property.title.toUpperCase()}</Typography>
           <Typography sx={{ color: '#ff5c41', fontWeight: '600', fontSize: '17px', marginBottom: '5px' }}>{`$${property.price}`}</Typography>
           <Typography sx={{
-            minHeight: '50px',
-            maxHeight: '60px',
-            overflow: 'hidden',
-            color: theme.palette.mode === 'light' ? '#586167b3' : '#ffffff99',
-            lineHeight: '1.6',
-            fontFamily: '"Roboto", sans-serif',
-            fontSize: '15px',
-            fontWeight: '500'
-          }} variant="body1"
+              color: theme.palette.mode === 'light' ? '#586167b3' : '#ffffff99',
+              lineHeight: '1.6',
+              fontFamily: '"Roboto", sans-serif',
+              fontSize: '15px',
+              fontWeight: '500',
+              textOverflow: 'ellipsis',
+              overflow: 'hidden',
+              display: '-webkit-box !important',
+              '-webkit-line-clamp': '3',
+              '-webkit-box-orient': 'vertical',
+              whiteSpace: 'normal'
+            }} 
+            variant="body1"
             gutterBottom>{property.description}
           </Typography>
-          <Box sx={{ display: 'flex', justifyContent: 'center', width: '100%' }}>
-            <Box sx={{ display: 'flex', flexGrow: '1', justifyContent: 'start', alignItems: 'center' }}>
+          <Grid container rowSpacing={1} columnSpacing={1}>
+            <Grid item sx={{ display: 'flex', flexGrow: '1', flexShrink: '0', justifyContent: 'start', alignItems: 'center' }}>
               <BedIcon />
-              <Typography sx={{ fontWeight: '600', fontFamily: 'Roboto, sans-serif', fontSize: '14px', marginLeft: '5px' }} >{`Bedrooms: ${property.beedroom_amount}`}</Typography>
-            </Box>
-            <Box sx={{ display: 'flex', flexGrow: '1', justifyContent: 'start', alignItems: 'center', marginLeft: '5px' }}>
+              <Typography sx={{ fontWeight: '600', fontFamily: 'Roboto, sans-serif', fontSize: '14px'}} >{`Bedrooms: ${property.beedroom_amount}`}</Typography>
+            </Grid>
+            <Grid item sx={{ display: 'flex', flexGrow: '1', flexShrink: '0', justifyContent: 'start', alignItems: 'center'}}>
               <BathroomIcon />
-              <Typography sx={{ fontWeight: '600', fontFamily: 'Roboto, sans-serif', fontSize: '14px', marginLeft: '5px' }} >{`Bathrooms: ${property.bathroom_amount}`}</Typography>
-            </Box>
-            <Box sx={{ display: 'flex', flexGrow: '1', justifyContent: 'start', alignItems: 'center', marginLeft: '5px' }}>
+              <Typography sx={{ fontWeight: '600', fontFamily: 'Roboto, sans-serif', fontSize: '14px'}} >{`Bathrooms: ${property.bathroom_amount}`}</Typography>
+            </Grid>
+            <Grid item sx={{ display: 'flex', flexGrow: '1', flexShrink: '0', justifyContent: 'start', alignItems: 'center'}}>
               <SquareFootIcon />
-              <Typography sx={{ fontWeight: '600', fontFamily: 'Roboto, sans-serif', fontSize: '14px', marginLeft: '5px' }} >{`Sq Ft: ${property.sq_mts}`}</Typography>
-            </Box>
-          </Box>
-          <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', width: '100%', paddingY: '1rem', marginTop: '1rem' }}>
+              <Typography sx={{ fontWeight: '600', fontFamily: 'Roboto, sans-serif', fontSize: '14px'}} >{`Sq Ft: ${property.sq_mts}`}</Typography>
+            </Grid>
+          </Grid>
+          <Box sx={{ display: 'flex', alignItems: 'end', justifyContent: 'space-between', width: '100%', paddingY: '1rem', marginTop: '1rem' }}>
             <Typography sx={{
               fontWeight: '600',
               color: theme.palette.mode === 'light' ? '#586167b3' : '#ffffff99',
               fontSize: '14px'
             }} >
-              {`Posted: ${property.created_at}`}
+              {property.created_at}
             </Typography>
             <Button
               sx={{
