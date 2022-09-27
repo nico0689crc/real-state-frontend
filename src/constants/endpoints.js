@@ -1,4 +1,5 @@
 const API_ENDPOINTS = {
+  ROOT: "/",
   LOGIN: "auth/sign_in",
   REGISTER: "auth",
   DASHBOARD: "/",

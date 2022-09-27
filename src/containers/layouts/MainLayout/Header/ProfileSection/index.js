@@ -3,8 +3,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useTheme } from '@mui/material/styles';
 import { useTranslation } from "react-i18next";
 import { Avatar, Stack } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
 import { authActions } from 'store/authSlice';
 import { uisActions, UI_VARIABLES } from 'store/uiSlice';
+import API_ENDPOINTS from "constants/endpoints";
 import User1 from 'assets/images/users/user-round.svg';
 import { IconLogout, IconSettings, IconSun, IconMoon } from '@tabler/icons';
 import CallToActionButton from 'components/custom/Button/CallToAction/CallToActionButton';
@@ -17,11 +19,13 @@ const ProfileSection = () => {
   const dispatch = useDispatch();
   const anchorRef = useRef(null);
   const { t } = useTranslation();
+  const navigate = useNavigate();
   const [open, setOpen] = useState(false);
   const { mode } = useSelector(state => state.uiStore)
 
   const handleLogout = async () => {
     dispatch(authActions.logout());
+    navigate(API_ENDPOINTS.ROOT);
   };
 
   const handleClose = (event) => {
