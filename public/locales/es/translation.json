@@ -13,6 +13,42 @@
       }
     }
   },
+  "properties": {
+    "create": {
+      "page_header_title": "Add Property"
+    },
+    "validations": {
+      "title": {
+        "required": "A title is required."
+      },
+      "description": {
+        "required": "A description is required."
+      },
+      "address": {
+        "required": "An address is required."
+      },
+      "operating_since": {
+        "type_error_number": "A number is required.",
+        "positive_field": "A positive number is required"
+      },
+      "price": {
+        "type_error_number": "A number is required",
+        "positive_field": "A positive number is required"
+      },
+      "bedrooms": {
+        "type_error_number": "A number is required",
+        "positive_field": "A positive number is required"
+      },
+      "bathrooms": {
+        "type_error_number": "A number is required",
+        "positive_field": "A positive number is required"
+      },
+      "property_size": {
+        "type_error_number": "A number is required",
+        "positive_field": "A positive number is required"
+      }
+    }
+  },
   "header": {
     "profile_section": {
       "account_setting": "Configuraciones",

@@ -19,18 +19,13 @@
     },
     "validations": {
       "title": {
-        "required": "A title is required.",
-        "min_length": "Should have a title of 30 characters as minimum.",
-        "max_length": "Should have a title of 80 characters as maximum."
+        "required": "A title is required."
       },
       "description": {
-        "required": "A description is required.",
-        "min_length": "Should have a description of 50 characters as minimum.",
-        "max_length": "Should have a description of 450 characters as maximum."
+        "required": "A description is required."
       },
       "address": {
-        "required": "An address is required.",
-        "min_length": "Should have an address of 50 characters as minimum."
+        "required": "An address is required."
       },
       "operating_since": {
         "type_error_number": "A number is required.",

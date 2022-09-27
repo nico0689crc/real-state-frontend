@@ -36,18 +36,13 @@ const getFormSchema = (t, item) => {
   const formSchema = yup.object().shape({
     "title": yup
       .string()
-      .required(t("properties.validations.title.required"))
-      .min(30, t("properties.validations.title.min_length"))
-      .max(80, t("properties.validations.title.max_length")),
+      .required(t("properties.validations.title.required")),
     "description": yup
       .string()
-      .required(t("properties.validations.description.required"))
-      .min(50, t("properties.validations.description.min_length"))
-      .max(450, t("properties.validations.description.max_length")),
+      .required(t("properties.validations.description.required")),
     "address": yup
       .string()
-      .required(t("properties.validations.address.required"))
-      .min(50, t("properties.validations.address.min_length")),
+      .required(t("properties.validations.address.required")),
     "operating_since": yup
       .number()
       .typeError(t("properties.validations.operating_since.type_error_number"))
@@ -71,8 +66,14 @@ const getFormSchema = (t, item) => {
   });
 
   const defaultValues = {
-    "title": item ? item.title : "",
-    "description": item ? item.description : ""
+    "title": item ? item.title : "Happily final air prize grow earlier promised since.",
+    "description": item ? item.description : "Meal signal grabbed universe wind take forget highway animal sort somewhere along include personal anywhere anybody through dry crop met powerful there father water",
+    "address": "LtqSRyyFqgno yPZFN2ECDrK8n2z VgFKY2YqmNubhAUfq7a",
+    "bathrooms": "2",
+    "bedrooms": "3",
+    "operating_since": "1955",
+    "price": "1550000.0",
+    "property_size": "500"
   };
 
   return {
@@ -92,7 +93,6 @@ const PropertiesCreate = ({ item, ...props }) => {
   }
 
   const onSubmitHandler = async (data) => {
-    console.log(data);
     const facilities = [
       {
         "name": "Free Wi-Fi",
@@ -131,6 +131,7 @@ const PropertiesCreate = ({ item, ...props }) => {
         "value": 2
       }
     ];
+
 
     const formData = new FormData();
     formData.append("property[title]", data['title']);
