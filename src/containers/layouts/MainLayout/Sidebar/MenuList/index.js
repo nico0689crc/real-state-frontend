@@ -1,6 +1,5 @@
 // material-ui
 import { Typography } from '@mui/material';
-
 // project imports
 import NavGroup from './NavGroup';
 import menuItem from 'constants/menu-items';
@@ -21,7 +20,7 @@ const MenuList = () => {
     }
   });
 
-  return <>{navItems}</>;
+  return navItems;
 };
 
 export default MenuList;

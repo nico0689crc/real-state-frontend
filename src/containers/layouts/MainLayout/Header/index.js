@@ -1,27 +1,29 @@
-import { Box } from '@mui/material';
+import { Box, useMediaQuery, IconButton } from '@mui/material';
 import { IconMenu2 } from '@tabler/icons';
+import { useTheme } from '@mui/material/styles';
+import { 
+  sidebarWidthOpened, 
+  containerPaddingX, 
+  containerPaddingSmX,
+  headerPaddingY 
+} from 'constants/ui';
 import LogoSection from '../LogoSection';
 import ProfileSection from '../Header/ProfileSection';
-import { drawerWidth } from 'constants/ui'
-import CallToActionButton from 'components/custom/Button/CallToAction/CallToActionButton';
 
 const Header = ({ handleLeftDrawerToggle }) => {
+  const theme = useTheme();
+  const matchUpMd = useMediaQuery(theme.breakpoints.up('md'));
+
   return (
-    <>
-      <Box sx={{ display: 'flex', alignItems: 'center', width: '100%' }} >
-        <Box sx={{ display: 'flex', alignItems: 'center', width: `${(drawerWidth - 25)}px` }} >
-          <Box component="span" sx={{ display: { xs: 'none', md: 'block' }, flexGrow: 1 }}>
-            <LogoSection />
-          </Box>
-          <CallToActionButton
-            onClickHandler={handleLeftDrawerToggle}
-            icon={<IconMenu2 stroke={1.5} size="1.3rem" />}
-          />
-        </Box>
-        <Box sx={{ flexGrow: 1 }} />
+    <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', width: '100%', paddingY: headerPaddingY }} >
+      <Box sx={{ display: 'flex', alignItems: 'center', paddingLeft: matchUpMd ? containerPaddingX : containerPaddingSmX, width: matchUpMd ? sidebarWidthOpened : 'auto'}} >
+        <LogoSection sx={{ display: { xs: 'none', md: 'block' }, flexGrow: 1 }}/>
+        <IconButton onClick={handleLeftDrawerToggle}> <IconMenu2 stroke={1.5} size="1.3rem" /> </IconButton>
+      </Box>
+      <Box sx={{ paddingRight: matchUpMd ? containerPaddingX : containerPaddingSmX }}>
         <ProfileSection />
       </Box>
-    </>
+    </Box>
   );
 };
 

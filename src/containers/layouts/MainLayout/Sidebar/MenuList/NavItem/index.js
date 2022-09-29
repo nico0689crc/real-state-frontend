@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { forwardRef, useEffect, useState } from 'react';
+import { forwardRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { useTheme } from '@mui/material/styles';
@@ -35,18 +35,6 @@ const NavItem = ({ item, level }) => {
     listItemProps = { component: 'a', href: item.url, target: itemTarget };
   }
 
-  // active menu item on page load
-  useEffect(() => {
-    // const currentPathnameArray = document.location.pathname.split('/');
-    // console.log(currentPathnameArray, item.url);
-
-    // if (currentPathname === "/" && item.url === '') {
-    //   setIsCurrentPage(true);
-    // }
-    // if (currentPathname.split('/')[-1] === item.url) {
-    //   setIsCurrentPage(true);
-    // }
-  }, []);
 
   return (
     <ListItemButton

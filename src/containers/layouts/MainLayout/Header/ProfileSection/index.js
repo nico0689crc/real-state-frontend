@@ -2,14 +2,13 @@ import { useState, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useTheme } from '@mui/material/styles';
 import { useTranslation } from "react-i18next";
-import { Avatar, Stack } from '@mui/material';
+import { Avatar, Stack, IconButton } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import { authActions } from 'store/authSlice';
 import { uisActions, UI_VARIABLES } from 'store/uiSlice';
 import API_ENDPOINTS from "constants/endpoints";
 import User1 from 'assets/images/users/user-round.svg';
 import { IconLogout, IconSettings, IconSun, IconMoon } from '@tabler/icons';
-import CallToActionButton from 'components/custom/Button/CallToAction/CallToActionButton';
 import Dropdown from 'components/custom/Dropdown/Dropdown';
 
 // ==============================|| PROFILE MENU ||============================== //
@@ -45,31 +44,15 @@ const ProfileSection = () => {
 
   return (
     <>
-      <Stack direction="row" spacing={2} sx={{ display: 'flex', alignItems: 'center', flexGrow: 0 }}>
+      <Stack direction="row" spacing={1}>
         <Avatar
           src={User1}
           sx={{ ...theme.typography.mediumAvatar, cursor: 'pointer' }}
         />
-        <CallToActionButton
-          onClickHandler={handleUiMode}
-          icon={
-            mode === UI_VARIABLES.UI_MODE_DARK ?
-              <IconSun stroke={1.5} size="1.5rem" /> :
-              <IconMoon stroke={1.5} size="1.5rem" />
-          }
-          ref={anchorRef}
-          aria-controls={open ? 'menu-list-grow' : undefined}
-          aria-haspopup="true"
-          color="inherit"
-        />
-        <CallToActionButton
-          onClickHandler={handleToggle}
-          icon={<IconSettings stroke={1.5} size="1.5rem" />}
-          ref={anchorRef}
-          aria-controls={open ? 'menu-list-grow' : undefined}
-          aria-haspopup="true"
-          color="inherit"
-        />
+        <IconButton onClick={handleUiMode} ref={anchorRef} aria-controls={open ? 'menu-list-grow' : undefined} aria-haspopup="true">
+          { mode === UI_VARIABLES.UI_MODE_DARK ?  <IconSun stroke={1.5} size="1.5rem" /> : <IconMoon stroke={1.5} size="1.5rem" /> }
+        </IconButton>
+        <IconButton onClick={handleToggle} ref={anchorRef} aria-controls={open ? 'menu-list-grow' : undefined} aria-haspopup="true"><IconSettings stroke={1.5} size="1.5rem" /></IconButton>
         <Dropdown
           open={open}
           anchorRef={anchorRef}

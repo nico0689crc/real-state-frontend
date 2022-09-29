@@ -31,7 +31,6 @@ export const axiosAdminPath = () => {
 }
 
 export const axiosPublicPath = () => {
-  console.log(`Fron Axios ${process.env.REACT_APP_BACKEND_PUBLIC_URL}`);
   const request = axios.create({
     baseURL: process.env.REACT_APP_BACKEND_PUBLIC_URL,
     timeout: 30000,

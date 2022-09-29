@@ -1,14 +1,17 @@
-import { UI_VARIABLES } from 'store/uiSlice';
-
 export default function themePalette(themeOption = null) {
+  const { 
+    customTheme: { mode },
+    colors,
+    UI_VARIABLES 
+  } = themeOption;
+  const isDarkMode = mode === UI_VARIABLES.UI_MODE_DARK;
+
   return {
-    mode: themeOption.customTheme.mode,
-    primary: themeOption.colors.primary,
+    mode: mode,
     background: {
-      default: themeOption.customTheme.mode === UI_VARIABLES.UI_MODE_DARK ?
-        themeOption.colors.background['dark-mode'].dark : themeOption.colors.white,
-      paper: themeOption.customTheme.mode === UI_VARIABLES.UI_MODE_DARK ?
-        themeOption.colors.background['dark-mode'].light : themeOption.colors.white
-    }
+      default: isDarkMode ?  colors.background['dark-mode'].default : colors.background['light-mode'].default,
+      paper: isDarkMode ? colors.background['dark-mode'].paper : colors.background['light-mode'].paper
+    },
+    ...colors.primary,
   };
 }

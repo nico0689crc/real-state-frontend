@@ -1,56 +1,52 @@
 export default function componentStyleOverrides(themeOption = null) {
-  const borders = `1px solid ${themeOption.colors.grey[300]}`;
-  const { mode } = themeOption.customTheme;
-  const { UI_MODE_DARK } = themeOption.UI_VARIABLES;
+  
+  const { 
+    customTheme: { mode, borderRadius },
+    colors,
+    UI_VARIABLES 
+  } = themeOption;
+  const isDarkMode = mode === UI_VARIABLES.UI_MODE_DARK;
 
   return {
-    MuiInput: {
+    // MuiInput: {
+    //   styleOverrides: {
+    //     root: {
+    //       paddingTop: 2,
+    //       paddingBottom: 2,
+    //       "&::after": {
+    //         borderBottom: borders
+    //       },
+    //       "&::before": {
+    //         borderBottom: borders
+    //       },
+    //       "&:hover": {
+    //         "&::before": {
+    //           borderBottom: `1px solid ${colors.grey[300]} !important`
+    //         }
+    //       }
+    //     },
+    //     input: {
+    //       "&:-webkit-autofill": {
+    //         WebkitBoxShadow: "0 0 0 1000px white inset",
+    //       }
+    //     },
+    //   },
+    // },
+    MuiToolbar: {
       styleOverrides: {
         root: {
-          paddingTop: 2,
-          paddingBottom: 2,
-          "&::after": {
-            borderBottom: borders
-          },
-          "&::before": {
-            borderBottom: borders
-          },
-          "&:hover": {
-            "&::before": {
-              borderBottom: `${borders} !important`
-            }
-          }
-        },
-        input: {
-          "&:-webkit-autofill": {
-            WebkitBoxShadow: "0 0 0 1000px white inset",
-          }
-        },
-      },
-    },
-    MuiListItemButton: {
-      styleOverrides: {
-        root: {
-          borderRadius: `${themeOption.customTheme.borderRadius}px`,
+          padding: '0 !important',
         }
       }
     },
-    MuiAppBar: {
+    MuiIconButton: {
       styleOverrides: {
         root: {
-          backgroundColor: mode === UI_MODE_DARK ?
-            themeOption.colors.background["dark-mode"].dark :
-            themeOption.colors.white,
-        }
-      }
-    },
-    MuiDrawer: {
-      styleOverrides: {
-        root: {
-          '& .MuiDrawer-paper': {
-            backgroundColor: mode === UI_MODE_DARK ?
-              themeOption.colors.background["dark-mode"].dark :
-              themeOption.colors.white,
+          borderRadius: `${borderRadius}px`,
+          backgroundColor: isDarkMode ? colors.background['dark-mode'].button.regular : colors.background['light-mode'].button.regular,
+          color: isDarkMode ? colors.typography['dark-mode'].button.color : colors.typography['light-mode'].button.color,
+          '&:hover': {
+            backgroundColor: isDarkMode ? colors.background['dark-mode'].button.hover : colors.background['light-mode'].button.hover,
           }
         }
       }

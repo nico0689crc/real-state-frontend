@@ -152,9 +152,7 @@ const PropertiesCreate = ({ item, ...props }) => {
     });
 
     createProperty(formData, {
-      onError: () => {
-        console.log("Error!");
-      }
+      onError: () => { }
     })
   }
 

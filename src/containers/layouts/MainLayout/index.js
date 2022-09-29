@@ -1,92 +1,56 @@
 import { useEffect } from 'react';
 import { Outlet } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { AppBar, Box, CssBaseline, Toolbar, useMediaQuery } from '@mui/material';
-import { styled, useTheme } from '@mui/material/styles';
-import AppSuspense from 'components/core/AppSuspense'
-import { uisActions, UI_VARIABLES } from 'store/uiSlice';
-import { drawerWidth } from 'constants/ui';
-import colors from 'themes/colors'
-
+import { AppBar, Box, Hidden, Toolbar, useMediaQuery } from '@mui/material';
+import { useTheme } from '@mui/material/styles';
+import AppSuspense from 'components/core/AppSuspense';
+import { containerPaddingX, containerPaddingSmX } from 'constants/ui';
+import { uisActions } from 'store/uiSlice';
 import Sidebar from './Sidebar';
 import Header from './Header';
-
-const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' })(({ theme, open }) => {
-
-  return {
-    backgroundColor: theme.palette.mode === UI_VARIABLES.UI_MODE_DARK ? colors.grey[800] : colors.grey[100],
-    ...theme.typography.mainContent,
-    ...(!open && {
-      transition: theme.transitions.create('margin', {
-        easing: theme.transitions.easing.sharp,
-        duration: theme.transitions.duration.leavingScreen
-      }),
-      [theme.breakpoints.up('md')]: {
-        marginLeft: -drawerWidth,
-      },
-    }),
-    ...(open && {
-      transition: theme.transitions.create('margin', {
-        easing: theme.transitions.easing.easeOut,
-        duration: theme.transitions.duration.enteringScreen
-      }),
-      marginLeft: 0,
-    }),
-    borderBottomLeftRadius: 0,
-    borderBottomRightRadius: 0,
-    [theme.breakpoints.down('md')]: {
-      marginTop: '60px',
-      borderRadius: 0,
-      padding: '1rem'
-    },
-    [theme.breakpoints.down('sm')]: {
-      padding: '0.75rem',
-    }
-  }
-});
 
 const MainLayout = () => {
   const theme = useTheme();
   const dispatch = useDispatch();
   const matchUpMd = useMediaQuery(theme.breakpoints.up('md'));
-  const leftDrawerOpened = useSelector((state) => state.uiStore.opened);
+  const {sidebarOpened, sidebarWidht} = useSelector((state) => state.uiStore);
 
   const handleLeftDrawerToggle = () => {
-    dispatch(uisActions.toggleSidebar({ opened: !leftDrawerOpened }));
+    dispatch(uisActions.toggleSidebar({ sidebarOpened: !sidebarOpened }));
   };
 
   useEffect(() => {
-    dispatch(uisActions.toggleSidebar({ opened: matchUpMd }));
+    dispatch(uisActions.toggleSidebar({ sidebarOpened: matchUpMd }));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [matchUpMd]);
 
   return (
-    <Box sx={{ display: 'flex', width: '100%' }}>
-      <CssBaseline />
-      <AppBar
-        enableColorOnDark
-        position="fixed"
-        color="inherit"
-        elevation={0}
-        sx={{ transition: leftDrawerOpened ? theme.transitions.create('width') : 'none', }}
-      >
-        <Toolbar sx={{
-          [theme.breakpoints.down('md')]: {
-            padding: '1rem'
-          },
-          [theme.breakpoints.down('sm')]: {
-            padding: '0.75rem',
-          }
-        }}>
+    <Box sx={{ display: 'grid', gridTemplateRows: 'auto 1fr', width: '100%', height: '100vh' }}>
+      <AppBar color="inherit" position="static" elevation={0} sx={{ transition: sidebarOpened ? theme.transitions.create('width') : 'none' }}>
+        <Toolbar>
           <Header handleLeftDrawerToggle={handleLeftDrawerToggle} />
         </Toolbar>
       </AppBar>
-      <Sidebar drawerOpen={leftDrawerOpened} drawerToggle={handleLeftDrawerToggle} />
-      <Main theme={theme} open={leftDrawerOpened}>
-        <AppSuspense>
-          <Outlet />
-        </AppSuspense>
-      </Main>
+      <Box sx={{display: 'flex', overflow: 'hidden'}}>
+        <Box component="nav" sx={{ 
+          flexGrow: 0, 
+          flexShrink: 0, 
+          height: '100%',
+          width: matchUpMd ? sidebarWidht : 'auto', 
+          overflow: 'hidden',
+          transition: theme.transitions.create('width', {
+            easing: theme.transitions.easing.easeOut,
+            duration: theme.transitions.duration.shortest
+          }), 
+        }}>
+          <Sidebar drawerOpen={sidebarOpened} drawerToggle={handleLeftDrawerToggle} />
+        </Box>
+        <Box sx={{flexGrow: 1, padding: matchUpMd ? containerPaddingX : containerPaddingSmX, overflow: 'scroll'}}>
+          <AppSuspense>
+            <Outlet />
+          </AppSuspense>
+        </Box>
+      </Box>
     </Box>
   )
 };
