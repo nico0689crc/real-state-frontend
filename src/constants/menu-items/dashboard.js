@@ -1,5 +1,6 @@
 // assets
-import { IconBuildingWarehouse, IconDashboard, IconCirclePlus } from '@tabler/icons';
+import { IconBuildingWarehouse, IconDashboard } from '@tabler/icons';
+import KeyboardDoubleArrowRightIcon from '@mui/icons-material/KeyboardDoubleArrowRight';
 
 // ==============================|| DASHBOARD MENU ITEMS ||============================== //
 
@@ -18,24 +19,24 @@ const dashboard = {
     },
     {
       id: 'properties',
-      title: 'Properties',
+      title: 'My Properties',
       type: 'collapse',
       icon: IconBuildingWarehouse,
       children: [
         {
           id: 'properties_list',
-          title: 'Properties List',
+          title: 'Property List',
           type: 'item',
           url: 'properties',
-          icon: IconBuildingWarehouse,
+          icon: KeyboardDoubleArrowRightIcon,
           breadcrumbs: false
         },
         {
           id: 'properties_new',
-          title: 'New Property',
+          title: 'Add Property',
           type: 'item',
           url: 'properties/create',
-          icon: IconCirclePlus,
+          icon: KeyboardDoubleArrowRightIcon,
           breadcrumbs: false
         },
       ]

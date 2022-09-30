@@ -1,12 +1,9 @@
-import { red, grey } from '@mui/material/colors';
+import { red } from '@mui/material/colors';
 
 const colors = {
   primary: {
-    '100': red['100'],
-    '200': red['200'],
-    main: red['500'],
-    light: red['300'],
-    dark: red['700'],
+    lightBackground: "#f344511a",
+    main: "#f34451",
   },
   background: {
     "dark-mode": {

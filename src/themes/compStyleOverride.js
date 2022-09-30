@@ -1,5 +1,4 @@
 export default function componentStyleOverrides(themeOption = null) {
-  
   const { 
     customTheme: { mode, borderRadius },
     colors,
@@ -32,6 +31,101 @@ export default function componentStyleOverrides(themeOption = null) {
     //     },
     //   },
     // },
+    MuiTypography: {
+      styleOverrides: {
+        root: {
+          fontFamily: "Roboto, sans-serif"
+        }
+      }
+    },
+    MuiDrawer: {
+      styleOverrides: {
+        root: {
+          "& .MuiList-root": {
+            width: '100%',
+            padding: 0,
+            "& .MuiCollapse-root": {
+              paddingLeft: "30px"
+            }
+          }
+        }
+      }
+    },
+    MuiListItemButton: {
+      styleOverrides: {
+        root: {
+          alignItems: 'end',
+          padding: "12px 20px",
+          borderLeft: "5px solid transparent",
+          borderRadius: "0 20px 20px 0",
+          transition: 'all 0.5s ease',
+          marginBottom: '0.5rem',
+          "&:hover, &.Mui-selected": {
+            color: colors.primary.main,
+            borderLeft: `5px solid ${colors.primary.main}`,
+            backgroundColor: colors.primary.lightBackground,
+            "& svg": {
+              color: colors.primary.main,
+            }
+          },
+          "&.Mui-selected": {
+            "&:hover": {
+              backgroundColor: colors.primary.lightBackground
+            }
+          }
+        }
+      }
+    },
+    MuiListItemIcon: {
+      styleOverrides: {
+        root: {
+          minWidth: 0,
+          marginRight: "5px"
+        }
+      }
+    },
+    MuiListItemText: {
+      styleOverrides: {
+        root: {
+          margin: 0,
+          '& span': {
+            fontSize: '15px',
+            fontWeight: '600',
+            lineHeight: '1.25'
+          }
+        }
+      }
+    },
+    MuiCollapse: {
+      styleOverrides: {
+        root: {
+          padding: 0,
+          "& .MuiList-root": {
+            paddingLeft: "30px",
+            "& .MuiListItemButton-root":{
+              borderLeft: 0,
+              borderRadius: 0,
+              backgroundColor: 'transparent',
+              transition: 'all 0.5s ease',
+              "&.Mui-selected": {
+                color: "colors.primary.main",
+                backgroundColor: 'transparent',
+                "& svg": {
+                  color: colors.primary.main,
+                }
+              },
+              "&:hover": {
+                color: colors.primary.main,
+                backgroundColor: 'transparent',
+                "& svg": {
+                  color: colors.primary.main,
+                }
+              },
+            }
+          },
+        }
+      }
+    },
     MuiToolbar: {
       styleOverrides: {
         root: {

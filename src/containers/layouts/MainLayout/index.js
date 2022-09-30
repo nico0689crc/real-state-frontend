@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { Outlet } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { AppBar, Box, Hidden, Toolbar, useMediaQuery } from '@mui/material';
+import { AppBar, Box, Toolbar, useMediaQuery } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
 import AppSuspense from 'components/core/AppSuspense';
 import { containerPaddingX, containerPaddingSmX } from 'constants/ui';
@@ -45,7 +45,7 @@ const MainLayout = () => {
         }}>
           <Sidebar drawerOpen={sidebarOpened} drawerToggle={handleLeftDrawerToggle} />
         </Box>
-        <Box sx={{flexGrow: 1, padding: matchUpMd ? containerPaddingX : containerPaddingSmX, overflow: 'scroll'}}>
+        <Box sx={{flexGrow: 1, padding: matchUpMd ? containerPaddingX : containerPaddingSmX, overflow: 'auto'}}>
           <AppSuspense>
             <Outlet />
           </AppSuspense>

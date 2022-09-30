@@ -12,6 +12,9 @@ export default function themePalette(themeOption = null) {
       default: isDarkMode ?  colors.background['dark-mode'].default : colors.background['light-mode'].default,
       paper: isDarkMode ? colors.background['dark-mode'].paper : colors.background['light-mode'].paper
     },
-    ...colors.primary,
+    primary: {
+      ...colors.primary,
+    }
+    
   };
 }

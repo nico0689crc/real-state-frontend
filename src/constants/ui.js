@@ -1,6 +1,6 @@
 export const gridSpacing = 3;
 // ------------ Sidebar
-export const sidebarWidthOpened = '260px';
+export const sidebarWidthOpened = '280px';
 export const sidebarWidthClosed = '0px';
 
 // ------------ Header

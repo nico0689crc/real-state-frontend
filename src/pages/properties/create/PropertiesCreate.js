@@ -343,12 +343,11 @@ const PropertiesCreate = ({ item, ...props }) => {
           <Button
             type="submit"
             variant="contained"
-            color="primary"
             disabled={isLoading}
             startIcon={isLoading ? <CircularProgress sx={{ width: '15px !important', height: '15px !important' }} color="inherit" /> : null}>
             {isLoading ? 'Saving' : 'Save'}
           </Button>
-          <Button onClick={onDiscardHandler} variant="outlined" color="primary" startIcon={<Close />} sx={{ ml: 2 }}>
+          <Button onClick={onDiscardHandler} variant="outlined" startIcon={<Close />} sx={{ ml: 2 }}>
             Discard
           </Button>
         </Box>
