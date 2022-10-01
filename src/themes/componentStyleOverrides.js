@@ -101,10 +101,17 @@ const componentStyleOverrides = ({isDarkMode, colors, theme}) => {
         }
       }
     },
+    MuiPaper: {
+      styleOverrides: {
+        root: {
+          borderRadius: `${borderRadius}px`,
+        }
+      }
+    },
     MuiIconButton: {
       styleOverrides: {
         root: {
-          transition: theme.transitions.create('background-color', {
+          transition: theme.transitions.create('all', {
             easing: theme.transitions.easing.sharp,
             duration: theme.transitions.duration.complex,
           }),
