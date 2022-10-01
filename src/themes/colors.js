@@ -1,4 +1,4 @@
-import { red } from '@mui/material/colors';
+import { red, grey } from '@mui/material/colors';
 
 const colors = {
   primary: {
@@ -34,7 +34,8 @@ const colors = {
         color: red['500']
       } 
     }
-  }
+  },
+  grey
 };
 
 export default colors;

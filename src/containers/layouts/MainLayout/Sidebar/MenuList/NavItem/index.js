@@ -1,8 +1,10 @@
 import { forwardRef, useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { ListItemButton, ListItemIcon, ListItemText } from '@mui/material';
+import { ListItemButton, ListItemIcon, ListItemText, Typography } from '@mui/material';
+import { useTheme } from '@mui/material/styles';
 
 const NavItem = ({ item, }) => {
+  const theme = useTheme();
   const location = useLocation();
   const [isCurrentPage, setIsCurrentPage] = useState(false);
   const itemIcon = <item.icon stroke={1.5} size="1.3rem" />
@@ -18,14 +20,9 @@ const NavItem = ({ item, }) => {
   },[location, item.url])
 
   return (
-    <ListItemButton
-      {...listItemProps}
-      disabled={item.disabled}
-      selected={isCurrentPage}
-      onClick={handleClickItem()}
-    >
+    <ListItemButton {...listItemProps} disabled={item.disabled} selected={isCurrentPage} onClick={handleClickItem()}>
       <ListItemIcon>{itemIcon}</ListItemIcon>
-      <ListItemText>{item.title}</ListItemText>
+      <ListItemText primary={<Typography>{item.title}</Typography>}></ListItemText>
     </ListItemButton>
   );
 };

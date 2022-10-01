@@ -26,6 +26,7 @@ const Dropdown = ({
       role={undefined}
       transition
       disablePortal
+      sx={{zIndex: 1}}
       popperOptions={{
         modifiers: [{
           name: 'offset',
@@ -44,37 +45,16 @@ const Dropdown = ({
                   <Typography component="span" variant="h6" sx={{ fontWeight: 400 }}>Johne Doe</Typography>
                 </Box>
                 <Divider />
-                <Box sx={{ p: 1 }}>
-                  <List
-                    component="nav"
-                    sx={{
-                      width: '100%',
-                      maxWidth: 350,
-                      borderRadius: `${borderRadius}px`,
-                      [theme.breakpoints.down('md')]: {
-                        minWidth: '100%'
-                      }
-                    }}
-                  >
-                    {items.map((item, index) => (
-                      <ListItemButton
-                        key={index}
-                        onClick={item.onClick}
-                        sx={{
-                          minWidth: '2rem',
-                          '&:hover': {
-                            color: UI_VARIABLES.UI_MODE_DARK ? theme.palette.primary[400] : theme.palette.primary[900],
-                          },
-                        }}
-                      >
-                        <ListItemIcon sx={{ minWidth: '2rem', color: 'inherit' }}>
-                          {item.icon}
-                        </ListItemIcon>
-                        <ListItemText primary={<Typography sx={{ color: 'inherit' }}>{item.label}</Typography>} />
-                      </ListItemButton>
-                    ))}
-                  </List>
-                </Box>
+                <List component="nav" sx={{py: 0}}>
+                  {items.map((item, index) => (
+                    <ListItemButton key={index} onClick={item.onClick} sx={{mb: 0, pl: 1, pr: 1.5, borderRadius: 0, alignItems: 'center'}}>
+                      <ListItemIcon sx={{ minWidth: 1.5 }}>
+                        {item.icon}
+                      </ListItemIcon>
+                      <ListItemText primary={<Typography sx={{ lineHeight: 1}}>{item.label}</Typography>} />
+                    </ListItemButton>
+                  ))}
+                </List>
               </Card>
             </ClickAwayListener>
           </Paper>

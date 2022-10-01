@@ -1,9 +1,6 @@
+
 export default function componentStyleOverrides(themeOption = null) {
-  const { 
-    customTheme: { mode, borderRadius },
-    colors,
-    UI_VARIABLES 
-  } = themeOption;
+  const { customTheme: { mode, borderRadius }, colors, UI_VARIABLES } = themeOption;
   const isDarkMode = mode === UI_VARIABLES.UI_MODE_DARK;
 
   return {
@@ -54,23 +51,19 @@ export default function componentStyleOverrides(themeOption = null) {
     MuiListItemButton: {
       styleOverrides: {
         root: {
-          alignItems: 'end',
+          alignItems: 'center',
           padding: "12px 20px",
           borderLeft: "5px solid transparent",
           borderRadius: "0 20px 20px 0",
           transition: 'all 0.5s ease',
           marginBottom: '0.5rem',
+          color: isDarkMode ? 'inherit' : colors.grey[700],
           "&:hover, &.Mui-selected": {
             color: colors.primary.main,
             borderLeft: `5px solid ${colors.primary.main}`,
             backgroundColor: colors.primary.lightBackground,
             "& svg": {
               color: colors.primary.main,
-            }
-          },
-          "&.Mui-selected": {
-            "&:hover": {
-              backgroundColor: colors.primary.lightBackground
             }
           }
         }
@@ -88,10 +81,10 @@ export default function componentStyleOverrides(themeOption = null) {
       styleOverrides: {
         root: {
           margin: 0,
-          '& span': {
-            fontSize: '15px',
+          '& p': {
+            fontSize: '0.875rem',
             fontWeight: '600',
-            lineHeight: '1.25'
+            lineHeight: '1',
           }
         }
       }
