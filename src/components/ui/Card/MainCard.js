@@ -2,11 +2,11 @@ import { Card, CardHeader, CardContent } from '@mui/material';
 import { Typography } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
 
-const MainCard = ({ title, headerSX = {}, content = true, contentSX = {}, children }) => {
+const MainCard = ({ title, headerSX = {}, content = true, contentSX = {}, children, ...props }) => {
   const theme = useTheme();
 
   return(
-    <Card sx={{ borderRadius: 2, padding: 3, boxShadow: '3.3px 3.7px 22.5px rgb(0 0 0 / 7%)'}}>
+    <Card {...props}>
       {title && (
         <CardHeader sx={{ padding: '0', ...headerSX }} title={
           <Typography variant='h4' sx={{

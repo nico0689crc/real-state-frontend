@@ -1,13 +1,11 @@
 import { useState } from 'react';
 import { Collapse, List, ListItemButton, ListItemIcon, ListItemText, Typography } from '@mui/material';
-import { useTheme } from '@mui/material/styles';
 import { IconChevronDown, IconChevronUp } from '@tabler/icons';
 import NavItem from '../NavItem';
 
 const NavCollapse = ({ menu, level}) => {
   const [open, setOpen] = useState(false);
   const [selected, setSelected] = useState(null);
-  const theme = useTheme();
   const handleClick = () => {
     setOpen(!open);
     setSelected(!selected ? menu.id : null);

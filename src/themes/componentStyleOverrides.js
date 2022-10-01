@@ -1,32 +1,8 @@
 import { borderRadius } from 'constants/ui';
 
 const componentStyleOverrides = ({isDarkMode, colors, theme}) => {
-  
+  console.log(theme);
   return {
-    // MuiInput: {
-    //   styleOverrides: {
-    //     root: {
-    //       paddingTop: 2,
-    //       paddingBottom: 2,
-    //       "&::after": {
-    //         borderBottom: borders
-    //       },
-    //       "&::before": {
-    //         borderBottom: borders
-    //       },
-    //       "&:hover": {
-    //         "&::before": {
-    //           borderBottom: `1px solid ${colors.grey[300]} !important`
-    //         }
-    //       }
-    //     },
-    //     input: {
-    //       "&:-webkit-autofill": {
-    //         WebkitBoxShadow: "0 0 0 1000px white inset",
-    //       }
-    //     },
-    //   },
-    // },
     MuiTypography: {
       styleOverrides: {
         root: {
@@ -150,7 +126,41 @@ const componentStyleOverrides = ({isDarkMode, colors, theme}) => {
           }
         }
       }
-    }
+    },
+    MuiTextField: {
+      styleOverrides: {
+        root: {
+          "&.MuiTextFieldCustomized": {
+            "& .MuiFormLabel-root": {
+              fontSize: "1.25rem",
+              position: "relative",
+              color: 'inherit'
+            },
+            '& .MuiInputBase-root.MuiInput-root': {
+              padding: '0.5rem 0.75rem',
+              border: `1px solid ${ isDarkMode ? 'rgba(255, 255, 255, 0.7)' : 'rgba(0, 0, 0, 0.42)' }`,
+              borderRadius: '0.4rem',
+              marginTop: 0,
+              "& input": {
+                padding: 0
+              },
+              "&:hover": {
+                "&::before, &::after": {
+                  borderBottom: 0
+                },
+              },
+              "&::before, &::after": {
+                borderBottom: 0
+              },
+              "& .MuiInputAdornment-positionEnd button": {
+                padding: 0,
+                marginRight: 0
+              }
+            }
+          }
+        }
+      }
+    },
   };
 }
 

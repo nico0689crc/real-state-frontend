@@ -1,22 +1,13 @@
 import { useTheme } from '@mui/material/styles';
-import { useSelector } from 'react-redux';
 import {
   Box, ClickAwayListener, Divider, List, ListItemButton, ListItemIcon, ListItemText, Paper,
   Popper, Typography
 } from '@mui/material';
-import { UI_VARIABLES } from 'store/uiSlice';
 import Transitions from 'components/ui/extended/Transitions';
 import Card from 'components/ui/Card/Card';
 
-const Dropdown = ({
-  anchorRef,
-  handleClose,
-  open,
-  items = []
-}) => {
+const Dropdown = ({ anchorRef, handleClose, open, items = []}) => {
   const theme = useTheme();
-
-  const { borderRadius } = useSelector((state) => state.uiStore);
 
   return (
     <Popper
