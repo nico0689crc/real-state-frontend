@@ -4,7 +4,7 @@ import PerfectScrollbar from 'react-perfect-scrollbar';
 import LogoSection from "../LogoSection";
 import MenuList from "./MenuList";
 
-const Sidebar = ({ drawerOpen, drawerToggle, window }) => {
+const Sidebar = ({ sidebarOpened, onSidebarToggle, window }) => {
   const theme = useTheme();
   const matchUpMd = useMediaQuery(theme.breakpoints.up('md'));
   const container = window !== undefined ? () => window.document.body : undefined;
@@ -13,8 +13,8 @@ const Sidebar = ({ drawerOpen, drawerToggle, window }) => {
       container={container}
       variant="temporary"
       anchor="left"
-      open={drawerOpen}
-      onClose={drawerToggle}
+      open={sidebarOpened}
+      onClose={onSidebarToggle}
       ModalProps={{ keepMounted: true }}
     >
       <Stack spacing={2} direction="column" alignItems="flex-start" sx={{paddingX: 1, paddingY: 2, minWidth: 280, width: '100%'}}>

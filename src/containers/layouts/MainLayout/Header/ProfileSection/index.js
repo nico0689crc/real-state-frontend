@@ -1,17 +1,18 @@
 import { useState, useRef } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { useTheme } from '@mui/material/styles';
-import { useTranslation } from "react-i18next";
-import { Avatar, Stack, IconButton } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { useTranslation } from "react-i18next";
+
+import { useTheme } from '@mui/material/styles';
+import { Avatar, Stack, IconButton } from '@mui/material';
+
 import { authActions } from 'store/authSlice';
-import { uisActions, UI_VARIABLES } from 'store/uiSlice';
+
 import API_ENDPOINTS from "constants/endpoints";
 import User1 from 'assets/images/users/user-round.svg';
-import { IconLogout, IconSettings, IconSun, IconMoon } from '@tabler/icons';
-import Dropdown from 'components/custom/Dropdown/Dropdown';
-
-// ==============================|| PROFILE MENU ||============================== //
+import { IconLogout, IconSettings } from '@tabler/icons';
+import Dropdown from 'components/ui/Dropdown/Dropdown';
+import UiModeButton from 'components/ui/Buttons/UiModeButton/UiModeButton';
 
 const ProfileSection = () => {
   const theme = useTheme();
@@ -20,7 +21,6 @@ const ProfileSection = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const [open, setOpen] = useState(false);
-  const { mode } = useSelector(state => state.uiStore)
 
   const handleLogout = async () => {
     dispatch(authActions.logout());
@@ -38,21 +38,12 @@ const ProfileSection = () => {
     setOpen((prevState) => !prevState);
   };
 
-  const handleUiMode = () => {
-    dispatch(uisActions.changeModeUi())
-  };
-
   return (
     <>
       <Stack direction="row" spacing={1}>
-        <Avatar
-          src={User1}
-          sx={{ ...theme.typography.mediumAvatar, cursor: 'pointer' }}
-        />
-        <IconButton onClick={handleUiMode} ref={anchorRef} aria-controls={open ? 'menu-list-grow' : undefined} aria-haspopup="true">
-          { mode === UI_VARIABLES.UI_MODE_DARK ?  <IconSun stroke={1.5} size="1.5rem" /> : <IconMoon stroke={1.5} size="1.5rem" /> }
-        </IconButton>
-        <IconButton onClick={handleToggle} ref={anchorRef} aria-controls={open ? 'menu-list-grow' : undefined} aria-haspopup="true"><IconSettings stroke={1.5} size="1.5rem" /></IconButton>
+        <Avatar src={User1} sx={{ ...theme.typography.mediumAvatar, cursor: 'pointer' }} />
+        <UiModeButton className='MuiIconButtonCustomized'/>
+        <IconButton className='MuiIconButtonCustomized' onClick={handleToggle} ref={anchorRef} aria-controls={open ? 'menu-list-grow' : undefined} aria-haspopup="true"><IconSettings stroke={1.5} size="1.5rem" /></IconButton>
         <Dropdown
           open={open}
           anchorRef={anchorRef}

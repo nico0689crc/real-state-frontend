@@ -6,10 +6,12 @@
     "submit_button": "Iniciar sesión",
     "fields": {
       "email": {
-        "placeholder": "Ingrese su correo electrónico"
+        "placeholder": "Ingrese su correo electrónico",
+        "label": "Correo Electrónico"
       },
       "password": {
-        "placeholder": "Ingrese su contraseña"
+        "placeholder": "Ingrese su contraseña",
+        "label": "Contraseña"
       }
     }
   },

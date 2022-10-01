@@ -1,20 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { borderRadius, sidebarWidthClosed, sidebarWidthOpened } from 'constants/ui';
 import LOCALSTORAGE_ITEMS from "constants/localStorageItems";
-
-export const UI_VARIABLES = {
-  UI_MODE_DARK: "dark",
-  UI_MODE_LIGHT: "light",
-};
+import { UI_VARIABLES } from "constants/ui";
 
 export const uiSlice = createSlice({
   name: "ui",
   initialState: {
-    mode: UI_VARIABLES.UI_MODE_DARK,
-    isOpen: [],
-    borderRadius: borderRadius,
-    sidebarOpened: true,
-    sidebarWidht: sidebarWidthOpened
+    mode: UI_VARIABLES.UI_MODE_DARK
   },
   reducers: {
     setMode(state, action) {
@@ -34,10 +25,10 @@ export const uiSlice = createSlice({
         })
       );
     },
-    toggleSidebar(state, action) {
-      state.sidebarOpened = action.payload.sidebarOpened;
-      state.sidebarWidht = action.payload.sidebarOpened ? sidebarWidthOpened : sidebarWidthClosed;
-    },
+    // toggleSidebar(state, action) {
+    //   state.sidebarOpened = action.payload.sidebarOpened;
+    //   state.sidebarWidth = action.payload.sidebarOpened ? sidebarWidthOpened : sidebarWidthClosed;
+    // },
   },
 });
 

@@ -1,8 +1,7 @@
+import { borderRadius } from 'constants/ui';
 
-export default function componentStyleOverrides(themeOption = null) {
-  const { customTheme: { mode, borderRadius }, colors, UI_VARIABLES } = themeOption;
-  const isDarkMode = mode === UI_VARIABLES.UI_MODE_DARK;
-
+const componentStyleOverrides = ({isDarkMode, colors, theme}) => {
+  
   return {
     // MuiInput: {
     //   styleOverrides: {
@@ -129,14 +128,30 @@ export default function componentStyleOverrides(themeOption = null) {
     MuiIconButton: {
       styleOverrides: {
         root: {
-          borderRadius: `${borderRadius}px`,
-          backgroundColor: isDarkMode ? colors.background['dark-mode'].button.regular : colors.background['light-mode'].button.regular,
-          color: isDarkMode ? colors.typography['dark-mode'].button.color : colors.typography['light-mode'].button.color,
-          '&:hover': {
-            backgroundColor: isDarkMode ? colors.background['dark-mode'].button.hover : colors.background['light-mode'].button.hover,
+          transition: theme.transitions.create('background-color', {
+            easing: theme.transitions.easing.sharp,
+            duration: theme.transitions.duration.complex,
+          }),
+          "&.MuiIconButtonCustomized":{
+            borderRadius: `${borderRadius}px`,
+            backgroundColor: isDarkMode ? colors.background['dark-mode'].button.regular : colors.background['light-mode'].button.regular,
+            color: isDarkMode ? colors.typography['dark-mode'].button.color : colors.typography['light-mode'].button.color,
+            '&:hover': {
+              backgroundColor: isDarkMode ? colors.background['dark-mode'].button.hover : colors.background['light-mode'].button.hover,
+            },
+            "&.MuiIconButtonRounded":{
+              borderRadius: "50%"
+            }
+          },
+          "&.MuiIconButtonNoHoverEffect": {
+            '&:hover': {
+              backgroundColor: 'transparent'
+            },
           }
         }
       }
     }
   };
 }
+
+export default componentStyleOverrides;

@@ -6,10 +6,12 @@
     "submit_button": "Log In",
     "fields": {
       "email": {
-        "placeholder": "Enter Email"
+        "placeholder": "Enter Email",
+        "label": "Enter Email"
       },
       "password": {
-        "placeholder": "Enter Password"
+        "placeholder": "Enter Password",
+        "label": "Enter Password"
       }
     }
   },

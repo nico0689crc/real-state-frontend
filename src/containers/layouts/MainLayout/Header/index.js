@@ -10,7 +10,7 @@ import {
 import LogoSection from '../LogoSection';
 import ProfileSection from '../Header/ProfileSection';
 
-const Header = ({ handleLeftDrawerToggle }) => {
+const Header = ({ handleLeftSidebarToggle }) => {
   const theme = useTheme();
   const matchUpMd = useMediaQuery(theme.breakpoints.up('md'));
 
@@ -18,7 +18,7 @@ const Header = ({ handleLeftDrawerToggle }) => {
     <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', width: '100%', paddingY: headerPaddingY }} >
       <Box sx={{ display: 'flex', alignItems: 'center', paddingLeft: matchUpMd ? containerPaddingX : containerPaddingSmX, width: matchUpMd ? sidebarWidthOpened : 'auto'}} >
         <LogoSection sx={{ display: { xs: 'none', md: 'block' }, flexGrow: 1 }}/>
-        <IconButton onClick={handleLeftDrawerToggle}> <IconMenu2 stroke={1.5} size="1.3rem" /> </IconButton>
+        <IconButton className='MuiIconButtonCustomized' onClick={handleLeftSidebarToggle}> <IconMenu2 stroke={1.5} size="1.3rem" /> </IconButton>
       </Box>
       <Box sx={{ paddingRight: matchUpMd ? containerPaddingX : containerPaddingSmX }}>
         <ProfileSection />
