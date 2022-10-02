@@ -42,6 +42,7 @@ const PropertiesList = () => {
             <Pagination
               onChange={paginationOnChangeHandler}
               count={data?.meta?.pages}
+              color="primary"
               variant="outlined"
               shape="rounded"
               showFirstButton

@@ -19,9 +19,15 @@ export const customThemeCreator = ({customTheme, theme}) => {
       },
       primary: {
         ...colors.primary,
+      },
+      text: {
+        ...(themeOption.isDarkMode ? colors.text['dark-mode'] : colors.text['light-mode'])
       }
     },
-    components: componentStyleOverrides(themeOption)
+    components: componentStyleOverrides(themeOption),
+    typography: {
+      fontFamily: ['"Montserrat"', '"Roboto"', '"Rubik"', 'sans-serif'].join(',')
+    }
   });
 };
 

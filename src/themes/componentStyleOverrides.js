@@ -1,12 +1,20 @@
 import { borderRadius } from 'constants/ui';
 
 const componentStyleOverrides = ({isDarkMode, colors, theme}) => {
-  console.log(theme);
   return {
     MuiTypography: {
       styleOverrides: {
         root: {
-          fontFamily: "Roboto, sans-serif"
+          fontFamily: "Roboto, sans-serif",
+          "&.MuiTypographyCustomized": {
+            "&.MuiTypographyEllipsisThirdLine": {
+              textOverflow: 'ellipsis',
+              overflow: 'hidden',
+              display: '-webkit-box !important',
+              '-webkit-line-clamp': '3',
+              '-webkit-box-orient': 'vertical'
+            }
+          }
         }
       }
     },
@@ -134,6 +142,14 @@ const componentStyleOverrides = ({isDarkMode, colors, theme}) => {
         }
       }
     },
+    MuiButton: {
+      styleOverrides: {
+        root: {
+          fontWeight: "600",
+          borderRadius: `${borderRadius}px`,
+        }
+      }
+    },
     MuiTextField: {
       styleOverrides: {
         root: {
@@ -165,6 +181,15 @@ const componentStyleOverrides = ({isDarkMode, colors, theme}) => {
               }
             }
           }
+        }
+      }
+    },
+    MuiChip: {
+      styleOverrides: {
+        root: {
+          borderRadius: `${borderRadius}px`,
+          padding: "5px",
+          fontWeight: "600"
         }
       }
     },

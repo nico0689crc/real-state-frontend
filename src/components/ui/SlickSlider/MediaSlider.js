@@ -1,6 +1,7 @@
 import React from 'react';
 import PropsTypes from 'prop-types';
 import { Box } from '@mui/material';
+import { borderRadius } from 'constants/ui';
 
 const MediaSlider = ({ children }) => {
   return (
@@ -26,7 +27,7 @@ const MediaSlider = ({ children }) => {
         '& .slick-slide img': {
           width: '100%',
           height: '100%',
-          borderRadius: 2.5,
+          borderRadius: `${borderRadius}px`,
           borderBottomLeftRadius: 0,
           borderBottomRightRadius: 0
         },

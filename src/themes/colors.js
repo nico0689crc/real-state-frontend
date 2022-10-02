@@ -35,6 +35,25 @@ const colors = {
       } 
     }
   },
+  text: {
+    "dark-mode": {
+      disabled: "rgba(255, 255, 255, 0.5)",
+      icon: "rgba(255, 255, 255, 0.5)",
+      primary: "#fff",
+      secondary: "rgba(255, 255, 255, 0.7)",
+      third: "rgba(255, 255, 255, 0.6)",
+      fourth: "rgba(255, 255, 255, 0.4)",
+      fifth: "rgba(255, 255, 255, 0.3)"
+    },
+    "light-mode": {
+      disabled: "rgba(0, 0, 0, 0.38)",
+      primary: "rgba(0, 0, 0, 0.87)",
+      secondary: "rgba(0, 0, 0, 0.6)",
+      third: "rgba(0, 0, 0, 0.5)",
+      fourth: "rgba(0, 0, 0, 0.4)",
+      fifth: "rgba(0, 0, 0, 0.2)"
+    }
+  },
   grey
 };
 
