@@ -1,12 +1,13 @@
+import PropTypes from 'prop-types';
 import { Card, CardHeader, CardContent } from '@mui/material';
 import { Typography } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
 
-const MainCard = ({ title, headerSX = {}, content = true, contentSX = {}, children, ...props }) => {
+const MainCard = ({ title, headerSX = {}, content = true, contentSX = {}, className, children, ...props }) => {
   const theme = useTheme();
 
   return(
-    <Card {...props}>
+    <Card {...props} className={`MuiCardCustomized ${className}`}>
       {title && (
         <CardHeader sx={{ padding: '0', ...headerSX }} title={
           <Typography variant='h4' sx={{
@@ -36,5 +37,13 @@ const MainCard = ({ title, headerSX = {}, content = true, contentSX = {}, childr
     </Card>
   )
 }
+
+MainCard.propTypes = {
+  className: PropTypes.string
+}
+
+MainCard.defaultProps = {
+  className: "",
+};
 
 export default MainCard

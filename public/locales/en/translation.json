@@ -19,6 +19,12 @@
     "create": {
       "page_header_title": "Add Property"
     },
+    "index": {
+      "title": "Properties List",
+      "property_item": {
+        "details_button_label": "Details"
+      }
+    },
     "validations": {
       "title": {
         "required": "A title is required."

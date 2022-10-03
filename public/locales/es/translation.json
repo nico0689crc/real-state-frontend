@@ -17,7 +17,13 @@
   },
   "properties": {
     "create": {
-      "page_header_title": "Add Property"
+      "page_header_title": "Crear Propiedad"
+    },
+    "index": {
+      "title": "Lista de Propiedades",
+      "property_item": {
+        "details_button_label": "Detalles"
+      }
     },
     "validations": {
       "title": {
@@ -59,7 +65,7 @@
   },
   "validations": {
     "email":{
-      "required": "Su correo electronico es obligatorio.",
+      "required": "Su correo electrónico es obligatorio.",
       "format": "Su correo electrónico es invalido."
     },
     "password": {

@@ -4,6 +4,7 @@ import UploadModern from './UploadModern';
 import PreviewThumb from './PreviewThumb';
 import { Box, Grid } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
+import { borderRadius } from 'constants/ui';
 
 const ImageUploadDropzone = ({ uploadedFiles, setUploadedFiles }) => {
   const theme = useTheme();
@@ -31,8 +32,8 @@ const ImageUploadDropzone = ({ uploadedFiles, setUploadedFiles }) => {
 
   return (
     <Box className='container' sx={{
-      border: `1px solid ${theme.palette.mode === 'light' ? '#0000003b' : '#ffffff3b'} `,
-      borderRadius: 1,
+      border: `1px solid ${theme.palette.mode === 'dark' ? 'rgba(255, 255, 255, 0.7)' : 'rgba(0, 0, 0, 0.42)'}`,
+      borderRadius: `${borderRadius}px`,
       p: 2,
       cursor: 'pointer'
     }}>

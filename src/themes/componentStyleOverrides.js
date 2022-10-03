@@ -1,6 +1,7 @@
 import { borderRadius } from 'constants/ui';
 
 const componentStyleOverrides = ({isDarkMode, colors, theme}) => {
+  console.log(theme);
   return {
     MuiTypography: {
       styleOverrides: {
@@ -77,7 +78,10 @@ const componentStyleOverrides = ({isDarkMode, colors, theme}) => {
         root: {
           padding: 0,
           "& .MuiList-root": {
-            paddingLeft: "30px",
+            paddingLeft: 0,
+            [theme.breakpoints.up('md')]: {
+              paddingLeft: "30px",
+            },
             "& .MuiListItemButton-root":{
               borderLeft: 0,
               borderRadius: 0,
@@ -106,13 +110,6 @@ const componentStyleOverrides = ({isDarkMode, colors, theme}) => {
       styleOverrides: {
         root: {
           padding: '0 !important',
-        }
-      }
-    },
-    MuiPaper: {
-      styleOverrides: {
-        root: {
-          borderRadius: `${borderRadius}px`,
         }
       }
     },
@@ -154,15 +151,19 @@ const componentStyleOverrides = ({isDarkMode, colors, theme}) => {
       styleOverrides: {
         root: {
           "&.MuiTextFieldCustomized": {
+
             "& .MuiFormLabel-root": {
               fontSize: "1.25rem",
               position: "relative",
-              color: 'inherit'
+              color: 'inherit',
+              "&.Mui-error": {
+                color: theme.palette.error.main
+              },
             },
             '& .MuiInputBase-root.MuiInput-root': {
               padding: '0.5rem 0.75rem',
               border: `1px solid ${ isDarkMode ? 'rgba(255, 255, 255, 0.7)' : 'rgba(0, 0, 0, 0.42)' }`,
-              borderRadius: '0.4rem',
+              borderRadius: `${borderRadius}px`,
               marginTop: 0,
               "& input": {
                 padding: 0
@@ -175,10 +176,82 @@ const componentStyleOverrides = ({isDarkMode, colors, theme}) => {
               "&::before, &::after": {
                 borderBottom: 0
               },
+              "&.Mui-error .MuiInputAdornment-root svg": {
+                color: theme.palette.error.main
+              },
               "& .MuiInputAdornment-positionEnd button": {
                 padding: 0,
                 marginRight: 0
-              }
+              },
+              "&.Mui-error": {
+                border: `1px solid ${theme.palette.error.main}`, 
+              },
+            }
+          }
+        }
+      }
+    },
+    MuiFormControl: {
+      styleOverrides: {
+        root: {
+          "&.MuiSelectCustomized": {
+            "& .MuiFormLabel-root": {
+              fontSize: "1.25rem",
+              position: "relative",
+              color: 'inherit',
+              "&.Mui-error": {
+                color: theme.palette.error.main
+              },
+            },
+            '& .MuiInputBase-root.MuiInput-root': {
+              padding: '0.5rem 0.75rem',
+              border: `1px solid ${ isDarkMode ? 'rgba(255, 255, 255, 0.7)' : 'rgba(0, 0, 0, 0.42)' }`,
+              borderRadius: `${borderRadius}px`,
+              marginTop: 0,
+              "&.MuiInputBase-sizeSmall": {
+                height: "41px"
+              },
+              "& input": {
+                padding: 0
+              },
+              "&:hover": {
+                "&::before, &::after": {
+                  borderBottom: 0
+                },
+              },
+              "&::before, &::after": {
+                borderBottom: 0
+              },
+              "&.Mui-error .MuiInputAdornment-root svg": {
+                color: theme.palette.error.main
+              },
+              "& .MuiInputAdornment-positionEnd button": {
+                padding: 0,
+                marginRight: 0
+              },
+              "&.Mui-error": {
+                border: `1px solid ${theme.palette.error.main}`, 
+              },
+            }
+          }
+        }
+      }
+    },
+    MuiCard: {
+      styleOverrides: {
+        root: {
+          "&.MuiCardCustomized": {
+            borderRadius: `${borderRadius}px`,
+            boxShadow: '3.3px 3.7px 22.5px rgb(0 0 0 / 7%)',
+            backgroundImage: "none",
+            "&.MuiCardFullScreen": {
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              justifyContent: "center",
+              height: "100%",
+              width: "100%",
+              borderRadius: 0
             }
           }
         }

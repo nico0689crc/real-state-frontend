@@ -1,9 +1,11 @@
 import { useCallback, useState } from 'react';
+import { useTranslation } from "react-i18next";
 import { Typography, Box, Pagination, CircularProgress, Grid } from '@mui/material';
 import usePropertiesQuery from "hooks/queries/properties/propertiesQuery";
 import PropertyItem from "./PropertyItem";
 
 const PropertiesList = () => {
+  const { t } = useTranslation();
   const [currentPage, setCurrentPage] = useState(1);
 
   const paginationOnChangeHandler = useCallback((event, page) => {
@@ -27,7 +29,7 @@ const PropertiesList = () => {
   return (
     <Box sx={{ display: 'flex', flexDirection: 'column' }}>
       <Box sx={{ display: 'flex', justifyContent: 'start' }}>
-        <Typography sx={{ marginBottom: 3 }} variant='h4'>Properties List</Typography>
+        <Typography sx={{ marginBottom: 3 }} variant='h4'>{t("properties.index.title")}</Typography>
       </Box>
       {data?.data?.length > 0 ? (
         <>

@@ -4,7 +4,7 @@ import MainLayout from 'containers/layouts/MainLayout';
 import Loadable from 'components/ui/Loadable/Loadable';
 const Dashboard = Loadable(lazy(() => import('pages/dashboard')));
 const PropertiesList = Loadable(lazy(() => import('pages/properties/index/PropertiesList')));
-const PropertiesCreate = Loadable(lazy(() => import('pages/properties/create/PropertiesCreate')));
+const PropertiesCreate = Loadable(lazy(() => import('pages/properties/create/PropertyCreate')));
 
 // ==============================|| MAIN ROUTING ||============================== //
 

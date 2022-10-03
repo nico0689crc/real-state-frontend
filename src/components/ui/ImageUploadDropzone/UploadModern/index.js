@@ -2,6 +2,7 @@ import React from 'react';
 import Box from '@mui/material/Box';
 import { InsertPhotoOutlined } from '@mui/icons-material';
 import { Typography } from '@mui/material';
+import AppTypography from "components/ui/Typography/AppTypography";
 
 const UploadModern = ({ uploadText, dropzone }) => {
   return (
@@ -25,7 +26,7 @@ const UploadModern = ({ uploadText, dropzone }) => {
         <InsertPhotoOutlined
           sx={{ fontSize: 40 }}
         />
-        <Typography variant='body2' sx={{ mb: 0 }}>{uploadText}</Typography>
+        <AppTypography sx={{fontSize: "1.25rem" }}>{uploadText}</AppTypography>
       </Box>
     </Box>
   );
