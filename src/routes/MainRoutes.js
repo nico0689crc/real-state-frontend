@@ -3,7 +3,7 @@ import { Navigate } from 'react-router-dom';
 import MainLayout from 'containers/layouts/MainLayout';
 import Loadable from 'components/ui/Loadable/Loadable';
 const Dashboard = Loadable(lazy(() => import('pages/dashboard')));
-const PropertiesList = Loadable(lazy(() => import('pages/properties/index/PropertiesList')));
+const PropertiesList = Loadable(lazy(() => import('pages/properties/index/PropertyList')));
 const PropertiesCreate = Loadable(lazy(() => import('pages/properties/create/PropertyCreate')));
 
 // ==============================|| MAIN ROUTING ||============================== //

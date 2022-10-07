@@ -16,14 +16,41 @@
     }
   },
   "properties": {
-    "create": {
-      "page_header_title": "Crear Propiedad"
+    "create_edit": {
+      "title_create": "Nueva Propiedad",
+      "labels": {
+        "title": "Título",
+        "type": "Tipo",
+        "type_house": "Casa",
+        "type_appartment": "Departamento",
+        "type_commercial_building": "Edificion Comercial",
+        "status": "Estado",
+        "status_rent": "Alquiler",
+        "status_sale": "Venta",
+        "status_inactive": "Inactivo",
+        "description": "Descripción",
+        "address": "Dirección",
+        "price": "Precio",
+        "operating_since": "Operando desde",
+        "bedrooms": "Habitaciones",
+        "property_size": "Dimensiones",
+        "bathrooms": "Baños",
+        "dropzone_label": "Arrastre y suelte algunos archivos aquí, o haga clic para seleccionar archivos."
+      },
+      "success_created_title": "Propiedad creada",
+      "success_created_message": "La propiedad ha sido creada correctamente."
     },
     "index": {
       "title": "Lista de Propiedades",
       "property_item": {
         "details_button_label": "Detalles"
       }
+    },
+    "delete": {
+      "title": "Eliminar Propiedad",
+      "content": "Está a punto de eliminar la propiedad <1><0>{{name}}</0></1>. ¿Quieres continuar con esta acción?",
+      "success_title": "Propiedad eliminada",
+      "success_message": "La propiedad se ha eliminado correctamente."
     },
     "validations": {
       "title": {
@@ -55,6 +82,11 @@
         "type_error_number": "A number is required",
         "positive_field": "A positive number is required"
       }
+    },
+    "global": {
+      "bedrooms": "Habitaciones",
+      "property_size": "SQ FT",
+      "bathrooms": "Baños"
     }
   },
   "header": {
@@ -71,5 +103,14 @@
     "password": {
       "required": "Su contraseña es obligatoria."
     }
+  },
+  "global": {
+    "delete": "Eliminar",
+    "deleting": "Eliminando",
+    "discard": "Descartar",
+    "add_favorite": "Agregar Favorito",
+    "save_button": "Guardar",
+    "saving_button": "Guardando",
+    "cancel_button": "Descartar"
   }
 }

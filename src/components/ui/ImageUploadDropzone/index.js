@@ -1,4 +1,5 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
+import PropTypes from 'prop-types';
 import { useDropzone } from 'react-dropzone';
 import UploadModern from './UploadModern';
 import PreviewThumb from './PreviewThumb';
@@ -6,7 +7,7 @@ import { Box, Grid } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
 import { borderRadius } from 'constants/ui';
 
-const ImageUploadDropzone = ({ uploadedFiles, setUploadedFiles }) => {
+const ImageUploadDropzone = ({ uploadedFiles, setUploadedFiles, label }) => {
   const theme = useTheme();
 
   const dropzone = useDropzone({
@@ -52,13 +53,21 @@ const ImageUploadDropzone = ({ uploadedFiles, setUploadedFiles }) => {
             : null}
         </Grid>
         : <UploadModern
-          uploadText='Drag n drop some files here, or click to select files'
+          uploadText={label}
           setUploadedFiles={setUploadedFiles}
           dropzone={dropzone}
         />}
 
     </Box>
   );
+};
+
+ImageUploadDropzone.propTypes = {
+  label: PropTypes.string
+}
+
+ImageUploadDropzone.defaultProps = {
+  label: "Drag and drop some files here, or click to select files.",
 };
 
 export default ImageUploadDropzone;

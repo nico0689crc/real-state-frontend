@@ -16,14 +16,41 @@
     }
   },
   "properties": {
-    "create": {
-      "page_header_title": "Add Property"
+    "create_edit": {
+      "title_create": "Add Property",
+      "labels": {
+        "title": "Title",
+        "type": "Type",
+        "type_house": "House",
+        "type_appartment": "Appartment",
+        "type_commercial_building": "Commercial Building",
+        "status": "Status",
+        "status_rent": "Rent",
+        "status_sale": "Sale",
+        "status_inactive": "Inactive",
+        "description": "Description",
+        "address": "Address",
+        "price": "Price",
+        "operating_since": "Operating Since",
+        "bedrooms": "Bedrooms",
+        "property_size": "Property Size",
+        "bathrooms": "Bathrooms",
+        "dropzone_label": "Drag and drop some files here, or click to select files."
+      },
+      "success_created_title": "Property created",
+      "success_created_message": "The property has been created successfully."
     },
     "index": {
       "title": "Properties List",
       "property_item": {
         "details_button_label": "Details"
       }
+    },
+    "delete": {
+      "title": "Delete Property",
+      "content": "You are about to delete the property <1><0>{{name}}</0></1>. Do you want to continue this action?",
+      "success_title": "Property deleted",
+      "success_message": "The property has been deleted successfully."
     },
     "validations": {
       "title": {
@@ -55,6 +82,11 @@
         "type_error_number": "A number is required",
         "positive_field": "A positive number is required"
       }
+    },
+    "global": {
+      "bedrooms": "Bedrooms",
+      "property_size": "SQ FT",
+      "bathrooms": "Bathrooms"
     }
   },
   "header": {
@@ -63,7 +95,6 @@
       "logout": "Logout"
     }
   },
-
   "validations": {
     "email":{
       "required": "Email is required",
@@ -72,5 +103,14 @@
     "password": {
       "required": "Password is required"
     }
+  },
+  "global": {
+    "delete": "Delete",
+    "deleting": "Deleting",
+    "discard": "Discard",
+    "add_favorite": "Add Favorite",
+    "save_button": "Save",
+    "saving_button": "Saving",
+    "cancel_button": "Discard"
   }
 }

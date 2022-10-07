@@ -1,10 +1,15 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useTranslation } from "react-i18next";
-import useCreatePropertyMutation from "hooks/queries/properties/propertiesCreateMutation";
+import { snackBarAlertActions } from "store/snackBarAlertSlice";
+import { propertiesActions } from "store/properties/propertiesSlice";
+import useCreatePropertyMutation from "hooks/queries/properties/useCreatePropertyMutation";
 import PropertyCreateForm from "./PropertyCreateForm";
+import API_ENDPOINTS from "constants/endpoints";
 
 const getFormSchema = (t, item) => {
   const formSchema = yup.object().shape({
@@ -40,22 +45,22 @@ const getFormSchema = (t, item) => {
   });
 
   const defaultValues = {
-    // "title": item ? item.title : "Happily final air prize grow earlier promised since.",
-    // "description": item ? item.description : "Meal signal grabbed universe wind take forget highway animal sort somewhere along include personal anywhere anybody through dry crop met powerful there father water",
-    // "address": "LtqSRyyFqgno yPZFN2ECDrK8n2z VgFKY2YqmNubhAUfq7a",
-    // "bathrooms": "2",
-    // "bedrooms": "3",
-    // "operating_since": "1955",
-    // "price": "1550000.0",
-    // "property_size": "500"
-    "title": item ? item.title : "",
-    "description": item ? item.description : "",
-    "address": item ? item.address : "",
-    "bathrooms": item ? item.bathrooms : "",
-    "bedrooms": item ? item.bedrooms : "",
-    "operating_since": item ? item.operating_since : "",
-    "price": item ? item.price : "",
-    "property_size": item ? item.property_size : ""
+    "title": item ? item.title : "Happily final air prize grow earlier promised since.",
+    "description": item ? item.description : "Meal signal grabbed universe wind take forget highway animal sort somewhere along include personal anywhere anybody through dry crop met powerful there father water",
+    "address": "LtqSRyyFqgno yPZFN2ECDrK8n2z VgFKY2YqmNubhAUfq7a",
+    "bathrooms": "2",
+    "bedrooms": "3",
+    "operating_since": "1955",
+    "price": "1550000.0",
+    "property_size": "500"
+    // "title": item ? item.title : "",
+    // "description": item ? item.description : "",
+    // "address": item ? item.address : "",
+    // "bathrooms": item ? item.bathrooms : "",
+    // "bedrooms": item ? item.bedrooms : "",
+    // "operating_since": item ? item.operating_since : "",
+    // "price": item ? item.price : "",
+    // "property_size": item ? item.property_size : ""
   };
 
   return {
@@ -66,10 +71,40 @@ const getFormSchema = (t, item) => {
 
 const PropertiesCreate = ({ item, ...props }) => {
   const { t } = useTranslation();
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const { setSnackBarAlert } = snackBarAlertActions;
+  const { setCurrentPage } = propertiesActions;
   const form = useForm(getFormSchema(t, item));
   const [uploadedFiles, setUploadedFiles] = useState([]);
-  const { mutate: createProperty, isLoading } = useCreatePropertyMutation();
+  
+  const onSuccessHandler = () => {
+    dispatch(setSnackBarAlert({
+      type: "success",
+      content: {
+        title: t("properties.create_edit.success_created_title"),
+        message: t("properties.create_edit.success_created_message")
+      }
+    }));
+    dispatch(setCurrentPage({currentPage: 1}));
+    navigate(API_ENDPOINTS.PROPERTIES, { replace: true });
+  }
 
+  const onErrorHandler = (data) => {
+    const { status, exception, statusText } = data.response;
+    
+    dispatch(setSnackBarAlert({
+      type: "error",
+      content: {
+        title: statusText,
+        subTitle: status,
+        message: exception ? exception : "URL not found."
+      }
+    }));
+  }
+  
+  const { mutate: createProperty, isLoading } = useCreatePropertyMutation(onSuccessHandler, onErrorHandler);
+  
   const onSubmit = async (data) => {
     const facilities = [
       {

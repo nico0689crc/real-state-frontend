@@ -19,7 +19,7 @@ const PropertyCreateForm = ({ form, onSubmit, isLoading, setUploadedFiles, uploa
 
   return (
     <>
-      <Typography sx={{ mb: 3 }} variant='h4'>New Property</Typography>
+      <Typography sx={{ mb: 3 }} variant='h4'>{t("properties.create_edit.title_create")}</Typography>
       <Stack direction="row" justifyContent="center" width="100%">
         <MainCard contentSX={{p: '1rem 0 !important'}} sx={{ paddingX: 4, paddingY: 2, maxWidth: "50rem"}}>
           <Stack spacing={2}>
@@ -29,7 +29,7 @@ const PropertyCreateForm = ({ form, onSubmit, isLoading, setUploadedFiles, uploa
               error={!!errors.title} 
               {...register('title')}
               required
-              label="Title"
+              label={t("properties.create_edit.labels.title")}
               helperText={!!errors.title?.message && errors.title.message }
               fullWidth
               InputProps={{
@@ -44,33 +44,33 @@ const PropertyCreateForm = ({ form, onSubmit, isLoading, setUploadedFiles, uploa
               <InputSelect
                 name="type"
                 id="type"
-                label="Type"
+                label={t("properties.create_edit.labels.type")}
                 {...register('type')}
                 error={!!errors.type}
                 helperText={errors.type?.message}
                 value="house"
               >
-                <MenuItem value="house">House</MenuItem>
-                <MenuItem value="appartment">Appartment</MenuItem>
-                <MenuItem value="commercial_building">Commercial Building</MenuItem>
+                <MenuItem value="house">{t("properties.create_edit.labels.type_house")}</MenuItem>
+                <MenuItem value="appartment">{t("properties.create_edit.labels.type_appartment")}</MenuItem>
+                <MenuItem value="commercial_building">{t("properties.create_edit.labels.type_commercial_building")}</MenuItem>
               </InputSelect>
               <InputSelect
                 name="status"
                 id="status"
-                label="Status"
+                label={t("properties.create_edit.labels.status")}
                 {...register('status')}
                 error={!!errors.status}
                 helperText={errors.status?.message}
                 value="rent"
               >
-                <MenuItem value="rent">Rent</MenuItem>
-                <MenuItem value="sale">Sale</MenuItem>
-                <MenuItem value="inactive">Inactive</MenuItem>
+                <MenuItem value="rent">{t("properties.create_edit.labels.status_rent")}</MenuItem>
+                <MenuItem value="sale">{t("properties.create_edit.labels.status_sale")}</MenuItem>
+                <MenuItem value="inactive">{t("properties.create_edit.labels.status_inactive")}</MenuItem>
               </InputSelect>
             </Stack>
             <Input
               id="description"
-              label="Description"
+              label={t("properties.create_edit.labels.description")}
               size="small"
               multiline
               fullWidth
@@ -88,7 +88,7 @@ const PropertyCreateForm = ({ form, onSubmit, isLoading, setUploadedFiles, uploa
             />
             <Input
               id="address" 
-              label="Address" 
+              label={t("properties.create_edit.labels.address")} 
               {...register('address')}
               required
               fullWidth
@@ -105,7 +105,7 @@ const PropertyCreateForm = ({ form, onSubmit, isLoading, setUploadedFiles, uploa
             <Stack direction="row" spacing={2}>
               <Input
                 id="price" 
-                label="Price" 
+                label={t("properties.create_edit.labels.price")} 
                 {...register('price')}
                 required
                 error={!!errors.price}
@@ -121,7 +121,7 @@ const PropertyCreateForm = ({ form, onSubmit, isLoading, setUploadedFiles, uploa
               />
               <Input
                 id="operating_since" 
-                label="Operating Since" 
+                label={t("properties.create_edit.labels.operating_since")} 
                 {...register('operating_since')}
                 required
                 error={!!errors.operating_since}
@@ -139,7 +139,7 @@ const PropertyCreateForm = ({ form, onSubmit, isLoading, setUploadedFiles, uploa
             <Stack direction={{xs: 'column', sm: 'row'}} spacing={2}>
               <Input
                 id="bedrooms"
-                label="Bedrooms"
+                label={t("properties.create_edit.labels.bedrooms")} 
                 {...register('bedrooms')}
                 required
                 error={!!errors.bedrooms}
@@ -155,7 +155,7 @@ const PropertyCreateForm = ({ form, onSubmit, isLoading, setUploadedFiles, uploa
               />
               <Input
                 id="property_size"
-                label="Property Size"
+                label={t("properties.create_edit.labels.property_size")} 
                 {...register('property_size')}
                 required
                 error={!!errors.property_size}
@@ -171,7 +171,7 @@ const PropertyCreateForm = ({ form, onSubmit, isLoading, setUploadedFiles, uploa
               />
               <Input
                 id="bathrooms"
-                label="Bathrooms"
+                label={t("properties.create_edit.labels.bathrooms")} 
                 {...register('bathrooms')}
                 required
                 error={!!errors.bathrooms}
@@ -186,7 +186,11 @@ const PropertyCreateForm = ({ form, onSubmit, isLoading, setUploadedFiles, uploa
                 }}
               />
             </Stack>
-            <ImageUploadDropzone uploadedFiles={uploadedFiles} setUploadedFiles={setUploadedFiles} />
+            <ImageUploadDropzone 
+              uploadedFiles={uploadedFiles} 
+              setUploadedFiles={setUploadedFiles}
+              label={t("properties.create_edit.labels.dropzone_label")} 
+            />
             <Stack direction="row" justifyContent="center" width="100%" spacing={2}>
               <Button
                 type="submit"
@@ -194,10 +198,10 @@ const PropertyCreateForm = ({ form, onSubmit, isLoading, setUploadedFiles, uploa
                 onClick={handleSubmit(onSubmit)}
                 disabled={isLoading}
                 startIcon={isLoading ? <CircularProgress sx={{ width: '15px !important', height: '15px !important' }} color="inherit" /> : null}>
-                {isLoading ? 'Saving' : 'Save'}
+                {isLoading ? t("global.saving_button") : t("global.save_button")}
               </Button>
               <Button onClick={onDiscardHandler} variant="outlined" startIcon={<Close />}>
-                Discard
+                {t("global.cancel_button")}
               </Button>
             </Stack>
           </Stack>

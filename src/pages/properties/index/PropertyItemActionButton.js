@@ -1,7 +1,7 @@
 import { useTheme } from '@mui/material/styles';
 import AppIconButton from "components/ui/Buttons/AppIconButton/AppIconButton";
 
-const PropertyItemItemButton = ({children, bottom, icon, ...props}) => {
+const PropertyItemActionButton = ({children, bottom, icon, ...props}) => {
   const theme = useTheme();
 
   return (
@@ -25,4 +25,4 @@ const PropertyItemItemButton = ({children, bottom, icon, ...props}) => {
   )
 }
 
-export default PropertyItemItemButton;
+export default PropertyItemActionButton;

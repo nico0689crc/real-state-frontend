@@ -25,10 +25,6 @@ export const uiSlice = createSlice({
         })
       );
     },
-    // toggleSidebar(state, action) {
-    //   state.sidebarOpened = action.payload.sidebarOpened;
-    //   state.sidebarWidth = action.payload.sidebarOpened ? sidebarWidthOpened : sidebarWidthClosed;
-    // },
   },
 });
 

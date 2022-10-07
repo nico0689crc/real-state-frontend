@@ -1,7 +1,7 @@
 import { borderRadius } from 'constants/ui';
 
 const componentStyleOverrides = ({isDarkMode, colors, theme}) => {
-  console.log(theme);
+
   return {
     MuiTypography: {
       styleOverrides: {
@@ -263,6 +263,17 @@ const componentStyleOverrides = ({isDarkMode, colors, theme}) => {
           borderRadius: `${borderRadius}px`,
           padding: "5px",
           fontWeight: "600"
+        }
+      }
+    },
+    MuiSnackbar: {
+      styleOverrides: {
+        root: {
+          "&.MuiAppSnackBarCustomized": {
+            "& .MuiAlert-icon": {
+              alignItems: "center"
+            }
+          }
         }
       }
     },

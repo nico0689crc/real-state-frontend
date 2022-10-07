@@ -50,4 +50,8 @@ export class QueryService {
   create = async (url, data) => {
     return this.http.post(url, data).then(res => res.data);
   };
+
+  delete = async (url) => {
+    return this.http.delete(url).then(res => res.data);
+  };
 }

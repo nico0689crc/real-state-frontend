@@ -5,10 +5,10 @@ import { Box, Grid, Typography, Paper, Button, Stack } from '@mui/material';
 import {DeleteOutlineOutlined, FavoriteBorderOutlined, LocalSee, Bed, Bathroom, SquareFoot} from '@mui/icons-material';
 import SlickSlider from 'components/ui/SlickSlider';
 import AppTypography from "components/ui/Typography/AppTypography";
-import PropertiesDelete from '../delete/PropertieDelete';
+import PropertiesDelete from '../delete/PropertyDelete';
 import PropertyItemFeature from './PropertyItemFeature';
 import PropertyItemStatus from './PropertyItemStatus';
-import PropertyItemItemButton from './PropertyItemItemButton';
+import PropertyItemActionButton from './PropertyItemActionButton';
 import AppChip from 'components/ui/Chip/AppChip';
 import { FONT_COLORS_VARIANTS, FONT_FAMILY_VARIANTS } from "constants/ui";
 
@@ -27,8 +27,20 @@ const PropertyItem = ({ property }) => {
         <Paper elevation={1}>
           <Box sx={{ position: 'relative', height: '300px' }}>
             <SlickSlider medias={property.media} />
-            <PropertyItemItemButton aria-label="Delete" bottom="60px" icon={<DeleteOutlineOutlined />} onClick={handleToggleDeleteDialog} />
-            <PropertyItemItemButton aria-label="Favorite" bottom="20px" icon={<FavoriteBorderOutlined />} />
+            <PropertyItemActionButton 
+              aria-label={t("global.delete")}
+              tooltipText={t("global.delete")}
+              tooltipPlacement="left"
+              bottom="60px" 
+              icon={<DeleteOutlineOutlined />} onClick={handleToggleDeleteDialog} 
+            />
+            <PropertyItemActionButton 
+              aria-label={t("global.add_favorite")}
+              tooltipText={t("global.add_favorite")} 
+              tooltipPlacement="left"
+              bottom="20px" 
+              icon={<FavoriteBorderOutlined />} 
+            />
             <PropertyItemStatus property={property} />
             <AppChip icon={<LocalSee />} label={property.media.length} size="small" color="primary" position='absolute' top='20px' right='20px' />
           </Box>
@@ -38,9 +50,9 @@ const PropertyItem = ({ property }) => {
             <Typography fontWeight="600" fontSize="1.063rem" sx={{color: theme.palette.primary.main}}>{`$${property.price}`}</Typography>
             <AppTypography variant="body1" fontColor={FONT_COLORS_VARIANTS.THIRD} className="MuiTypographyEllipsisThirdLine">{property.description}</AppTypography>
             <Stack direction="row" alignItems="center" justifyContent="space-between" flexWrap="wrap">
-              <PropertyItemFeature label={`Bedrooms: ${property.beedroom_amount}`} icon={<Bed />}/>
-              <PropertyItemFeature label={`Bathrooms: ${property.bathroom_amount}`} icon={<Bathroom />}/>
-              <PropertyItemFeature label={`Sq Ft: ${property.sq_mts}`} icon={<SquareFoot />}/>
+              <PropertyItemFeature label={`${t("properties.global.bedrooms")}: ${property.beedroom_amount}`} icon={<Bed />}/>
+              <PropertyItemFeature label={`${t("properties.global.bathrooms")}: ${property.bathroom_amount}`} icon={<Bathroom />}/>
+              <PropertyItemFeature label={`${t("properties.global.property_size")}: ${property.sq_mts}`} icon={<SquareFoot />}/>
             </Stack>
             <Stack direction="row" alignItems="center" justifyContent="space-between">
               <AppTypography variant="button" fontColor={FONT_COLORS_VARIANTS.THIRD}>{property.created_at}</AppTypography>
@@ -49,7 +61,11 @@ const PropertyItem = ({ property }) => {
           </Stack>
         </Paper>
       </Grid>
-      <PropertiesDelete property={property} handleToggleDeleteDialog={handleToggleDeleteDialog} openDeleteDialog={openDeleteDialog}/>
+      <PropertiesDelete 
+        property={property} 
+        handleToggleDeleteDialog={handleToggleDeleteDialog}
+        openDeleteDialog={openDeleteDialog}
+      />
     </>
   )
 }

@@ -1,7 +1,6 @@
 import React from 'react';
 import Box from '@mui/material/Box';
 import { InsertPhotoOutlined } from '@mui/icons-material';
-import { Typography } from '@mui/material';
 import AppTypography from "components/ui/Typography/AppTypography";
 
 const UploadModern = ({ uploadText, dropzone }) => {

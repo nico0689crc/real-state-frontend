@@ -8,6 +8,7 @@ import { QueryClientProvider } from "contexts/QueryClient";
 import Routes from 'routes';
 import { retrievUserDataActionCreator } from 'store/userActionCreator'
 import { authActions } from 'store/authSlice'
+import AppSnackBar from 'components/ui/SnackBar/AppSnackBar';
 
 const App = () => {
   const dispatch = useDispatch();
@@ -36,6 +37,7 @@ const App = () => {
           <CssBaseline />
           <ErrorBoundary>
             <Routes />
+            <AppSnackBar />
           </ErrorBoundary>
         </ThemeProvider>
       </StyledEngineProvider>

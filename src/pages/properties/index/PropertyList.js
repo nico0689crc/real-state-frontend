@@ -1,18 +1,21 @@
-import { useCallback, useState } from 'react';
+import { useCallback } from 'react';
+import { useSelector, useDispatch } from "react-redux";
 import { useTranslation } from "react-i18next";
 import { Typography, Box, Pagination, CircularProgress, Grid } from '@mui/material';
-import usePropertiesQuery from "hooks/queries/properties/propertiesQuery";
+import { propertiesActions } from "store/properties/propertiesSlice";
+import { retrievePropertiesActionCreator } from "store/properties/propertiesActionCreators";
 import PropertyItem from "./PropertyItem";
 
 const PropertiesList = () => {
   const { t } = useTranslation();
-  const [currentPage, setCurrentPage] = useState(1);
+  const dispatch = useDispatch();
+  const { properties, currentPage, isFetching, totalPages, error } = useSelector(state => state.propertiesStore);
+
+  dispatch(retrievePropertiesActionCreator({currentPage}));
 
   const paginationOnChangeHandler = useCallback((event, page) => {
-    setCurrentPage(page)
-  }, []);
-
-  const { isFetching, data, error } = usePropertiesQuery({ page: { size: "15", number: currentPage } });
+    dispatch(propertiesActions.setCurrentPage({ currentPage: page }));
+  }, [dispatch]);
 
   if (error) {
     return <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '300px', width: '100%' }}>
@@ -31,19 +34,17 @@ const PropertiesList = () => {
       <Box sx={{ display: 'flex', justifyContent: 'start' }}>
         <Typography sx={{ marginBottom: 3 }} variant='h4'>{t("properties.index.title")}</Typography>
       </Box>
-      {data?.data?.length > 0 ? (
+      {properties.length > 0 ? (
         <>
-          <Box sx={{ width: '100%', marginBottom: 3 }}>
-            <Grid container spacing={2} >
-              {data?.data?.map((property, index) => (
-                <PropertyItem property={property} key={index} />
-              ))}
-            </Grid>
-          </Box>
+          <Grid container spacing={2} sx={{ width: '100%', marginBottom: 3 }}>
+            {properties.map((property, index) => (
+              <PropertyItem property={property} key={index} />
+            ))}
+          </Grid>
           <Box sx={{ display: 'flex', justifyContent: 'center' }}>
             <Pagination
               onChange={paginationOnChangeHandler}
-              count={data?.meta?.pages}
+              count={totalPages}
               color="primary"
               variant="outlined"
               shape="rounded"

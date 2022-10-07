@@ -5,7 +5,7 @@ import LOCALSTORAGE_ITEMS from "constants/localStorageItems";
 
 export const useAuthData = () => {
   const dispatch = useDispatch();
-  const { accessToken, tokenExpirationDate } = useSelector(state => state.authStore);
+  const { tokenExpirationDate } = useSelector(state => state.authStore);
 
   const getUserDataLocalStorage = useCallback(() => {
     return JSON.parse(localStorage.getItem(LOCALSTORAGE_ITEMS.USER_DATA));

@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { MailOutline, KeyOutlined, VisibilityOutlined, VisibilityOffOutlined } from '@mui/icons-material';
-import { InputAdornment, IconButton, FormControlLabel, Checkbox, Link, Button, Stack, useMediaQuery } from '@mui/material';
+import { InputAdornment, IconButton, Link, Button, Stack, useMediaQuery } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
 import { useTranslation } from "react-i18next";
 import classNames from 'classnames';
@@ -63,9 +63,8 @@ const LoginForm = ({ form, onSubmit }) => {
             )
           }}
         />
-        <Stack direction='row' justifyContent='space-between' alignItems='center'>
-          <FormControlLabel control={<Checkbox sx={{py: 0}} defaultChecked />} label={t("login.remember_me")} />
-          <Link sx={{fontWeight: '600'}} href="recover-password">{t("login.forgot_password")}</Link>
+        <Stack direction='row' justifyContent='center' alignItems='center'>
+          <Link href="recover-password">{t("login.forgot_password")}</Link>
         </Stack>
         <Button fullWidth onClick={handleSubmit(onSubmit)} variant="contained">{t("login.submit_button")}</Button>
       </Stack>
