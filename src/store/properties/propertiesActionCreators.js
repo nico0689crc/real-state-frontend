@@ -7,7 +7,7 @@ export const retrievePropertiesActionCreator = ({currentPage, pageSize = "9"}) =
   return async dispatch => {
     const { refetch, properties, currentPage } = useSelector(state => state.propertiesStore);
     const { isFetching, data, error, refetch: refetchProperties } = usePropertiesQuery({ page: { size: pageSize, number: currentPage } });
-
+    
     useEffect(() => {
       dispatch(propertiesActions.setIsFetching({ isFetching }));
     },[isFetching, dispatch]);
