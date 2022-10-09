@@ -28,19 +28,8 @@ export class QueryService {
       .then(res => res.data);
   };
 
-  findOne = async ({ id, include }) => {
-    const queries = {
-      ...(Boolean(include) && { include: include.join(",") }),
-    };
-
-    const queryString = new URLSearchParams(queries).toString();
-
-    return this.http
-      .get(
-        `${this.basePath}/${id}${queryString.length > 0 ? `?${queryString}` : ""
-        }`
-      )
-      .then(res => res.data);
+  findOne = async (id) => {
+    return this.http.get(`${this.basePath}/${id}`).then(res => res.data);
   };
 
   get = async url => {
@@ -49,6 +38,10 @@ export class QueryService {
 
   create = async (url, data) => {
     return this.http.post(url, data).then(res => res.data);
+  };
+
+  update = async ({ url, data, id }) => {
+    return this.http.patch(`${url}/${id}`, data).then(res => res.data);
   };
 
   delete = async (url) => {

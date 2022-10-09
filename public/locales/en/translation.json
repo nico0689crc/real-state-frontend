@@ -18,6 +18,7 @@
   "properties": {
     "create_edit": {
       "title_create": "Add Property",
+      "title_edit": "Edit Property",
       "labels": {
         "title": "Title",
         "type": "Type",
@@ -62,25 +63,31 @@
       "address": {
         "required": "An address is required."
       },
+      "status": {
+        "required": "An status is required."
+      },
+      "type": {
+        "required": "A type is required."
+      },
       "operating_since": {
         "type_error_number": "A number is required.",
-        "positive_field": "A positive number is required"
+        "positive_field": "A positive number is required."
       },
       "price": {
-        "type_error_number": "A number is required",
-        "positive_field": "A positive number is required"
+        "type_error_number": "A number is required.",
+        "positive_field": "A positive number is required."
       },
       "bedrooms": {
-        "type_error_number": "A number is required",
-        "positive_field": "A positive number is required"
+        "type_error_number": "A number is required.",
+        "positive_field": "A positive number is required."
       },
       "bathrooms": {
-        "type_error_number": "A number is required",
-        "positive_field": "A positive number is required"
+        "type_error_number": "A number is required.",
+        "positive_field": "A positive number is required."
       },
       "property_size": {
-        "type_error_number": "A number is required",
-        "positive_field": "A positive number is required"
+        "type_error_number": "A number is required.",
+        "positive_field": "A positive number is required."
       }
     },
     "global": {
@@ -97,18 +104,18 @@
   },
   "validations": {
     "email":{
-      "required": "Email is required",
+      "required": "Email is required.",
       "format": "Email is invalid"
     },
     "password": {
-      "required": "Password is required"
+      "required": "Password is required."
     }
   },
   "global": {
     "delete": "Delete",
     "deleting": "Deleting",
     "discard": "Discard",
-    "add_favorite": "Add Favorite",
+    "edit": "Edit",
     "save_button": "Save",
     "saving_button": "Saving",
     "cancel_button": "Discard"

@@ -12,8 +12,9 @@ const componentStyleOverrides = ({isDarkMode, colors, theme}) => {
               textOverflow: 'ellipsis',
               overflow: 'hidden',
               display: '-webkit-box !important',
-              '-webkit-line-clamp': '3',
-              '-webkit-box-orient': 'vertical'
+              WebkitLineClamp: '3',
+              WebkitBoxOrient: 'vertical',
+              minHeight: '75px'
             }
           }
         }
@@ -199,6 +200,7 @@ const componentStyleOverrides = ({isDarkMode, colors, theme}) => {
               fontSize: "1.25rem",
               position: "relative",
               color: 'inherit',
+              transform: "translate(0, -1.5px) scale(0.75)",
               "&.Mui-error": {
                 color: theme.palette.error.main
               },

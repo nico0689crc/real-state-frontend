@@ -1,8 +1,9 @@
 import { useState } from 'react';
 import { useTranslation } from "react-i18next";
+import { useNavigate } from "react-router-dom";
 import { useTheme } from '@mui/material/styles';
 import { Box, Grid, Typography, Paper, Button, Stack } from '@mui/material';
-import {DeleteOutlineOutlined, FavoriteBorderOutlined, LocalSee, Bed, Bathroom, SquareFoot} from '@mui/icons-material';
+import {DeleteOutlineOutlined, ModeEditOutlineOutlined, LocalSee, Bed, Bathroom, SquareFoot} from '@mui/icons-material';
 import SlickSlider from 'components/ui/SlickSlider';
 import AppTypography from "components/ui/Typography/AppTypography";
 import PropertiesDelete from '../delete/PropertyDelete';
@@ -11,9 +12,11 @@ import PropertyItemStatus from './PropertyItemStatus';
 import PropertyItemActionButton from './PropertyItemActionButton';
 import AppChip from 'components/ui/Chip/AppChip';
 import { FONT_COLORS_VARIANTS, FONT_FAMILY_VARIANTS } from "constants/ui";
+import API_ENDPOINTS from "constants/endpoints";
 
 const PropertyItem = ({ property }) => {
   const { t } = useTranslation();
+  const navigate = useNavigate();
   const theme = useTheme();
   const [openDeleteDialog, setOpenDeleteDialog] = useState(false);
 
@@ -21,9 +24,13 @@ const PropertyItem = ({ property }) => {
     setOpenDeleteDialog(prevState => !prevState)
   }
 
+  const onEditHanldler = () => {
+    navigate(`${API_ENDPOINTS.PROPERTIES}/${property.id}` , { replace: true });
+  }
+
   return (
     <>
-      <Grid item xs={12} sm={6} lg={4} zeroMinWidth>
+      <Grid item xs={12} md={6} xl={4} zeroMinWidth>
         <Paper elevation={1}>
           <Box sx={{ position: 'relative', height: '300px' }}>
             <SlickSlider medias={property.media} />
@@ -34,12 +41,13 @@ const PropertyItem = ({ property }) => {
               bottom="60px" 
               icon={<DeleteOutlineOutlined />} onClick={handleToggleDeleteDialog} 
             />
-            <PropertyItemActionButton 
-              aria-label={t("global.add_favorite")}
-              tooltipText={t("global.add_favorite")} 
+            <PropertyItemActionButton
+              onClick={onEditHanldler} 
+              aria-label={t("global.edit")}
+              tooltipText={t("global.edit")} 
               tooltipPlacement="left"
               bottom="20px" 
-              icon={<FavoriteBorderOutlined />} 
+              icon={<ModeEditOutlineOutlined />} 
             />
             <PropertyItemStatus property={property} />
             <AppChip icon={<LocalSee />} label={property.media.length} size="small" color="primary" position='absolute' top='20px' right='20px' />

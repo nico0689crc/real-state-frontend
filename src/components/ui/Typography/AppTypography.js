@@ -9,7 +9,7 @@ const AppTypography = ({fontColor, className, children, ...props}) => {
   const theme = useTheme();
 
   return (
-    <Typography {...props} className={`MuiCardCustomized ${className}`} sx={{color: theme.palette.text[fontColor]}}>
+    <Typography {...props} className={`MuiTypographyCustomized ${className}`} sx={{color: theme.palette.text[fontColor]}}>
       {children}
     </Typography>
   ); 

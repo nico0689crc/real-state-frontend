@@ -22,9 +22,7 @@ const UploadModern = ({ uploadText, dropzone }) => {
         }}
       >
         <input {...dropzone.getInputProps()} />
-        <InsertPhotoOutlined
-          sx={{ fontSize: 40 }}
-        />
+        <InsertPhotoOutlined sx={{ fontSize: 40 }} />
         <AppTypography sx={{fontSize: "1.25rem" }}>{uploadText}</AppTypography>
       </Box>
     </Box>

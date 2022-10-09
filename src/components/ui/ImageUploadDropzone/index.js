@@ -7,19 +7,24 @@ import { Box, Grid } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
 import { borderRadius } from 'constants/ui';
 
-const ImageUploadDropzone = ({ uploadedFiles, setUploadedFiles, label }) => {
+const GridContainer = ({ files }) => {
+  return <Grid container spacing={2}>
+    {files.map((file, index) => (
+      <PreviewThumb 
+        path={file.path} 
+        onDeleteUploadFile={file.onDelete} key={index} 
+      />
+    ))}  
+  </Grid>
+}
+
+const ImageUploadDropzone = ({ uploadedFiles, setUploadedFiles, onDeleteExistingFile, existingImages, label }) => {
   const theme = useTheme();
 
   const dropzone = useDropzone({
-    accept: 'image/*',
+    accept: { 'image/*': ['.jpeg', '.jpg', '.png']},
     onDrop: (acceptedFiles) => {
-      setUploadedFiles(
-        acceptedFiles.map((file) =>
-          Object.assign(file, {
-            preview: URL.createObjectURL(file),
-          }),
-        ),
-      );
+      setUploadedFiles(acceptedFiles.map((file) => Object.assign(file, { preview: URL.createObjectURL(file) })));
     },
   });
   useEffect(() => {
@@ -31,33 +36,32 @@ const ImageUploadDropzone = ({ uploadedFiles, setUploadedFiles, label }) => {
     setUploadedFiles([...dropzone.acceptedFiles]);
   };
 
+  const onDeleteExistingFileHandler = (file) => {
+    onDeleteExistingFile(file);
+  };
+
   return (
     <Box className='container' sx={{
       border: `1px solid ${theme.palette.mode === 'dark' ? 'rgba(255, 255, 255, 0.7)' : 'rgba(0, 0, 0, 0.42)'}`,
-      borderRadius: `${borderRadius}px`,
-      p: 2,
-      cursor: 'pointer'
+      borderRadius: `${borderRadius}px`, p: 2, cursor: 'pointer'
     }}>
-      {uploadedFiles.length > 0 ?
-        <Grid container spacing={2}>
-          {uploadedFiles.length > 0 ?
-            uploadedFiles.map((file, index) => (
-              <Grid key={index} item xs={4} sm={3} lg={2}>
-                <PreviewThumb
-                  file={file}
-                  onDeleteUploadFile={onDeleteUploadFile}
-                  key={index + file.path}
-                />
-              </Grid>
-            ))
-            : null}
-        </Grid>
-        : <UploadModern
-          uploadText={label}
-          setUploadedFiles={setUploadedFiles}
-          dropzone={dropzone}
-        />}
+      {existingImages && existingImages.length > 0 && (
+        <GridContainer files={existingImages.map(file => ({
+          path: file.media_path,
+          onDelete: () => onDeleteExistingFileHandler(file)
+        }))}/>
+      )}
 
+      {!existingImages && uploadedFiles.length > 0 && (
+        <GridContainer files={uploadedFiles.map(file => ({ 
+          path: file.preview, 
+          onDelete: () => onDeleteUploadFile(file)
+        }))}/>
+      )}
+
+      {((existingImages && existingImages.length === 0) || (!existingImages && uploadedFiles.length === 0)) && (
+        <UploadModern uploadText={label} setUploadedFiles={setUploadedFiles} dropzone={dropzone} />
+      )}
     </Box>
   );
 };
