@@ -24,9 +24,11 @@ const ImageUploadDropzone = ({ uploadedFiles, setUploadedFiles, onDeleteExisting
   const dropzone = useDropzone({
     accept: { 'image/*': ['.jpeg', '.jpg', '.png']},
     onDrop: (acceptedFiles) => {
+      console.log(acceptedFiles);
       setUploadedFiles(acceptedFiles.map((file) => Object.assign(file, { preview: URL.createObjectURL(file) })));
     },
   });
+
   useEffect(() => {
     setUploadedFiles(dropzone.acceptedFiles);
   }, [dropzone.acceptedFiles, setUploadedFiles]);
@@ -40,28 +42,26 @@ const ImageUploadDropzone = ({ uploadedFiles, setUploadedFiles, onDeleteExisting
     onDeleteExistingFile(file);
   };
 
+  let content = <UploadModern uploadText={label} setUploadedFiles={setUploadedFiles} dropzone={dropzone} />;
+
+  if(existingImages && existingImages.length > 0){
+    content = <GridContainer files={existingImages.map(file => ({
+      path: file.media_path,
+      onDelete: () => onDeleteExistingFileHandler(file)
+    }))}/>;
+  } else if(uploadedFiles.length > 0) {
+    content = <GridContainer files={uploadedFiles.map(file => ({ 
+      path: file.preview, 
+      onDelete: () => onDeleteUploadFile(file)
+    }))}/>;
+  }
+
   return (
     <Box className='container' sx={{
       border: `1px solid ${theme.palette.mode === 'dark' ? 'rgba(255, 255, 255, 0.7)' : 'rgba(0, 0, 0, 0.42)'}`,
       borderRadius: `${borderRadius}px`, p: 2, cursor: 'pointer'
     }}>
-      {existingImages && existingImages.length > 0 && (
-        <GridContainer files={existingImages.map(file => ({
-          path: file.media_path,
-          onDelete: () => onDeleteExistingFileHandler(file)
-        }))}/>
-      )}
-
-      {!existingImages && uploadedFiles.length > 0 && (
-        <GridContainer files={uploadedFiles.map(file => ({ 
-          path: file.preview, 
-          onDelete: () => onDeleteUploadFile(file)
-        }))}/>
-      )}
-
-      {((existingImages && existingImages.length === 0) || (!existingImages && uploadedFiles.length === 0)) && (
-        <UploadModern uploadText={label} setUploadedFiles={setUploadedFiles} dropzone={dropzone} />
-      )}
+      {content}
     </Box>
   );
 };
