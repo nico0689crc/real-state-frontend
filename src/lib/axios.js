@@ -9,7 +9,6 @@ export const axiosAdminPath = () => {
     timeout: 30000,
     headers: {
       "Content-Type": "application/json",
-      "Access-Control-Allow-Origin": "*",
       uid: uid,
       "access-token": accessToken,
       client: client
