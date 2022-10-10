@@ -39,7 +39,11 @@
         "dropzone_label": "Arrastre y suelte algunos archivos aquí, o haga clic para seleccionar archivos."
       },
       "success_created_title": "Propiedad creada",
-      "success_created_message": "La propiedad ha sido creada correctamente."
+      "success_created_message": "La propiedad ha sido creada correctamente.",
+      "success_updated_title": "Propiedad actualizada",
+      "success_updated_message": "La propiedad ha sido actualizada correctamente.",
+      "success_image_destroy_title": "Imagen eliminada",
+      "success_image_destroy_message": "La imagen ha sido eliminada correctamente."
     },
     "index": {
       "title": "Lista de Propiedades",
@@ -118,6 +122,8 @@
     "edit": "Editar",
     "save_button": "Guardar",
     "saving_button": "Guardando",
+    "update_button": "Actualizar",
+    "updating_button": "Actualizando",
     "cancel_button": "Descartar"
   }
 }

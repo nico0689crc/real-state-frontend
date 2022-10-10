@@ -39,7 +39,11 @@
         "dropzone_label": "Drag and drop some files here, or click to select files."
       },
       "success_created_title": "Property created",
-      "success_created_message": "The property has been created successfully."
+      "success_created_message": "The property has been created successfully.",
+      "success_updated_title": "Property updated",
+      "success_updated_message": "The property has been updated successfully.",
+      "success_image_destroy_title": "Image deleted",
+      "success_image_destroy_message": "The image has been deleted successfully."
     },
     "index": {
       "title": "Properties List",
@@ -118,6 +122,8 @@
     "edit": "Edit",
     "save_button": "Save",
     "saving_button": "Saving",
+    "update_button": "Update",
+    "updating_button": "Updating",
     "cancel_button": "Discard"
   }
 }

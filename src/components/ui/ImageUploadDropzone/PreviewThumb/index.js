@@ -1,10 +1,14 @@
 import React from 'react';
-import { Box, IconButton, Grid } from '@mui/material';
+import { useTranslation } from "react-i18next";
+import { Box, Grid } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
 import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined';
+import AppIconButton from 'components/ui/Buttons/AppIconButton/AppIconButton';
 
-const PreviewThumb = ({ path, onDeleteUploadFile }) => {
+const PreviewThumb = ({ path, onDeleteUploadFile, isLoading }) => {
+  const { t } = useTranslation();
   const theme = useTheme();
+  
   return (
     <Grid item xs={4} sm={3}>
       <Box
@@ -27,21 +31,26 @@ const PreviewThumb = ({ path, onDeleteUploadFile }) => {
             top: 10,
           }}
         >
-          <IconButton onClick={() => onDeleteUploadFile()} aria-label="delete" size="small" color="primary" sx={{
-            backgroundColor: theme.palette.grey[100],
-            height: 25,
-            width: 25,
-            "&:hover": {
-              backgroundColor: theme.palette.grey[300],
-              transform: 'scale(1.1)'
-            },
-            '& > svg': {
-              width: '100%',
-              height: '100%'
-            }
-          }}>
-            <DeleteOutlineOutlinedIcon />
-          </IconButton>
+          <AppIconButton
+            type="submit"
+            variant="contained"
+            disabled={isLoading}
+            size="small"
+            onClick={onDeleteUploadFile}
+            isLoading={isLoading}
+            tooltipText={t("global.delete")}
+            tooltipPlacement="left"
+            sx={{
+              backgroundColor: "#ffebee !important",
+              color: `${theme.palette.primary.main} !important`,
+              '&:hover': {
+                color: `${theme.palette.primary.main} !important`,
+                backgroundColor: "#ffcdd2 !important",
+              }
+            }}
+          >
+            <DeleteOutlineOutlinedIcon sx={{height: "20px", width: "20px"}}/>
+          </AppIconButton>
         </Box>
         <img alt='Preview' src={path} />
       </Box>

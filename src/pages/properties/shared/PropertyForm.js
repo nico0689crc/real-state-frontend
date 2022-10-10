@@ -1,25 +1,79 @@
+import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
 import { CalendarMonth, AttachMoney,BathroomOutlined, BedroomParentOutlined, SquareFootOutlined, MapOutlined, TextFormatOutlined, Close, Title } from '@mui/icons-material';
 import { Stack, InputAdornment, Button, CircularProgress } from '@mui/material';
+import { snackBarAlertActions } from "store/snackBarAlertSlice";
 import API_ENDPOINTS from "constants/endpoints";
 import ImageUploadDropzone from "components/ui/ImageUploadDropzone";
 import MainCard from "components/ui/Card/MainCard";
 import Input from "components/ui/Inputs/Input";
 import InputSelect from "components/ui/Inputs/InputSelect";
+import useDestroyPropertyImageMutation from "hooks/queries/properties/useDestroyPropertyImageMutation";
 
 const PropertyForm = ({ form, onSubmit, isLoading, setUploadedFiles, uploadedFiles, item }) => {
+  let submit_label;
   const { t } = useTranslation();
   const navigate = useNavigate();
-
+  const dispatch = useDispatch();
+  const { setSnackBarAlert } = snackBarAlertActions;
+  const [existingFiles, setExistingFiles] = useState(item?.media.map(file => ({
+    id: file.id,
+    path: file.media_path,
+    onDelete: () => onDeleteExistingFileHandler(file),
+    isLoading: false
+  })));
   const { register, handleSubmit, formState: { errors } } = form;
   
   const onDiscardHandler = () => {
     navigate(API_ENDPOINTS.PROPERTIES, { replace: true });
   }
 
-  const onDeleteImageHandler = (image) => {
-    console.log(image.media_path);
+  const onSuccessHandler = () => {
+    dispatch(setSnackBarAlert({
+      type: "success",
+      content: {
+        title: t("properties.create_edit.success_image_destroy_title"),
+        message: t("properties.create_edit.success_image_destroy_message")
+      }
+    }));
+
+    setExistingFiles(prev => prev.filter(f => !f.isLoading));
+  }
+
+  const onErrorHandler = (data) => {
+    const { status, exception, error } = data.response.data;
+    
+    dispatch(setSnackBarAlert({
+      type: "error",
+      content: {
+        title: error,
+        subTitle: status,
+        message: exception
+      }
+    }));
+
+    setExistingFiles(prev => prev.map(f => {
+      f.isLoading = false;
+      return f;
+    }));
+  }
+
+  const { mutate: detroyPropertyImage } = useDestroyPropertyImageMutation(onSuccessHandler, onErrorHandler);
+
+  function onDeleteExistingFileHandler(file) {    
+    setExistingFiles(prev => prev.map(f => {
+      f.isLoading = f.id === file.id;
+      return f;
+    }));
+    detroyPropertyImage({ property_id: item.id, media_id: file.id });
+  }
+
+  if(item){
+    submit_label = isLoading ? t("global.updating_button") : t("global.update_button");
+  } else {
+    submit_label = isLoading ? t("global.saving_button") : t("global.save_button");
   }
 
   return (
@@ -192,9 +246,9 @@ const PropertyForm = ({ form, onSubmit, isLoading, setUploadedFiles, uploadedFil
           <ImageUploadDropzone 
             uploadedFiles={uploadedFiles} 
             setUploadedFiles={setUploadedFiles}
-            onDeleteExistingFile={onDeleteImageHandler}
+            onDeleteExistingFile={onDeleteExistingFileHandler}
             label={t("properties.create_edit.labels.dropzone_label")}
-            existingImages={item?.media} 
+            existingFiles={existingFiles} 
           />
           <Stack direction="row" justifyContent="center" width="100%" spacing={2}>
             <Button
@@ -202,8 +256,9 @@ const PropertyForm = ({ form, onSubmit, isLoading, setUploadedFiles, uploadedFil
               variant="contained"
               onClick={handleSubmit(onSubmit)}
               disabled={isLoading}
-              startIcon={isLoading ? <CircularProgress sx={{ width: '15px !important', height: '15px !important' }} color="inherit" /> : null}>
-              {isLoading ? t("global.saving_button") : t("global.save_button")}
+              startIcon={isLoading ? <CircularProgress sx={{ width: '15px !important', height: '15px !important' }} color="inherit" /> : null}
+            >
+              {submit_label}
             </Button>
             <Button onClick={onDiscardHandler} variant="outlined" startIcon={<Close />}>
               {t("global.cancel_button")}

@@ -22,8 +22,8 @@ const PropertiesEdit = () => {
     dispatch(setSnackBarAlert({
       type: "success",
       content: {
-        title: t("properties.create_edit.success_created_title"),
-        message: t("properties.create_edit.success_created_message")
+        title: t("properties.create_edit.success_updated_title"),
+        message: t("properties.create_edit.success_updated_message")
       }
     }));
     dispatch(setCurrentPage({currentPage: 1}));
@@ -43,15 +43,15 @@ const PropertiesEdit = () => {
     }));
   }
 
-  const { data, isFetching: isFetchingQuery } = usePropertyQuery(propertyId);
-  const { mutate, isFetching: isFetchingMutate } = useUpdatePropertyMutation(onSuccessHandler, onErrorHandler);
+  const { data, isFetching} = usePropertyQuery(propertyId);
+  const { mutate, isLoading } = useUpdatePropertyMutation(onSuccessHandler, onErrorHandler);
 
-  const content = isFetchingQuery ? (
+  const content = isFetching ? (
     <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '300px', width: '100%' }}>
       <CircularProgress />
     </Box>
   ) : (
-    <Properties mutate={mutate} item={data?.data} isLoading={isFetchingMutate} />
+    <Properties mutate={mutate} item={data?.data} isLoading={isLoading} />
   );
 
   return (

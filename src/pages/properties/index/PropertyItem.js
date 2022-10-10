@@ -39,7 +39,8 @@ const PropertyItem = ({ property }) => {
               tooltipText={t("global.delete")}
               tooltipPlacement="left"
               bottom="60px" 
-              icon={<DeleteOutlineOutlined />} onClick={handleToggleDeleteDialog} 
+              icon={<DeleteOutlineOutlined />} 
+              onClick={handleToggleDeleteDialog} 
             />
             <PropertyItemActionButton
               onClick={onEditHanldler} 

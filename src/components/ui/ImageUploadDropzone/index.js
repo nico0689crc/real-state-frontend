@@ -11,20 +11,20 @@ const GridContainer = ({ files }) => {
   return <Grid container spacing={2}>
     {files.map((file, index) => (
       <PreviewThumb 
-        path={file.path} 
+        path={file.path}
+        isLoading={file.isLoading} 
         onDeleteUploadFile={file.onDelete} key={index} 
       />
     ))}  
   </Grid>
 }
 
-const ImageUploadDropzone = ({ uploadedFiles, setUploadedFiles, onDeleteExistingFile, existingImages, label }) => {
+const ImageUploadDropzone = ({ uploadedFiles, setUploadedFiles, existingFiles, label }) => {
   const theme = useTheme();
 
   const dropzone = useDropzone({
     accept: { 'image/*': ['.jpeg', '.jpg', '.png']},
     onDrop: (acceptedFiles) => {
-      console.log(acceptedFiles);
       setUploadedFiles(acceptedFiles.map((file) => Object.assign(file, { preview: URL.createObjectURL(file) })));
     },
   });
@@ -38,17 +38,10 @@ const ImageUploadDropzone = ({ uploadedFiles, setUploadedFiles, onDeleteExisting
     setUploadedFiles([...dropzone.acceptedFiles]);
   };
 
-  const onDeleteExistingFileHandler = (file) => {
-    onDeleteExistingFile(file);
-  };
-
   let content = <UploadModern uploadText={label} setUploadedFiles={setUploadedFiles} dropzone={dropzone} />;
 
-  if(existingImages && existingImages.length > 0){
-    content = <GridContainer files={existingImages.map(file => ({
-      path: file.media_path,
-      onDelete: () => onDeleteExistingFileHandler(file)
-    }))}/>;
+  if(existingFiles && existingFiles.length > 0){
+    content = <GridContainer files={existingFiles} />;
   } else if(uploadedFiles.length > 0) {
     content = <GridContainer files={uploadedFiles.map(file => ({ 
       path: file.preview, 

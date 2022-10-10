@@ -1,7 +1,7 @@
 import { Trans, useTranslation } from "react-i18next";
 import { useDispatch } from "react-redux";
 import { DeleteOutlineOutlined, Close } from '@mui/icons-material';
-import useDestroyPropertyMutation from "hooks/queries/properties/useDestroyPropertyMutation"
+import useDestroyPropertyMutation from "hooks/queries/properties/useDestroyPropertyMutation";
 import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle } from '@mui/material';
 import LoadingButton from '@mui/lab/LoadingButton';
 import { snackBarAlertActions } from "store/snackBarAlertSlice";
