@@ -1,15 +1,21 @@
 import React from 'react';
 import Box from '@mui/material/Box';
 import { InsertPhotoOutlined } from '@mui/icons-material';
+import { useTheme } from '@mui/material/styles';
 import AppTypography from "components/ui/Typography/AppTypography";
 
 const UploadModern = ({ uploadText, dropzone }) => {
+  const theme = useTheme();
+
   return (
     <Box
       sx={{
         position: 'relative',
         borderRadius: 1,
-        p: 7
+        padding: 0,
+        [theme.breakpoints.up('md')]: {
+          padding: 7,
+        },
       }}
     >
       <Box

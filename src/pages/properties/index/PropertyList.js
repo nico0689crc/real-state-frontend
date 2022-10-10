@@ -35,7 +35,7 @@ const PropertiesList = () => {
   } else {
     content = properties.length > 0 ? (
       <>
-        <Grid container spacing={2} sx={{ width: '100%', marginBottom: 3 }}>
+        <Grid container columnSpacing={{xs: 0, md: 2}} rowSpacing={2} sx={{ width: '100%', marginBottom: 3 }}>
           {properties.map((property, index) => (
             <PropertyItem property={property} key={index} />
           ))}
