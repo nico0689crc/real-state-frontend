@@ -1,15 +1,10 @@
 import { useState } from "react";
+import PropTypes from 'prop-types';
 import { useForm } from "react-hook-form";
-import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useTranslation } from "react-i18next";
-import { snackBarAlertActions } from "store/snackBarAlertSlice";
-import { propertiesActions } from "store/properties/propertiesSlice";
-import useCreatePropertyMutation from "hooks/queries/properties/useCreatePropertyMutation";
-import PropertyCreateForm from "./PropertyCreateForm";
-import API_ENDPOINTS from "constants/endpoints";
+import PropertyForm from "./PropertyForm";
 
 const getFormSchema = (t, item) => {
   const formSchema = yup.object().shape({
@@ -22,6 +17,12 @@ const getFormSchema = (t, item) => {
     "address": yup
       .string()
       .required(t("properties.validations.address.required")),
+    "status": yup
+      .string()
+      .required(t("properties.validations.status.required")),
+    "type": yup
+      .string()
+      .required(t("properties.validations.type.required")),
     "operating_since": yup
       .number()
       .typeError(t("properties.validations.operating_since.type_error_number"))
@@ -45,22 +46,16 @@ const getFormSchema = (t, item) => {
   });
 
   const defaultValues = {
-    "title": item ? item.title : "Happily final air prize grow earlier promised since.",
-    "description": item ? item.description : "Meal signal grabbed universe wind take forget highway animal sort somewhere along include personal anywhere anybody through dry crop met powerful there father water",
-    "address": "LtqSRyyFqgno yPZFN2ECDrK8n2z VgFKY2YqmNubhAUfq7a",
-    "bathrooms": "2",
-    "bedrooms": "3",
-    "operating_since": "1955",
-    "price": "1550000.0",
-    "property_size": "500"
-    // "title": item ? item.title : "",
-    // "description": item ? item.description : "",
-    // "address": item ? item.address : "",
-    // "bathrooms": item ? item.bathrooms : "",
-    // "bedrooms": item ? item.bedrooms : "",
-    // "operating_since": item ? item.operating_since : "",
-    // "price": item ? item.price : "",
-    // "property_size": item ? item.property_size : ""
+    "title": item ? item.title : "",
+    "description": item ? item.description : "",
+    "address": item ? item.address : "",
+    "bathrooms": item ? item.bathroom_amount : "",
+    "bedrooms": item ? item.beedroom_amount : "",
+    "operating_since": item ? item.operating_since : "",
+    "price": item ? item.price : "",
+    "property_size": item ? item.sq_mts : "",
+    "type": item ? item.p_type : "",
+    "status": item ? item.p_status : "",
   };
 
   return {
@@ -69,42 +64,12 @@ const getFormSchema = (t, item) => {
   };
 };
 
-const PropertiesCreate = ({ item, ...props }) => {
-  const { t } = useTranslation();
-  const navigate = useNavigate();
-  const dispatch = useDispatch();
-  const { setSnackBarAlert } = snackBarAlertActions;
-  const { setCurrentPage } = propertiesActions;
-  const form = useForm(getFormSchema(t, item));
+const Properties = ({ item, isLoading, mutate }) => {
   const [uploadedFiles, setUploadedFiles] = useState([]);
-  
-  const onSuccessHandler = () => {
-    dispatch(setSnackBarAlert({
-      type: "success",
-      content: {
-        title: t("properties.create_edit.success_created_title"),
-        message: t("properties.create_edit.success_created_message")
-      }
-    }));
-    dispatch(setCurrentPage({currentPage: 1}));
-    navigate(API_ENDPOINTS.PROPERTIES, { replace: true });
-  }
+  const { t } = useTranslation();
 
-  const onErrorHandler = (data) => {
-    const { status, exception, statusText } = data.response;
-    
-    dispatch(setSnackBarAlert({
-      type: "error",
-      content: {
-        title: statusText,
-        subTitle: status,
-        message: exception ? exception : "URL not found."
-      }
-    }));
-  }
-  
-  const { mutate: createProperty, isLoading } = useCreatePropertyMutation(onSuccessHandler, onErrorHandler);
-  
+  const form = useForm(getFormSchema(t, item));
+
   const onSubmit = async (data) => {
     const facilities = [
       {
@@ -151,8 +116,8 @@ const PropertiesCreate = ({ item, ...props }) => {
     formData.append("property[description]", data['description']);
     formData.append("property[p_type]", data['type']);
     formData.append("property[p_status]", data['status']);
-    formData.append("property[features]", JSON.stringify(features));
-    formData.append("property[facilities]", JSON.stringify(facilities));
+    !item && formData.append("property[features]", JSON.stringify(features));
+    !item && formData.append("property[facilities]", JSON.stringify(facilities));
     formData.append("property[address]", data['address']);
     formData.append("property[bathroom_amount]", data['bedrooms']);
     formData.append("property[beedroom_amount]", data['bathrooms']);
@@ -164,20 +129,27 @@ const PropertiesCreate = ({ item, ...props }) => {
       formData.append("property[medias][]", file);
     });
 
-    createProperty(formData, {
-      onError: () => { }
-    })
+    mutate({id: item?.id, data: formData});
   }
 
   return (
-    <PropertyCreateForm 
+    <PropertyForm 
       form={form} 
       onSubmit={onSubmit} 
       isLoading={isLoading} 
       uploadedFiles={uploadedFiles} 
       setUploadedFiles={setUploadedFiles}
+      item={item}
     />
   )
 }
 
-export default PropertiesCreate;
+Properties.propTypes = {
+  item: PropTypes.object
+}
+
+Properties.defaultProps = {
+  item: null,
+};
+
+export default Properties;

@@ -18,6 +18,7 @@
   "properties": {
     "create_edit": {
       "title_create": "Nueva Propiedad",
+      "title_edit": "Editar Propiedad",
       "labels": {
         "title": "Título",
         "type": "Tipo",
@@ -38,7 +39,11 @@
         "dropzone_label": "Arrastre y suelte algunos archivos aquí, o haga clic para seleccionar archivos."
       },
       "success_created_title": "Propiedad creada",
-      "success_created_message": "La propiedad ha sido creada correctamente."
+      "success_created_message": "La propiedad ha sido creada correctamente.",
+      "success_updated_title": "Propiedad actualizada",
+      "success_updated_message": "La propiedad ha sido actualizada correctamente.",
+      "success_image_destroy_title": "Imagen eliminada",
+      "success_image_destroy_message": "La imagen ha sido eliminada correctamente."
     },
     "index": {
       "title": "Lista de Propiedades",
@@ -54,33 +59,39 @@
     },
     "validations": {
       "title": {
-        "required": "A title is required."
+        "required": "Un título es requerido."
       },
       "description": {
-        "required": "A description is required."
+        "required": "Una descripción es requerida."
       },
       "address": {
-        "required": "An address is required."
+        "required": "Una dirección es requerida."
+      },
+      "status": {
+        "required": "Un estado es requerido."
+      },
+      "type": {
+        "required": "Un tipo es requerido."
       },
       "operating_since": {
-        "type_error_number": "A number is required.",
-        "positive_field": "A positive number is required"
+        "type_error_number": "Un número es requerido.",
+        "positive_field": "Un número positivo es requerido."
       },
       "price": {
-        "type_error_number": "A number is required",
-        "positive_field": "A positive number is required"
+        "type_error_number": "Un número es requerido.",
+        "positive_field": "Un número positivo es requerido."
       },
       "bedrooms": {
-        "type_error_number": "A number is required",
-        "positive_field": "A positive number is required"
+        "type_error_number": "Un número es requerido.",
+        "positive_field": "Un número positivo es requerido."
       },
       "bathrooms": {
-        "type_error_number": "A number is required",
-        "positive_field": "A positive number is required"
+        "type_error_number": "Un número es requerido.",
+        "positive_field": "Un número positivo es requerido."
       },
       "property_size": {
-        "type_error_number": "A number is required",
-        "positive_field": "A positive number is required"
+        "type_error_number": "Un número es requerido.",
+        "positive_field": "Un número positivo es requerido."
       }
     },
     "global": {
@@ -108,9 +119,11 @@
     "delete": "Eliminar",
     "deleting": "Eliminando",
     "discard": "Descartar",
-    "add_favorite": "Agregar Favorito",
+    "edit": "Editar",
     "save_button": "Guardar",
     "saving_button": "Guardando",
+    "update_button": "Actualizar",
+    "updating_button": "Actualizando",
     "cancel_button": "Descartar"
   }
 }

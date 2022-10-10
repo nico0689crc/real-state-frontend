@@ -5,13 +5,13 @@ import API_ENDPOINTS from "constants/endpoints";
 const pathRequireAuthentication = true;
 const propertiesQueryServices = new QueryService(API_ENDPOINTS.PROPERTIES, pathRequireAuthentication);
 
-const useCreatePropertyMutation = (onSuccessHandler, onErrorHandler) => {
+const useUpdatePropertyMutation = (onSuccessHandler, onErrorHandler) => {
   return useMutation(
-    ({ data }) => propertiesQueryServices.create(API_ENDPOINTS.PROPERTIES, data), {
+    ({ id, data }) => propertiesQueryServices.update({ url: API_ENDPOINTS.PROPERTIES, id, data }), {
       onSuccess: () => onSuccessHandler(),
       onError: (data) => onErrorHandler(data)
     }
   );
 };
 
-export default useCreatePropertyMutation;
+export default useUpdatePropertyMutation;
