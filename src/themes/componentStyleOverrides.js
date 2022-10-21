@@ -6,7 +6,7 @@ const componentStyleOverrides = ({isDarkMode, colors, theme}) => {
     MuiTypography: {
       styleOverrides: {
         root: {
-          fontFamily: "Roboto, sans-serif",
+          fontFamily: '"Montserrat","Roboto","Rubik",sans-serif',
           "&.MuiTypographyCustomized": {
             "&.MuiTypographyEllipsisThirdLine": {
               textOverflow: 'ellipsis',
@@ -276,6 +276,20 @@ const componentStyleOverrides = ({isDarkMode, colors, theme}) => {
               alignItems: "center"
             }
           }
+        }
+      }
+    },
+    MuiDialogActions: {
+      styleOverrides: {
+        root: {
+          padding: "1rem 1.5rem"
+        }
+      }
+    },
+    MuiDialogTitle: {
+      styleOverrides: {
+        root: {
+          padding: "1rem 1.5rem"
         }
       }
     },

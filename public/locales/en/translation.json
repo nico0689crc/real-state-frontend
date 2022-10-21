@@ -100,8 +100,60 @@
       "bathrooms": "Bathrooms"
     }
   },
+  "users": {
+    "create_edit": {
+      "title_create": "Add User",
+      "title_edit": "Edit User",
+      "add_user_button": "Add a User",
+      "success_created_title": "User created",
+      "success_created_message": "The user has been created successfully.",
+      "success_updated_title": "User updated",
+      "success_updated_message": "The user has been updated successfully.",
+      "labels": {
+        "first_name": "First Name",
+        "last_name": "Last Name",
+        "user_role": "User Role",
+        "email": "Email",
+        "phone_number": "Phone Number",
+        "address": "Address",
+        "date_of_birth": "Date of Birth",
+        "gender": "Gender",
+        "user_role_administrator": "Administrator",
+        "user_role_super_administrator": "Super Administrator",
+        "gender_male": "Male",
+        "gender_female": "Female"
+      }
+    },
+    "index": {
+      "title": "Users"
+    },
+    "profile": {
+      "title": "Profile",
+      "sections": {
+        "user_information": "My Information",
+        "change_password": "Change Password"
+      }
+    },
+    "delete": {
+      "title": "Delete User",
+      "content": "You are about to delete the user <1><0>{{name}}</0></1>. Do you want to continue this action?",
+      "success_title": "User deleted",
+      "success_message": "The user has been deleted successfully."
+    },
+    "validations": {
+      "required": "Required field."
+    },
+    "global": {
+      "first_name": "First Name",
+      "last_name": "Last Name",
+      "email": "Email",
+      "user_role": "Role",
+      "actions": "Actions"
+    }
+  },
   "header": {
     "profile_section": {
+      "my_profile": "Profile",
       "account_setting": "Account Settings",
       "logout": "Logout"
     }
@@ -119,6 +171,7 @@
     "delete": "Delete",
     "deleting": "Deleting",
     "discard": "Discard",
+    "close": "Close",
     "edit": "Edit",
     "save_button": "Save",
     "saving_button": "Saving",

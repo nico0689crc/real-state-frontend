@@ -100,8 +100,62 @@
       "bathrooms": "Baños"
     }
   },
+  "users": {
+    "create_edit": {
+      "title_create": "Nuevo/a Usurio/a",
+      "title_edit": "Editar Usurio/a",
+      "add_user_button": "Agregar Usuario/a",
+      "success_created_title": "Usurio/a creada/a",
+      "success_created_message": "La/El usuario ha sido creada correctamente.",
+      "success_updated_title": "Usurio/a actualizada",
+      "success_updated_message": "La/El usuario ha sido actualizada correctamente.",
+      "success_image_destroy_title": "Imagen eliminada",
+      "success_image_destroy_message": "La/El imagen ha sido eliminada correctamente.",
+      "labels": {
+        "first_name": "Nombre/s",
+        "last_name": "Apellido/s",
+        "user_role": "Rol",
+        "email": "C. Electrónico",
+        "phone_number": "N. Telefónico",
+        "address": "Dirección",
+        "date_of_birth": "Fecha de Nacimiento",
+        "gender": "Género",
+        "user_role_administrator": "Administrador",
+        "user_role_super_administrator": "Súper Administrador",
+        "gender_male": "Másculino",
+        "gender_female": "Fémenino"
+      }
+    },
+    "index": {
+      "title": "Usuarios"
+    },
+    "profile": {
+      "title": "Perfil",
+      "sections": {
+        "user_information": "Mis datos",
+        "change_password": "Cambiar Contraseña"
+      }
+    },
+    "delete": {
+      "title": "Eliminar Usuario",
+      "content": "Está a punto de eliminar al usuario/a <1><0>{{name}}</0></1>. ¿Quieres continuar con esta acción?",
+      "success_title": "Usuario/a eliminado",
+      "success_message": "El/La usuario/a se ha eliminado correctamente."
+    },
+    "validations": {
+      "required": "Campo requerido."
+    },
+    "global": {
+      "first_name": "Nombre/s",
+      "last_name": "Apellido/s",
+      "email": "C. Electrónico",
+      "user_role": "Rol",
+      "actions": "Acciones"
+    }
+  },
   "header": {
     "profile_section": {
+      "my_profile": "Perfil",
       "account_setting": "Configuraciones",
       "logout": "Cerrar Sesión"
     }
@@ -120,6 +174,7 @@
     "deleting": "Eliminando",
     "discard": "Descartar",
     "edit": "Editar",
+    "close": "Cerrar",
     "save_button": "Guardar",
     "saving_button": "Guardando",
     "update_button": "Actualizar",

@@ -46,7 +46,11 @@ const MainLayout = () => {
         }}>
           <Sidebar sidebarOpened={sidebarOpened} onSidebarToggle={handleLeftSidebarToggle} />
         </Box>
-        <Box sx={{flexGrow: 1, padding: matchUpMd ? containerPaddingX : containerPaddingSmX, overflow: 'auto'}}>
+        <Box sx={{
+          flexGrow: 1, 
+          padding: matchUpMd ? containerPaddingX : containerPaddingSmX, 
+          overflow: 'auto'
+        }}>
           <AppSuspense>
             <Outlet />
           </AppSuspense>
