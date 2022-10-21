@@ -6,7 +6,7 @@ import {
 import Transitions from 'components/ui/extended/Transitions';
 import Card from 'components/ui/Card/Card';
 
-const Dropdown = ({ anchorRef, handleClose, open, items = []}) => {
+const Dropdown = ({ anchorRef, handleClose, open, headerTitle, items = []}) => {
   const theme = useTheme();
 
   return (
@@ -32,8 +32,8 @@ const Dropdown = ({ anchorRef, handleClose, open, items = []}) => {
           <Paper>
             <ClickAwayListener onClickAway={handleClose}>
               <Card border={false} elevation={16} content={false} boxShadow shadow={theme.shadows[16]}>
-                <Box sx={{ p: 1, textAlign: 'center' }}>
-                  <Typography component="span" variant="h6" sx={{ fontWeight: 400 }}>Johne Doe</Typography>
+                <Box sx={{ p: 2, pr: 4, textAlign: 'center' }}>
+                  <Typography component="span" variant="h6" sx={{ fontWeight: 400 }}>{headerTitle}</Typography>
                 </Box>
                 <Divider />
                 <List component="nav" sx={{py: 0}}>
