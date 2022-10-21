@@ -1,5 +1,6 @@
 // assets
 import { IconBuildingWarehouse, IconDashboard } from '@tabler/icons';
+import PeopleAltIcon from '@mui/icons-material/PeopleAlt';
 import KeyboardDoubleArrowRightIcon from '@mui/icons-material/KeyboardDoubleArrowRight';
 
 // ==============================|| DASHBOARD MENU ITEMS ||============================== //
@@ -40,7 +41,15 @@ const dashboard = {
           breadcrumbs: false
         },
       ]
-    }
+    },
+    {
+      id: 'users',
+      title: 'User',
+      type: 'item',
+      url: 'users',
+      icon: PeopleAltIcon,
+      breadcrumbs: false
+    },
   ]
 };
 
