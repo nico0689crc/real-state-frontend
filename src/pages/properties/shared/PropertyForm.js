@@ -97,7 +97,7 @@ const PropertyForm = ({ form, onSubmit, isLoading, setUploadedFiles, uploadedFil
               ),
             }}
           />
-          <Stack direction="row" spacing={2}>
+          <Stack direction={{xs: 'column', sm: 'row'}} spacing={2}>
             <InputSelect
               name="type"
               id="type"
@@ -159,7 +159,7 @@ const PropertyForm = ({ form, onSubmit, isLoading, setUploadedFiles, uploadedFil
               ),
             }}
           />
-          <Stack direction="row" spacing={2}>
+          <Stack direction={{xs: 'column', sm: 'row'}} spacing={2}>
             <Input
               id="price" 
               label={t("properties.create_edit.labels.price")} 
@@ -250,7 +250,7 @@ const PropertyForm = ({ form, onSubmit, isLoading, setUploadedFiles, uploadedFil
             label={t("properties.create_edit.labels.dropzone_label")}
             existingFiles={existingFiles} 
           />
-          <Stack direction="row" justifyContent="center" width="100%" spacing={2}>
+          <Stack direction={{xs: 'column-reverse', sm: 'row'}} justifyContent="center" width="100%" spacing={2}>
             <Button
               type="submit"
               variant="contained"

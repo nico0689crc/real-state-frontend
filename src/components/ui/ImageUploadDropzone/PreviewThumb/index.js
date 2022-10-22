@@ -10,7 +10,7 @@ const PreviewThumb = ({ path, onDeleteUploadFile, isLoading }) => {
   const theme = useTheme();
   
   return (
-    <Grid item xs={4} sm={3}>
+    <Grid item xs={12} sm={3}>
       <Box
         sx={{
           position: 'relative',
