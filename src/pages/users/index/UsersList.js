@@ -54,6 +54,7 @@ const UsersList = () => {
             sx={{width: "100%"}} 
             rows={users} 
             columns={getColumns()}
+            getRowHeight={() => 'auto'}
             disableSelectionOnClick
             autoHeight
             pagination

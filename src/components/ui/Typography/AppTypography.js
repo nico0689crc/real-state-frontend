@@ -5,11 +5,16 @@ import { FONT_COLORS_VARIANTS } from "constants/ui";
 
 const { DISABLED, PRIMARY, SECONDARY, THIRD, FOURTH, FIFTH } = FONT_COLORS_VARIANTS;
 
-const AppTypography = ({fontColor, className, children, ...props}) => {
+const AppTypography = ({fontColor, className, children, sx = {}, ...props}) => {
   const theme = useTheme();
 
   return (
-    <Typography {...props} className={`MuiTypographyCustomized ${className}`} sx={{color: theme.palette.text[fontColor]}}>
+    <Typography {...props} className={`MuiTypographyCustomized ${className}`} 
+      sx={{ 
+        color: theme.palette.text[fontColor],
+        ...sx 
+      }}
+    >
       {children}
     </Typography>
   ); 

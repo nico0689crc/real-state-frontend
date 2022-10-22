@@ -1,7 +1,58 @@
-import { useCallback } from 'react';
-import { useMediaQuery, useTheme } from '@mui/material';
+import { useCallback, useState } from 'react';
 import { useTranslation } from "react-i18next";
+import { Stack, Typography, IconButton, useMediaQuery, useTheme } from '@mui/material';
+import { Add, Remove } from '@mui/icons-material';
 import UserRowActions from './UserRowActions';
+import AppTypography from 'components/ui/Typography/AppTypography';
+
+const ShowMore = ({row}) => {
+  const theme = useTheme();
+  const { t } = useTranslation();
+  const [open, setOpen] = useState(false);
+
+  const onToggleHandler = () => {
+    setOpen(prevState => !prevState);
+  }
+  
+  return (
+    <Stack direction="row" spacing={2}>
+      <IconButton onClick={onToggleHandler}>
+        {open ? <Remove /> : <Add />}
+      </IconButton>
+      <Stack spacing={open? 2 : 0} justifyContent="center">
+        {open ? (
+          <Stack>
+            <AppTypography variant='body1' fontWeight="bold">{t('users.global.user')}:</AppTypography>
+            <AppTypography variant='body2'>{`${row.last_name}, ${row.first_name}`}</AppTypography>
+          </Stack>
+        ) : (
+          <Typography>{`${row.last_name}, ${row.first_name}`}</Typography>
+        )}
+        <Stack 
+          spacing={2}
+          sx={{
+            height: open ? 'auto' : 0, 
+            overflow: 'hidden',
+            transition: theme.transitions.create('all', {
+              easing: theme.transitions.easing.easeOut,
+              duration: theme.transitions.duration.shortest
+            })
+          }}
+        >
+          <Stack>
+            <AppTypography variant='body1' fontWeight="bold">{t('users.global.email')}:</AppTypography>
+            <AppTypography variant='body2'>{row.email}</AppTypography>
+          </Stack>
+          <Stack>
+            <AppTypography variant='body1' fontWeight="bold">{t('users.global.user_role')}:</AppTypography>
+            <AppTypography variant='body2'>{row.user_role}</AppTypography>
+          </Stack>
+        </Stack>
+      </Stack>
+    </Stack>
+
+  )
+}
 
 const useUserColumns = () => {
   const theme = useTheme();
@@ -14,7 +65,7 @@ const useUserColumns = () => {
       { 
         field: 'user', 
         headerName: t('users.global.user'), 
-        renderCell: ({row}) => `${row.last_name}, ${row.first_name}`,
+        renderCell: ({row}) => isDownSm ? <ShowMore row={row} /> : `${row.last_name}, ${row.first_name}`,
         flex: 1 
       },
       { field: 'email', headerName: t('users.global.email'), flex: 1, hide: isDownSm },

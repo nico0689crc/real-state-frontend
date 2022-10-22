@@ -297,6 +297,10 @@ const componentStyleOverrides = ({isDarkMode, colors, theme}) => {
         root: {
           backgroundColor: isDarkMode ? colors.background['dark-mode'].paper : colors.background['light-mode'].paper,
           border: 0,
+          "& .MuiDataGrid-cell": {
+            paddingTop: '0.5rem',
+            paddingBottom: '0.5rem'
+          },
           "& .MuiDataGrid-columnHeaders": {
             border: isDarkMode ? '2px solid rgba(81, 81, 81, 1)' : '2px solid rgb(207 207 207)',
           },
