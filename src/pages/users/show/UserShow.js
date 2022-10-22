@@ -1,6 +1,6 @@
 import { useTranslation } from "react-i18next";
 import { AssignmentInd, Business, Cake, Close, Email, PhoneAndroid, Transgender } from '@mui/icons-material';
-import { Button, Dialog, DialogActions, DialogContent, Stack, Avatar, useTheme } from '@mui/material';
+import { Button, Dialog, DialogActions, DialogContent, Stack, Avatar, useTheme, useMediaQuery } from '@mui/material';
 import DefaultAvatar from 'assets/images/users/default-avatar.png';
 import AppTypography from "components/ui/Typography/AppTypography";
 import UserAttribute from "./UserAttribute";
@@ -12,14 +12,16 @@ const users_roles = {
 }
 
 const UserShow = ({ user, handleToggleShowDialog, openShowDialog }) => {
-  const { t } = useTranslation();
   const theme = useTheme();
+  const { t } = useTranslation();
+  const isDownSm = useMediaQuery(theme.breakpoints.down('sm'));
 
   return (
     <Dialog
       open={openShowDialog}
       onClose={handleToggleShowDialog}
       maxWidth="xs"
+      fullScreen={isDownSm}
       aria-labelledby='alert-dialog-title'
       aria-describedby='alert-dialog-description'
     >

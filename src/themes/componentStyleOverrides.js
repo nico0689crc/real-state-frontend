@@ -1,7 +1,6 @@
 import { borderRadius } from 'constants/ui';
 
 const componentStyleOverrides = ({isDarkMode, colors, theme}) => {
-
   return {
     MuiTypography: {
       styleOverrides: {
@@ -290,6 +289,34 @@ const componentStyleOverrides = ({isDarkMode, colors, theme}) => {
       styleOverrides: {
         root: {
           padding: "1rem 1.5rem"
+        }
+      }
+    },
+    MuiDataGrid: {
+      styleOverrides: {
+        root: {
+          backgroundColor: isDarkMode ? colors.background['dark-mode'].paper : colors.background['light-mode'].paper,
+          border: 0,
+          "& .MuiDataGrid-cell": {
+            paddingTop: '0.5rem',
+            paddingBottom: '0.5rem'
+          },
+          "& .MuiDataGrid-columnHeaders": {
+            border: isDarkMode ? '2px solid rgba(81, 81, 81, 1)' : '2px solid rgb(207 207 207)',
+          },
+          "& .MuiDataGrid-virtualScrollerContent": {
+            border: isDarkMode ? '2px solid rgba(81, 81, 81, 1)' : '2px solid rgba(224, 224, 224, 1)',
+            borderTop: 'none',
+            borderBottom: 'none'
+          },
+          "& .MuiDataGrid-footerContainer": {
+            borderBottomLeftRadius: '.25rem',
+            borderBottomRightRadius: '.25rem',
+            border: isDarkMode ? '2px solid rgba(81, 81, 81, 1)' : '2px solid rgba(224, 224, 224, 1)',
+          },
+          "& .MuiDataGrid-cell:focus": {
+            outline: 'none'
+          }
         }
       }
     },

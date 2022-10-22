@@ -1,14 +1,16 @@
 import { useCallback } from 'react';
 import { useSelector, useDispatch } from "react-redux";
 import { useTranslation } from "react-i18next";
-import { Typography, Box, Pagination, CircularProgress, Grid } from '@mui/material';
+import { Typography, Box, Pagination, CircularProgress, Grid, useMediaQuery, useTheme } from '@mui/material';
 import { propertiesActions } from "store/properties/propertiesSlice";
 import { retrievePropertiesActionCreator } from "store/properties/propertiesActionCreators";
 import PropertyItem from "./PropertyItem";
 
 const PropertiesList = () => {
   let content;
+  const theme = useTheme();
   const { t } = useTranslation();
+  const isDownSm = useMediaQuery(theme.breakpoints.down('sm'));
   const dispatch = useDispatch();
   const { properties, currentPage, isFetching, totalPages, error } = useSelector(state => state.propertiesStore);
   
@@ -35,7 +37,7 @@ const PropertiesList = () => {
   } else {
     content = properties.length > 0 ? (
       <>
-        <Grid container columnSpacing={{xs: 0, md: 2}} rowSpacing={2} sx={{ width: '100%', marginBottom: 3 }}>
+        <Grid container spacing={{md: 2}} sx={{ width: '100%', marginBottom: 3 }}>
           {properties.map((property, index) => (
             <PropertyItem property={property} key={index} />
           ))}
@@ -50,7 +52,8 @@ const PropertiesList = () => {
             showFirstButton
             showLastButton
             page={currentPage}
-            boundaryCount={2} />
+            siblingCount={isDownSm ? 0 : 1} 
+          />
         </Box>
       </>
     ) : <Typography sx={{ margin: 0 }} variant='h4'>No Data</Typography>

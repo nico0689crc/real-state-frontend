@@ -1,13 +1,12 @@
 import { useCallback, useEffect, useState } from 'react';
 import { useSelector, useDispatch } from "react-redux";
 import { useTranslation } from "react-i18next";
-import { Typography, Stack, Button, Box } from '@mui/material';
+import { Typography, Stack, Button } from '@mui/material';
 import { PersonAdd } from '@mui/icons-material';
 import { DataGrid, esES, enUS } from '@mui/x-data-grid';
 import { usersActions, FORM_TYPES } from "store/users/usersSlice";
 import { retrieveUsersActionCreator } from "store/users/usersActionCreators";
 import useUserColumns from './useUserColumns';
-import MainCard from 'components/ui/Card/MainCard';
 import UserCreate from '../create/UserCreate';
 
 const UsersList = () => {
@@ -39,41 +38,42 @@ const UsersList = () => {
   },[language]);
 
   return (
-    <Box sx={{ display: "grid", gridTemplateRows: 'auto 1fr', rowGap: "1.5rem", height: "100%" }}>
-      <Stack direction="row" justifyContent="space-between" alignItems="center">
+    <Stack spacing={2}>
+      <Stack direction={{xs: 'column', sm: 'row'}} justifyContent="space-between" alignItems={{sm: "center"}} spacing={2}>
         <Typography variant='h4'>{t("users.index.title")}</Typography>
         {!error && (
-          <Button variant="contained" onClick={handleToggleCreateDialog} startIcon={<PersonAdd />}>
+          <Button variant="contained" size='small' onClick={handleToggleCreateDialog} startIcon={<PersonAdd />}>
             {t("users.create_edit.add_user_button")}
           </Button>
         )}
       </Stack>
-      <MainCard contentSX={{p: '1rem 0 !important', height: "100%"}} sx={{ paddingX: 4, paddingY: 2}}>
-        <Stack justifyContent="center" alignItems="center" height="100%">
-          { error && <Typography sx={{ margin: 0 }} variant='h4'>Error!</Typography> }
-          {!error && (
-            <DataGrid
-              sx={{width: "100%"}} 
-              rows={users} 
-              columns={getColumns()}
-              pagination
-              paginationMode="server"
-              rowCount={totalUsers}
-              onPageChange={paginationOnChangeHandler}
-              loading={isFetching} 
-              rowsPerPageOptions={[20]}
-              page={(currentPage - 1)}
-              initialState={{pagination: { pageSize: 20}}}
-              localeText={gridLocales}
-            />
-          )}
-        </Stack>
-      </MainCard>
+      <Stack justifyContent="center" alignItems="center" height="100%">
+        { error && <Typography sx={{ margin: 0 }} variant='h4'>Error!</Typography> }
+        {!error && (
+          <DataGrid
+            sx={{width: "100%"}} 
+            rows={users} 
+            columns={getColumns()}
+            getRowHeight={() => 'auto'}
+            disableSelectionOnClick
+            autoHeight
+            pagination
+            paginationMode="server"
+            rowCount={totalUsers}
+            onPageChange={paginationOnChangeHandler}
+            loading={isFetching} 
+            rowsPerPageOptions={[20]}
+            page={(currentPage - 1)}
+            initialState={{pagination: { pageSize: 20}}}
+            localeText={gridLocales}
+          />
+        )}
+      </Stack>
       <UserCreate
         setOpenDialog={setOpenCreateDialog} 
         openDialog={openCreateDialog}
       />
-    </Box>
+    </Stack>
   );
 };
 

@@ -49,26 +49,26 @@ const ProfileSection = () => {
         <Avatar src={image} sx={{ ...theme.typography.mediumAvatar, cursor: 'pointer' }} />
         <UiModeButton className='MuiIconButtonCustomized'/>
         <IconButton className='MuiIconButtonCustomized' onClick={handleToggle} ref={anchorRef} aria-controls={open ? 'menu-list-grow' : undefined} aria-haspopup="true"><IconSettings stroke={1.5} size="1.5rem" /></IconButton>
-        <Dropdown
-          open={open}
-          anchorRef={anchorRef}
-          handleClose={handleClose}
-          headerTitle={`${last_name}, ${first_name}`}
-          items={[{
-            label: t("header.profile_section.my_profile"),
-            onClick: handleMyProfile,
-            icon: <ManageAccountsIcon stroke={1.5} size="1.3rem" />
-          }, {
-            label: t("header.profile_section.account_setting"),
-            onClick: () => { },
-            icon: <IconSettings stroke={1.5} size="1.3rem" />
-          }, {
-            label: t("header.profile_section.logout"),
-            onClick: handleLogout,
-            icon: <IconLogout stroke={1.5} size="1.3rem" />
-          }]}
-        />
       </Stack>
+      <Dropdown
+        open={open}
+        anchorRef={anchorRef}
+        handleClose={handleClose}
+        headerTitle={`${last_name}, ${first_name}`}
+        items={[{
+          label: t("header.profile_section.my_profile"),
+          onClick: handleMyProfile,
+          icon: <ManageAccountsIcon stroke={1.5} size="1.3rem" />
+        }, {
+          label: t("header.profile_section.account_setting"),
+          onClick: () => { },
+          icon: <IconSettings stroke={1.5} size="1.3rem" />
+        }, {
+          label: t("header.profile_section.logout"),
+          onClick: handleLogout,
+          icon: <IconLogout stroke={1.5} size="1.3rem" />
+        }]}
+      />
     </>
   );
 };
