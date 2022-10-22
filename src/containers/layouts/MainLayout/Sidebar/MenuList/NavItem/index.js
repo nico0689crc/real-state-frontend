@@ -20,7 +20,7 @@ const NavItem = ({ item, }) => {
   return (
     <ListItemButton {...listItemProps} disabled={item.disabled} selected={isCurrentPage} onClick={handleClickItem()}>
       <ListItemIcon>{itemIcon}</ListItemIcon>
-      <ListItemText primary={<Typography>{item.title}</Typography>}></ListItemText>
+      <ListItemText primary={<Typography noWrap>{item.title}</Typography>}></ListItemText>
     </ListItemButton>
   );
 };

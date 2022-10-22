@@ -20,7 +20,7 @@ const NavCollapse = ({ menu, level}) => {
         <ListItemIcon>
           <menu.icon strokeWidth={1.5} size="1.3rem"/>
         </ListItemIcon>
-        <ListItemText primary={<Typography>{menu.title}</Typography>} />
+        <ListItemText primary={<Typography noWrap>{menu.title}</Typography>} />
         {open ? (
           <IconChevronUp stroke={1.5} size="1rem" style={{ marginTop: 'auto', marginBottom: 'auto' }} />
         ) : (

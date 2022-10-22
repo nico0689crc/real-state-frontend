@@ -46,7 +46,7 @@
       "success_image_destroy_message": "The image has been deleted successfully."
     },
     "index": {
-      "title": "Properties List",
+      "title": "Properties",
       "property_item": {
         "details_button_label": "Details"
       }
@@ -146,6 +146,7 @@
     "global": {
       "first_name": "First Name",
       "last_name": "Last Name",
+      "user": "User",
       "email": "Email",
       "user_role": "Role",
       "actions": "Actions"
@@ -177,6 +178,7 @@
     "saving_button": "Saving",
     "update_button": "Update",
     "updating_button": "Updating",
-    "cancel_button": "Discard"
+    "cancel_button": "Discard",
+    "show": "Show"
   }
 }

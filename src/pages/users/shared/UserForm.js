@@ -13,9 +13,10 @@ import UserFormNormal from "./UserFormNormal";
 
 const UserFormHeader = ({item}) => {
   const { t } = useTranslation();
+  const { userEditFormType } = useSelector(state => state.usersStore);
   const title = item ? t("users.create_edit.title_edit") : t("users.create_edit.title_create");
 
-  return <AppTypography>{title}</AppTypography>
+  return userEditFormType === FORM_TYPES.DIALOG ? <AppTypography>{title}</AppTypography> : null;
 }
 
 const UserFormBody = ({ form }) => {

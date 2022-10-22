@@ -11,12 +11,12 @@ const Header = ({ handleLeftSidebarToggle }) => {
   const matchUpMd = useMediaQuery(theme.breakpoints.up('md'));
 
   return (
-    <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', width: '100%', paddingY: headerPaddingY }} >
-      <Box sx={{ display: 'flex', alignItems: 'center', paddingLeft: matchUpMd ? containerPaddingX : containerPaddingSmX, width: matchUpMd ? sidebarWidthOpened : 'auto'}} >
+    <Box sx={{ display: 'flex', alignItems: 'center', width: '100%', paddingY: headerPaddingY }} >
+      <Box sx={{ display: 'flex', flexFlow: 0, alignItems: 'center', paddingLeft: matchUpMd ? containerPaddingX : containerPaddingSmX, width: matchUpMd ? sidebarWidthOpened : 'auto'}} >
         <LogoSection sx={{ display: { xs: 'none', md: 'block' }, flexGrow: 1 }}/>
         <AppIconButton onClick={handleLeftSidebarToggle}><IconMenu2 stroke={1.5} size="1.3rem" /></AppIconButton>
       </Box>
-      <Box sx={{ paddingRight: matchUpMd ? containerPaddingX : containerPaddingSmX }}>
+      <Box sx={{ display: 'flex', paddingRight: matchUpMd ? containerPaddingX : containerPaddingSmX, flexGrow: 1, justifyContent:"end" }}>
         <ProfileSection />
       </Box>
     </Box>

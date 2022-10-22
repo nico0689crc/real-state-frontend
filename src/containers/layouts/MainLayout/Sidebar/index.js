@@ -8,6 +8,7 @@ const Sidebar = ({ sidebarOpened, onSidebarToggle, window }) => {
   const theme = useTheme();
   const matchUpMd = useMediaQuery(theme.breakpoints.up('md'));
   const container = window !== undefined ? () => window.document.body : undefined;
+
   const sidebarMobile = (
     <Drawer
       container={container}
@@ -23,6 +24,7 @@ const Sidebar = ({ sidebarOpened, onSidebarToggle, window }) => {
       </Stack>
     </Drawer>
   );
+  
   const sidebarDesktop = (
     <Box sx={{backgroundColor: theme.palette.background.paper, height: '100%'}}>
       <PerfectScrollbar component="div">

@@ -46,7 +46,7 @@
       "success_image_destroy_message": "La imagen ha sido eliminada correctamente."
     },
     "index": {
-      "title": "Lista de Propiedades",
+      "title": "Propiedades",
       "property_item": {
         "details_button_label": "Detalles"
       }
@@ -150,7 +150,8 @@
       "last_name": "Apellido/s",
       "email": "C. Electrónico",
       "user_role": "Rol",
-      "actions": "Acciones"
+      "actions": "Acciones",
+      "user": "Usuario"
     }
   },
   "header": {
@@ -179,6 +180,7 @@
     "saving_button": "Guardando",
     "update_button": "Actualizar",
     "updating_button": "Actualizando",
-    "cancel_button": "Descartar"
+    "cancel_button": "Descartar",
+    "show": "Ver"
   }
 }

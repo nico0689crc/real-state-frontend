@@ -4,15 +4,15 @@ import { Tabs, Tab, Box, Stack } from '@mui/material';
 
 const TabPanel = ({ children, value, index, ...other }) => {
   return (
-    <div
+    <Box
       role="tabpanel"
       hidden={value !== index}
       id={`vertical-tabpanel-${index}`}
       aria-labelledby={`vertical-tab-${index}`}
       {...other}
     >
-      {value === index && <Box sx={{ py: 3 }}>{children}</Box>}
-    </div>
+      {value === index && children}
+    </Box>
   );
 }
 
@@ -26,8 +26,23 @@ const AppTabs = ({ tabs, orientation, ...props }) => {
   const [value, setValue] = useState(0);
 
   return (
-    <Stack direction={orientation === "vertical" ? "row" : "column"}>
-      <Tabs orientation={orientation} onChange={(event, newValue) => setValue(newValue)} sx={{flexShrink: 0}}  value={value} {...props}>
+    <Stack spacing={2} direction={orientation === "vertical" ? "row" : "column"}>
+      <Tabs 
+        orientation={orientation} 
+        onChange={(event, newValue) => setValue(newValue)} 
+        sx={{
+          flexShrink: 0,
+          "& .MuiTabs-flexContainer": {
+            gap: 2,
+          },
+          "& .MuiButtonBase-root": {
+            paddingX: 1,
+            paddingY: 0
+          }
+        }}  
+        value={value} 
+        {...props}
+      >
         {tabs.map((tab, index) => <Tab label={tab.label} {...getAttributes(index)} />)}
       </Tabs>
       {tabs.map((tab, index) => { 
