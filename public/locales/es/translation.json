@@ -4,6 +4,7 @@
     "remember_me": "Recordarme",
     "forgot_password": "Has olvidado tu contraseña?",
     "submit_button": "Iniciar sesión",
+    "submiting_button": "Iniciando Sesión ...",
     "fields": {
       "email": {
         "placeholder": "Ingrese su correo electrónico",

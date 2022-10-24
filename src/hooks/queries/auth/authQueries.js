@@ -1,8 +1,11 @@
 import { useMutation } from "react-query";
 import { AuthService } from "lib/AuthService";
 
-export const useLoginMutation = () => {
-  return useMutation(input => AuthService.login(input));
+export const useLoginMutation = (onSuccessHandler, onErrorHandler) => {
+  return useMutation(input => AuthService.login(input),{
+    onSuccess: (data) => onSuccessHandler(data),
+    onError: (data) => onErrorHandler(data)
+  });
 };
 
 export const useRegisterMutation = () => {
