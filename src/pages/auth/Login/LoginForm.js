@@ -1,13 +1,14 @@
 import { useState } from 'react';
-import { MailOutline, KeyOutlined, VisibilityOutlined, VisibilityOffOutlined } from '@mui/icons-material';
-import { InputAdornment, IconButton, Link, Button, Stack, useMediaQuery } from '@mui/material';
+import { MailOutline, KeyOutlined, VisibilityOutlined, VisibilityOffOutlined, Login } from '@mui/icons-material';
+import { InputAdornment, IconButton, Link, Stack, useMediaQuery } from '@mui/material';
+import LoadingButton from '@mui/lab/LoadingButton';
 import { useTheme } from '@mui/material/styles';
 import { useTranslation } from "react-i18next";
 import classNames from 'classnames';
 import MainCard from "components/ui/Card/MainCard";
 import Input from "components/ui/Inputs/Input";
 
-const LoginForm = ({ form, onSubmit }) => {
+const LoginForm = ({ form, onSubmit, isLoading }) => {
   const { t } = useTranslation();
   const theme = useTheme();
   const [showPassword, setShowPassword] = useState(false);
@@ -66,7 +67,16 @@ const LoginForm = ({ form, onSubmit }) => {
         <Stack direction='row' justifyContent='center' alignItems='center'>
           <Link href="recover-password">{t("login.forgot_password")}</Link>
         </Stack>
-        <Button fullWidth onClick={handleSubmit(onSubmit)} variant="contained">{t("login.submit_button")}</Button>
+        <LoadingButton
+          fullWidth 
+          variant="contained" 
+          loading={isLoading}
+          loadingPosition="start" 
+          startIcon={<Login />}
+          onClick={handleSubmit(onSubmit)}
+        >
+          {isLoading ? t("login.submiting_button") : t("login.submit_button")}
+        </LoadingButton>
       </Stack>
     </MainCard>
   )
