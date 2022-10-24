@@ -49,6 +49,17 @@ export const authSlice = createSlice({
           opened: storedData.opened,
         })
       );
+    },
+    setAttributes(state, action) {
+      const storedData = JSON.parse(localStorage.getItem(LOCALSTORAGE_ITEMS.USER_DATA));
+      state.attributes = action.payload.attributes;
+      localStorage.setItem(
+        LOCALSTORAGE_ITEMS.USER_DATA,
+        JSON.stringify({
+          ...storedData,
+          attributes: action.payload.attributes
+        })
+      );
     }
   },
 });

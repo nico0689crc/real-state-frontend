@@ -4,8 +4,8 @@ import API_ENDPOINTS from "constants/endpoints";
 
 const usersQueryServices = new QueryService(API_ENDPOINTS.USERS, true);
 
-export const fetchUsers = async ({ queryKey, pageParam }) => {
-  const { data, meta } = pageParam ? await usersQueryServices.get(pageParam) : await usersQueryServices.find(queryKey[1]);
+export const fetchUsers = async ({ queryKey }) => {
+  const { data, meta } = await usersQueryServices.find(queryKey[1]);
   return { data, meta };
 };
 

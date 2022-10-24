@@ -9,8 +9,8 @@ export const fetchProperty = async ({ queryKey }) => {
   return { data };
 };
 
-const usePropertyQuery = propertyId => {
-  return useQuery([API_ENDPOINTS.PROPERTIES, propertyId], fetchProperty, {
+const usePropertyQuery = id => {
+  return useQuery([API_ENDPOINTS.PROPERTIES, id], fetchProperty, {
     refetchOnWindowFocus: false,
   });
 };

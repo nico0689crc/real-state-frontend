@@ -32,19 +32,27 @@ export class QueryService {
     return this.http.get(`${this.basePath}/${id}`).then(res => res.data);
   };
 
-  get = async url => {
-    return this.http.get(url).then(res => res.data);
+  get = async () => {
+    return this.http.get(this.basePath).then(res => res.data);
   };
 
-  create = async (url, data) => {
-    return this.http.post(url, data).then(res => res.data);
+  create = async (data) => {
+    return this.http.post(this.basePath, data).then(res => res.data);
   };
 
-  update = async ({ url, data, id }) => {
-    return this.http.patch(`${url}/${id}`, data).then(res => res.data);
+  update = async (id, data) => {
+    return this.http.patch(`${this.basePath}/${id}`, data).then(res => res.data);
   };
 
-  delete = async (url) => {
+  updateCustom = async (url, data) => {
+    return this.http.patch(url, data).then(res => res.data);
+  };
+
+  delete = async (id) => {
+    return this.http.delete(`${this.basePath}/${id}`).then(res => res.data);
+  };
+
+  deleteCustom = async (url) => {
     return this.http.delete(url).then(res => res.data);
   };
 }

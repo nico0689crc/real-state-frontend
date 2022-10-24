@@ -4,8 +4,8 @@ import API_ENDPOINTS from "constants/endpoints";
 
 const propertiesQueryServices = new QueryService(API_ENDPOINTS.PROPERTIES, true);
 
-export const fetchProperties = async ({ queryKey, pageParam }) => {
-  const { data, meta } = pageParam ? await propertiesQueryServices.get(pageParam) : await propertiesQueryServices.find(queryKey[1]);
+export const fetchProperties = async ({ queryKey }) => {
+  const { data, meta } =  await propertiesQueryServices.find(queryKey[1]);
   return { data, meta };
 };
 

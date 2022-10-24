@@ -7,7 +7,7 @@ const propertiesQueryServices = new QueryService(API_ENDPOINTS.PROPERTIES, pathR
 
 const useUpdatePropertyMutation = (onSuccessHandler, onErrorHandler) => {
   return useMutation(
-    ({ id, data }) => propertiesQueryServices.update({ url: API_ENDPOINTS.PROPERTIES, id, data }), {
+    ({ id, data }) => propertiesQueryServices.update(id, data), {
       onSuccess: () => onSuccessHandler(),
       onError: (data) => onErrorHandler(data)
     }

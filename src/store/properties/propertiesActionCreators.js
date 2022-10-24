@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import { propertiesActions } from "store/properties/propertiesSlice";
 import usePropertiesQuery from "hooks/queries/properties/usePropertiesQuery";
 
-export const retrievePropertiesActionCreator = ({currentPage, pageSize = "9"}) => {
+export const retrievePropertiesActionCreator = ({ pageSize = "9"}) => {
   return async dispatch => {
     const { refetch, properties, currentPage } = useSelector(state => state.propertiesStore);
     const { isFetching, data, error, refetch: refetchProperties } = usePropertiesQuery({ page: { size: pageSize, number: currentPage } });
