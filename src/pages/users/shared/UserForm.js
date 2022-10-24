@@ -1,25 +1,22 @@
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
 import { Close, PersonAdd, Badge, Email, PhoneAndroid, Business, Cake } from '@mui/icons-material';
 import { Button, InputAdornment, Grid } from '@mui/material';
 import LoadingButton from '@mui/lab/LoadingButton';
 import Input from "components/ui/Inputs/Input";
 import InputSelect from "components/ui/Inputs/InputSelect";
 import AppTypography from "components/ui/Typography/AppTypography";
-import { FORM_TYPES } from "store/users/usersSlice";
 import UserFormDialog from "./UserFormDialog";
 import UserFormNormal from "./UserFormNormal";
 
-const UserFormHeader = ({item}) => {
+const UserFormHeader = ({ item, isProfileUpdate }) => {
   const { t } = useTranslation();
-  const { userEditFormType } = useSelector(state => state.usersStore);
   const title = item ? t("users.create_edit.title_edit") : t("users.create_edit.title_create");
 
-  return userEditFormType === FORM_TYPES.DIALOG ? <AppTypography>{title}</AppTypography> : null;
+  return !isProfileUpdate ? <AppTypography variant="h6">{title}</AppTypography> : null;
 }
 
-const UserFormBody = ({ form }) => {
+const UserFormBody = ({ form, isProfileUpdate }) => {
   const { t } = useTranslation();
   const { register, formState: { errors } } = form;
 
@@ -61,38 +58,42 @@ const UserFormBody = ({ form }) => {
           }}
         />
       </Grid>
-      <Grid item xs={12} sm={5}> 
-        <Input
-          id="email" 
-          label={t("users.create_edit.labels.email")} 
-          {...register('email')}
-          required
-          error={!!errors.email}
-          helperText={errors.email?.message}
-          fullWidth
-          InputProps={{
-            startAdornment: (
-              <InputAdornment position="start">
-                <Email />
-              </InputAdornment>
-            ),
-          }}
-        />
-      </Grid>
-      <Grid item xs={12} sm={5}>
-        <InputSelect
-          name="user_role"
-          id="user_role"
-          label={t("users.create_edit.labels.user_role")}
-          error={!!errors.user_role}
-          helperText={errors.user_role?.message}
-          control={form.control}
-          options={[
-            { value: "administrator", text: t("users.create_edit.labels.user_role_administrator") },
-            { value: "super_administrator", text: t("users.create_edit.labels.user_role_super_administrator") }
-          ]}
-        />
-      </Grid>
+      {!isProfileUpdate && (
+        <>
+          <Grid item xs={12} sm={5}> 
+            <Input
+              id="email" 
+              label={t("users.create_edit.labels.email")} 
+              {...register('email')}
+              required
+              error={!!errors.email}
+              helperText={errors.email?.message}
+              fullWidth
+              InputProps={{
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <Email />
+                  </InputAdornment>
+                ),
+              }}
+            />
+          </Grid>
+          <Grid item xs={12} sm={5}>
+            <InputSelect
+              name="user_role"
+              id="user_role"
+              label={t("users.create_edit.labels.user_role")}
+              error={!!errors.user_role}
+              helperText={errors.user_role?.message}
+              control={form.control}
+              options={[
+                { value: "administrator", text: t("users.create_edit.labels.user_role_administrator") },
+                { value: "super_administrator", text: t("users.create_edit.labels.user_role_super_administrator") }
+              ]}
+            />
+          </Grid>
+        </>
+      )}
       <Grid item xs={12} sm={5}>
         <Input
           id="phone_number" 
@@ -156,10 +157,9 @@ const UserFormBody = ({ form }) => {
   )
 }
 
-const UserFormFooter = ({isLoading, form, onSubmit, setOpenDialog, item}) => {
+const UserFormFooter = ({isLoading, form, onSubmit, setOpenDialog, item, isProfileUpdate, resetDefaultValues}) => {
   const { t } = useTranslation();
   const navigate = useNavigate();
-  const { userEditFormType } = useSelector(state => state.usersStore);
   const { handleSubmit } = form;
   
   const submit_label =  item ? (
@@ -169,8 +169,13 @@ const UserFormFooter = ({isLoading, form, onSubmit, setOpenDialog, item}) => {
   );
 
   const onDiscardHandler = () => {
-    userEditFormType === FORM_TYPES.DIALOG ? setOpenDialog() : navigate('/');
-  }
+    if(!isProfileUpdate) {
+      setOpenDialog();
+      resetDefaultValues();
+    } else {
+      navigate('/');
+    }
+  } 
 
   return (
     <>
@@ -188,16 +193,26 @@ const UserFormFooter = ({isLoading, form, onSubmit, setOpenDialog, item}) => {
   )
 }
 
-const UserForm = ({ item, form, onSubmit, isLoading, openDialog, setOpenDialog }) => {
-  const { userEditFormType } = useSelector(state => state.usersStore);
-  const header = <UserFormHeader item={item}/>
-  const body = <UserFormBody form={form}/>
-  const footer = <UserFormFooter item={item} form={form} onSubmit={onSubmit} isLoading={isLoading} setOpenDialog={setOpenDialog}/>
+const UserForm = ({ item, form, onSubmit, isLoading, openDialog, setOpenDialog, isProfileUpdate, resetDefaultValues }) => {
+  
+  const header = <UserFormHeader item={item} isProfileUpdate={isProfileUpdate}/>;
+  const body = <UserFormBody form={form} isProfileUpdate={isProfileUpdate}/>;
+  const footer = (
+    <UserFormFooter 
+      item={item} 
+      form={form} 
+      onSubmit={onSubmit} 
+      isLoading={isLoading} 
+      setOpenDialog={setOpenDialog} 
+      isProfileUpdate={isProfileUpdate}
+      resetDefaultValues={resetDefaultValues}
+    />
+  );
 
-  return (userEditFormType === FORM_TYPES.DIALOG) ? (
-    <UserFormDialog headerContent={header} bodyContent={body} footerContent={footer} openDialog={openDialog} setOpenDialog={setOpenDialog}/>
-  ) : (
+  return isProfileUpdate ? (
     <UserFormNormal headerContent={header} bodyContent={body} footerContent={footer}/>
+  ) : (
+    <UserFormDialog headerContent={header} bodyContent={body} footerContent={footer} openDialog={openDialog} setOpenDialog={setOpenDialog}/>
   );
 }
 

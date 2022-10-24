@@ -15,6 +15,11 @@
       }
     }
   },
+  "home": {
+    "index": {
+      "title": "Home"
+    }
+  },
   "properties": {
     "create_edit": {
       "title_create": "Add Property",
@@ -120,6 +125,7 @@
         "gender": "Gender",
         "user_role_administrator": "Administrator",
         "user_role_super_administrator": "Super Administrator",
+        "user_role_user_regular": "Regular",
         "gender_male": "Male",
         "gender_female": "Female"
       }
@@ -150,6 +156,20 @@
       "email": "Email",
       "user_role": "Role",
       "actions": "Actions"
+    },
+    "change_password": {
+      "current_password": {
+        "label": "Current Password",
+        "placeholder": "Insert Current Password"
+      },
+      "password": {
+        "label": "New Password",
+        "placeholder": "Insert New Password"
+      },
+      "password_confirmation": {
+        "label": "New Password Confirmation",
+        "placeholder": "Insert New Password Confirmation"
+      }
     }
   },
   "header": {

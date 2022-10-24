@@ -7,7 +7,7 @@ const usersQueryServices = new QueryService(API_ENDPOINTS.USERS, pathRequireAuth
 
 const useCreateUserMutation = (onSuccessHandler, onErrorHandler) => {
   return useMutation(
-    ({ data }) => usersQueryServices.create(API_ENDPOINTS.USERS, data), {
+    ({ data }) => usersQueryServices.create(data), {
       onSuccess: () => onSuccessHandler(),
       onError: (data) => onErrorHandler(data)
     }

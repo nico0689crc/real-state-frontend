@@ -10,6 +10,7 @@ const TabPanel = ({ children, value, index, ...other }) => {
       id={`vertical-tabpanel-${index}`}
       aria-labelledby={`vertical-tab-${index}`}
       {...other}
+      sx={{display: "flex", justifyContent: "center"}}
     >
       {value === index && children}
     </Box>

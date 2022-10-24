@@ -4,7 +4,7 @@ import { useTranslation } from "react-i18next";
 import { Typography, Stack, Button } from '@mui/material';
 import { PersonAdd } from '@mui/icons-material';
 import { DataGrid, esES, enUS } from '@mui/x-data-grid';
-import { usersActions, FORM_TYPES } from "store/users/usersSlice";
+import { usersActions } from "store/users/usersSlice";
 import { retrieveUsersActionCreator } from "store/users/usersActionCreators";
 import useUserColumns from './useUserColumns';
 import UserCreate from '../create/UserCreate';
@@ -17,15 +17,13 @@ const UsersList = () => {
   const {t, i18n: { language }} = useTranslation();
   const { users, isFetching, error, totalUsers, currentPage } = useSelector(state => state.usersStore);
   
-  dispatch(usersActions.setUserEditFormType({userEditFormType: FORM_TYPES.DIALOG}));
-  
   dispatch(retrieveUsersActionCreator({pageSize: "20"}));
 
   const paginationOnChangeHandler = useCallback((page) => {
     dispatch(usersActions.setCurrentPage({ currentPage: page + 1 }));
   }, [dispatch]);
 
-  const handleToggleCreateDialog = useCallback(() => {
+  const handleToggleCreateDialog = useCallback((resetDefaultValues) => {
     setOpenCreateDialog(prevState => !prevState);
   },[]);
 
@@ -38,7 +36,7 @@ const UsersList = () => {
   },[language]);
 
   return (
-    <Stack spacing={2}>
+    <Stack spacing={5}>
       <Stack direction={{xs: 'column', sm: 'row'}} justifyContent="space-between" alignItems={{sm: "center"}} spacing={2}>
         <Typography variant='h4'>{t("users.index.title")}</Typography>
         {!error && (
@@ -70,7 +68,7 @@ const UsersList = () => {
         )}
       </Stack>
       <UserCreate
-        setOpenDialog={setOpenCreateDialog} 
+        setOpenDialog={handleToggleCreateDialog} 
         openDialog={openCreateDialog}
       />
     </Stack>

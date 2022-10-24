@@ -1,3 +1,4 @@
+import { Fragment } from 'react';
 import { useTheme } from '@mui/material/styles';
 import {
   Box, ClickAwayListener, Divider, List, ListItemButton, ListItemIcon, ListItemText, Paper,
@@ -43,15 +44,15 @@ const Dropdown = ({ anchorRef, handleClose, open, headerTitle = null, items = []
 
                 <List component="nav" sx={{py: 0}}>
                   {items.map((item, index) => (
-                    <>
-                      <ListItemButton key={index} onClick={item.onClick} sx={{mb: 0, pl: 1, pr: 1.5, borderRadius: 0, alignItems: 'center'}}>
+                    <Fragment key={index}>
+                      <ListItemButton onClick={item.onClick} sx={{mb: 0, pl: 1, pr: 1.5, borderRadius: 0, alignItems: 'center'}}>
                         <ListItemIcon sx={{ minWidth: 1.5 }}>
                           {item.icon}
                         </ListItemIcon>
                         <ListItemText primary={<Typography sx={{ lineHeight: 1}}>{item.label}</Typography>} />
                       </ListItemButton>
                       {item.additionalElement && item.additionalElement}
-                    </>
+                    </Fragment>
                   ))}
                 </List>
               </Card>

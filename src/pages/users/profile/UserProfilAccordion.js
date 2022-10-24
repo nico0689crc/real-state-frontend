@@ -27,7 +27,7 @@ const UserProfileAccordion = () => {
         <AccordionSummary expandIcon={<ExpandMore />}>
           <Typography>{t("users.profile.sections.change_password")}</Typography>
         </AccordionSummary>
-        <AccordionDetails>
+        <AccordionDetails sx={{display: "flex", justifyContent: "center"}}>
           <UserProfileChangePasswordForm />
         </AccordionDetails>
       </Accordion>

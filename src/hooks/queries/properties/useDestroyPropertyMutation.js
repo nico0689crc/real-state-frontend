@@ -6,7 +6,7 @@ const pathRequireAuthentication = true;
 const propertiesQueryServices = new QueryService(API_ENDPOINTS.PROPERTIES, pathRequireAuthentication);
 
 const useDestroyPropertyMutation = (onSuccessHandler, onErrorHandler) => {
-  return useMutation((id) => propertiesQueryServices.delete(`${API_ENDPOINTS.PROPERTIES}/${id}`), {
+  return useMutation((id) => propertiesQueryServices.delete(id), {
     onSuccess: () => onSuccessHandler(),
     onError: (data) => onErrorHandler(data)
   });

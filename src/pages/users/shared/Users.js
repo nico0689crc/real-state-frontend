@@ -31,10 +31,12 @@ const getFormSchema = (t, item) => {
   };
 };
 
-const Users = ({ isLoading, mutate, error, item = null, openDialog, setOpenDialog}) => {
+const Users = ({ isLoading, mutate, error, item = null, openDialog, setOpenDialog, ...props}) => {
   const { t } = useTranslation();
   const form = useForm(getFormSchema(t, item));
-  const { setError } = form;
+  const { setError, formState: { defaultValues }, resetField } = form;
+
+  const resetDefaultValues = () => Object.keys(defaultValues).forEach(key => resetField(key));
 
   useEffect(() => {
     error && Object.keys(error.data).forEach(key => setError(key, {message: error.data[key]}));
@@ -63,6 +65,8 @@ const Users = ({ isLoading, mutate, error, item = null, openDialog, setOpenDialo
     openDialog={openDialog} 
     setOpenDialog={setOpenDialog}
     item={item}
+    resetDefaultValues={resetDefaultValues}
+    {...props}
   />
 }
 

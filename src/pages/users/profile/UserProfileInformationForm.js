@@ -1,14 +1,9 @@
-import { useSelector, useDispatch } from "react-redux";
-import { usersActions, FORM_TYPES } from "store/users/usersSlice";
+import { useSelector } from "react-redux";
 import UserEdit from "pages/users/edit/UserEdit";
 
 const UserProfileInformationForm = () => {
-  const dispatch = useDispatch();
-  const {attributes} = useSelector(state => state.authStore);
-
-  dispatch(usersActions.setUserEditFormType({userEditFormType: FORM_TYPES.NORMAL}));
-
-  return <UserEdit user={attributes}/>
+  const { attributes } = useSelector(state => state.authStore);
+  return attributes && <UserEdit user={attributes} isProfileUpdate={true} isDialog={false}/>;
 }
 
 export default UserProfileInformationForm;
