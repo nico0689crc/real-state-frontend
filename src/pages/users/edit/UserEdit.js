@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useDispatch } from "react-redux";
-import useUpdateUserMutation from "hooks/queries/users/useUpdatePasswordMutation";
+import useUpdateUserMutation from "hooks/queries/users/useUpdateUserMutation";
 import { snackBarAlertActions } from "store/snackBarAlertSlice";
 import { usersActions } from "store/users/usersSlice";
 import { authActions } from "store/authSlice";
