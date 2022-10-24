@@ -33,8 +33,8 @@ const AppSnackBar = ({className, children, ...props}) => {
       <Alert onClose={toggleSnackBarAlertHandler} severity={severitySnackbar}>
         <Stack spacing={1}>
           <AppTypography variant="subtitle1">{title}</AppTypography>
-          <AppTypography variant="body2">{subTitle}</AppTypography>
-          <AppTypography variant="body2">{message}</AppTypography>
+          {subTitle && <AppTypography variant="body2">{subTitle}</AppTypography>}
+          {message && <AppTypography variant="body2">{message}</AppTypography>}
         </Stack>
       </Alert>
     </Snackbar>

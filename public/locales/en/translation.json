@@ -4,6 +4,7 @@
     "remember_me": "Remember Me",
     "forgot_password": "Forgot password?",
     "submit_button": "Log In",
+    "submiting_button": "Logging In ...",
     "fields": {
       "email": {
         "placeholder": "Enter Email",

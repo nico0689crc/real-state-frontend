@@ -2,20 +2,14 @@ import { useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { useTranslation } from "react-i18next";
-
-
 import { useTheme } from '@mui/material/styles';
 import { Avatar, Stack, IconButton } from '@mui/material';
-
 import { authActions } from 'store/authSlice';
-
 import API_ENDPOINTS from "constants/endpoints";
-
-import { IconLogout, IconSettings } from '@tabler/icons';
-import ManageAccountsIcon from '@mui/icons-material/ManageAccounts';
 import Dropdown from 'components/ui/Dropdown/Dropdown';
 import UiModeButton from 'components/ui/Buttons/UiModeButton/UiModeButton';
 import TranslationButton from 'components/ui/Buttons/TranslationButton/TranslationButton';
+import { Logout, Settings, ManageAccounts } from '@mui/icons-material';
 
 const ProfileSection = () => {
   const theme = useTheme();
@@ -52,7 +46,7 @@ const ProfileSection = () => {
         <Avatar src={image} sx={{ ...theme.typography.mediumAvatar, cursor: 'pointer' }} />
         <TranslationButton />
         <UiModeButton className='MuiIconButtonCustomized'/>
-        <IconButton className='MuiIconButtonCustomized' onClick={handleToggle} ref={anchorRef} aria-controls={open ? 'menu-list-grow' : undefined} aria-haspopup="true"><IconSettings stroke={1.5} size="1.5rem" /></IconButton>
+        <IconButton className='MuiIconButtonCustomized' onClick={handleToggle} ref={anchorRef} aria-controls={open ? 'menu-list-grow' : undefined} aria-haspopup="true"><Settings /></IconButton>
       </Stack>
       <Dropdown
         open={open}
@@ -62,15 +56,11 @@ const ProfileSection = () => {
         items={[{
           label: t("header.profile_section.my_profile"),
           onClick: handleMyProfile,
-          icon: <ManageAccountsIcon stroke={1.5} size="1.3rem" />
-        }, {
-          label: t("header.profile_section.account_setting"),
-          onClick: () => { },
-          icon: <IconSettings stroke={1.5} size="1.3rem" />
+          icon: <ManageAccounts />
         }, {
           label: t("header.profile_section.logout"),
           onClick: handleLogout,
-          icon: <IconLogout stroke={1.5} size="1.3rem" />
+          icon: <Logout />
         }]}
       />
     </>
