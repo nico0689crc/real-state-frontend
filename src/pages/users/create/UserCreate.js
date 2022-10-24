@@ -6,7 +6,7 @@ import { snackBarAlertActions } from "store/snackBarAlertSlice";
 import { usersActions } from "store/users/usersSlice";
 import Users from "pages/users/shared/Users";
 
-const UserCreate = ({ setOpenDialog, openDialog }) => {
+const UserCreate = ({ setOpenDialog, openDialog, isProfileUpdate = false }) => {
   const [error, setError] = useState(null);
   const { t } = useTranslation();
   const dispatch = useDispatch();
@@ -21,7 +21,7 @@ const UserCreate = ({ setOpenDialog, openDialog }) => {
         message: t("users.create_edit.success_created_message")
       }
     }));
-    setOpenDialog();
+    !isProfileUpdate && setOpenDialog();
     dispatch(setRefetch(true));
   }
 
@@ -38,7 +38,7 @@ const UserCreate = ({ setOpenDialog, openDialog }) => {
         }
       }));
   
-      setOpenDialog();
+      !isProfileUpdate && setOpenDialog();
     } else {
       setError(response.data);
     }
@@ -53,6 +53,7 @@ const UserCreate = ({ setOpenDialog, openDialog }) => {
       isLoading={isLoading}
       setOpenDialog={setOpenDialog}
       openDialog={openDialog}
+      isProfileUpdate={isProfileUpdate}
     />
   );
 }

@@ -6,7 +6,7 @@ const pathRequireAuthentication = true;
 const usersQueryServices = new QueryService(API_ENDPOINTS.USERS, pathRequireAuthentication);
 
 const useDestroyUserMutation = (onSuccessHandler, onErrorHandler) => {
-  return useMutation((id) => usersQueryServices.delete(`${API_ENDPOINTS.USERS}/${id}`), {
+  return useMutation((id) => usersQueryServices.delete(id), {
     onSuccess: () => onSuccessHandler(),
     onError: (data) => onErrorHandler(data)
   });

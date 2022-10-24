@@ -1,9 +1,11 @@
 import { forwardRef, useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
+import { useTranslation } from "react-i18next";
 import { ListItemButton, ListItemIcon, ListItemText, Typography } from '@mui/material';
 
 const NavItem = ({ item, }) => {
   const location = useLocation();
+  const { t } = useTranslation();
   const [isCurrentPage, setIsCurrentPage] = useState(false);
   const itemIcon = <item.icon stroke={1.5} size="1.3rem" />
   const listItemProps = {
@@ -20,7 +22,7 @@ const NavItem = ({ item, }) => {
   return (
     <ListItemButton {...listItemProps} disabled={item.disabled} selected={isCurrentPage} onClick={handleClickItem()}>
       <ListItemIcon>{itemIcon}</ListItemIcon>
-      <ListItemText primary={<Typography noWrap>{item.title}</Typography>}></ListItemText>
+      <ListItemText primary={<Typography noWrap>{t(item.title)}</Typography>}></ListItemText>
     </ListItemButton>
   );
 };

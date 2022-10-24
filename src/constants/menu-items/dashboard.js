@@ -1,7 +1,6 @@
 // assets
-import { IconBuildingWarehouse, IconDashboard } from '@tabler/icons';
+import { IconBuildingWarehouse, IconHome } from '@tabler/icons';
 import PeopleAltIcon from '@mui/icons-material/PeopleAlt';
-import KeyboardDoubleArrowRightIcon from '@mui/icons-material/KeyboardDoubleArrowRight';
 
 // ==============================|| DASHBOARD MENU ITEMS ||============================== //
 
@@ -12,44 +11,31 @@ const dashboard = {
   children: [
     {
       id: 'dashboard',
-      title: 'Dashboard',
+      title: 'home.index.title',
       type: 'item',
       url: '',
-      icon: IconDashboard,
-      breadcrumbs: false
+      icon: IconHome,
+      breadcrumbs: false,
+      roles: ["super_administrator", "administrator"]
     },
     {
       id: 'properties',
-      title: 'My Properties',
-      type: 'collapse',
+      title: 'properties.index.title',
+      type: 'item',
+      url: 'properties',
       icon: IconBuildingWarehouse,
-      children: [
-        {
-          id: 'properties_list',
-          title: 'Property List',
-          type: 'item',
-          url: 'properties',
-          icon: KeyboardDoubleArrowRightIcon,
-          breadcrumbs: false
-        },
-        {
-          id: 'properties_new',
-          title: 'Add Property',
-          type: 'item',
-          url: 'properties/create',
-          icon: KeyboardDoubleArrowRightIcon,
-          breadcrumbs: false
-        },
-      ]
+      breadcrumbs: false,
+      roles: ["super_administrator", "administrator"]
     },
     {
       id: 'users',
-      title: 'User',
+      title: 'users.index.title',
       type: 'item',
       url: 'users',
       icon: PeopleAltIcon,
-      breadcrumbs: false
-    },
+      breadcrumbs: false,
+      roles: ["super_administrator"]
+    }
   ]
 };
 

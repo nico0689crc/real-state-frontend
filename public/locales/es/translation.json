@@ -15,6 +15,11 @@
       }
     }
   },
+  "home": {
+    "index": {
+      "title": "Inicio"
+    }
+  },
   "properties": {
     "create_edit": {
       "title_create": "Nueva Propiedad",
@@ -122,6 +127,7 @@
         "gender": "Género",
         "user_role_administrator": "Administrador",
         "user_role_super_administrator": "Súper Administrador",
+        "user_role_user_regular": "Regular",
         "gender_male": "Másculino",
         "gender_female": "Fémenino"
       }
@@ -152,6 +158,20 @@
       "user_role": "Rol",
       "actions": "Acciones",
       "user": "Usuario"
+    },
+    "change_password": {
+      "current_password": {
+        "label": "Contraseña Actual",
+        "placeholder": "Ingrese Contraseña Actual"
+      },
+      "password": {
+        "label": "Nueva Contraseña",
+        "placeholder": "Ingrese Nueva Contraseña"
+      },
+      "password_confirmation": {
+        "label": "Confirmación Nueva Contraseña",
+        "placeholder": "Ingrese Confirmación Nueva Contraseña"
+      }
     }
   },
   "header": {

@@ -1,7 +1,8 @@
 import { useCallback, useState } from 'react';
 import { useTranslation } from "react-i18next";
-import { Stack, Typography, IconButton, useMediaQuery, useTheme } from '@mui/material';
+import { Stack, IconButton, useMediaQuery, useTheme } from '@mui/material';
 import { Add, Remove } from '@mui/icons-material';
+import useUserRole from "hooks/useUserRole";
 import UserRowActions from './UserRowActions';
 import AppTypography from 'components/ui/Typography/AppTypography';
 
@@ -9,13 +10,14 @@ const ShowMore = ({row}) => {
   const theme = useTheme();
   const { t } = useTranslation();
   const [open, setOpen] = useState(false);
+  const { userRole } = useUserRole();
 
   const onToggleHandler = () => {
     setOpen(prevState => !prevState);
   }
   
   return (
-    <Stack direction="row" spacing={2}>
+    <Stack direction="row" alignItems="center" spacing={2}>
       <IconButton onClick={onToggleHandler}>
         {open ? <Remove /> : <Add />}
       </IconButton>
@@ -26,7 +28,10 @@ const ShowMore = ({row}) => {
             <AppTypography variant='body2'>{`${row.last_name}, ${row.first_name}`}</AppTypography>
           </Stack>
         ) : (
-          <Typography>{`${row.last_name}, ${row.first_name}`}</Typography>
+          <Stack>
+            <AppTypography variant="button">{`${row.last_name}, ${row.first_name}`}</AppTypography>
+            <AppTypography variant="overline">{userRole(row.user_role)}</AppTypography>
+          </Stack>
         )}
         <Stack 
           spacing={2}
@@ -45,7 +50,7 @@ const ShowMore = ({row}) => {
           </Stack>
           <Stack>
             <AppTypography variant='body1' fontWeight="bold">{t('users.global.user_role')}:</AppTypography>
-            <AppTypography variant='body2'>{row.user_role}</AppTypography>
+            <AppTypography variant='body2'>{userRole(row.user_role)}</AppTypography>
           </Stack>
         </Stack>
       </Stack>
