@@ -3,6 +3,7 @@ import { MailOutline, KeyOutlined, VisibilityOutlined, VisibilityOffOutlined, Lo
 import { InputAdornment, IconButton, Link, Stack, useMediaQuery } from '@mui/material';
 import LoadingButton from '@mui/lab/LoadingButton';
 import { useTheme } from '@mui/material/styles';
+import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import classNames from 'classnames';
 import MainCard from "components/ui/Card/MainCard";
@@ -11,6 +12,7 @@ import Input from "components/ui/Inputs/Input";
 const LoginForm = ({ form, onSubmit, isLoading }) => {
   const { t } = useTranslation();
   const theme = useTheme();
+  const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
   const { register, handleSubmit, formState: { errors } } = form;
   const isDownMdScreen = useMediaQuery(theme.breakpoints.down('md'));
@@ -19,8 +21,27 @@ const LoginForm = ({ form, onSubmit, isLoading }) => {
     setShowPassword((prevState) => !prevState)
   }
 
+  const onClickNavigationHandler = (event) => {
+    event.preventDefault();
+    navigate("/auth/password");
+  }
+
   return (
-    <MainCard title={t("login.title")} className={classNames({ "MuiCardFullScreen": isDownMdScreen })} contentSX={{p: '1rem 0 !important'}} sx={{ padding: 6}}>
+    <MainCard 
+      title={t("login.title")} 
+      className={classNames({ "MuiCardFullScreen": isDownMdScreen })} 
+      contentSX={{
+        p: '1rem 0 !important',
+        minWidth: '200px',
+        [theme.breakpoints.up('sm')]: {
+          minWidth: '300px'
+        }, 
+        [theme.breakpoints.up('md')]: {
+          minWidth: '400px'
+        }
+      }}
+      sx={{ padding: 6}}
+    >
       <Stack spacing={3}>
         <Input 
           placeholder={t("login.fields.email.placeholder")} id="email" name="email"
@@ -65,7 +86,7 @@ const LoginForm = ({ form, onSubmit, isLoading }) => {
           }}
         />
         <Stack direction='row' justifyContent='center' alignItems='center'>
-          <Link href="recover-password">{t("login.forgot_password")}</Link>
+          <Link onClick={onClickNavigationHandler} href="#">{t("login.forgot_password")}</Link>
         </Stack>
         <LoadingButton
           fullWidth 

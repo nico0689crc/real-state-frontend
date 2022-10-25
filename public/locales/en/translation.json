@@ -4,15 +4,42 @@
     "remember_me": "Remember Me",
     "forgot_password": "Forgot password?",
     "submit_button": "Log In",
-    "submiting_button": "Logging In ...",
+    "submiting_button": "Logging In...",
+    "fields": {
+      "email": {
+        "placeholder": "Enter Email",
+        "label": "Email"
+      },
+      "password": {
+        "placeholder": "Enter Password",
+        "label": "Password"
+      }
+    }
+  },
+  "reset_password": {
+    "title": "Reset Password",
+    "log_in": "Log In?",
+    "submit_button": "Send Request",
+    "submiting_button": "Sendind Request...",
     "fields": {
       "email": {
         "placeholder": "Enter Email",
         "label": "Enter Email"
-      },
+      }
+    }
+  },
+  "reset_password_edit": {
+    "title": "Edit Password",
+    "submit_button": "Edit Password",
+    "submiting_button": "Editing Password...",
+    "fields": {
       "password": {
-        "placeholder": "Enter Password",
-        "label": "Enter Password"
+        "placeholder": "New Password",
+        "label": "New Password"
+      },
+      "password_confirmation": {
+        "placeholder": "New Password Confirmation",
+        "label": "Password Confirmation"
       }
     }
   },

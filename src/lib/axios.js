@@ -1,7 +1,7 @@
 import axios from "axios";
 import getUserData from "./getUserData.js";
 
-export const axiosAdminPath = () => {
+export const axiosAdminPath = (headers) => {
   const { uid, accessToken, client } = getUserData();
 
   const request = axios.create({
@@ -11,7 +11,8 @@ export const axiosAdminPath = () => {
       "Content-Type": "application/json",
       uid: uid,
       "access-token": accessToken,
-      client: client
+      client: client,
+      ...headers
     },
   });
 
@@ -30,12 +31,13 @@ export const axiosAdminPath = () => {
   return request;
 }
 
-export const axiosPublicPath = () => {
+export const axiosPublicPath = (headers) => {
   const request = axios.create({
     baseURL: process.env.REACT_APP_BACKEND_PUBLIC_URL,
     timeout: 30000,
     headers: {
-      "Content-Type": "application/json"
+      "Content-Type": "application/json",
+      ...headers
     },
   });
 

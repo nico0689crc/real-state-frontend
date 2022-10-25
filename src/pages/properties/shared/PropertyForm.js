@@ -78,7 +78,7 @@ const PropertyForm = ({ form, onSubmit, isLoading, setUploadedFiles, uploadedFil
 
   return (
     <Stack direction="row" justifyContent="center" width="100%">
-      <MainCard contentSX={{p: '1rem 0 !important'}} sx={{ paddingX: 4, paddingY: 2, maxWidth: "50rem"}}>
+      <MainCard contentSX={{p: '0 !important'}} sx={{paddingX: {xs: 2, md: 4}, paddingY: {xs: 2, md: 2}, maxWidth: "50rem"}}>
         <Stack spacing={2}>
           <Input
             id="title"

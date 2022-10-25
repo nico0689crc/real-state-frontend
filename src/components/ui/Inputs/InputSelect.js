@@ -11,7 +11,16 @@ const InputSelect = ({ id, label, helperText, size, className, control, name, va
       <Controller
         name={name}
         control={control}
-        render={({field}) => <Select {...field} labelId={id} size={size} defaultValue={value}>{select_options}</Select>}
+        render={({field}) => (
+          <Select 
+            {...field} 
+            labelId={id} 
+            size={size} 
+            defaultValue={value}
+          >
+            {select_options}
+          </Select>
+        )}
       />
       <FormHelperText>{helperText}</FormHelperText>
     </FormControl>
