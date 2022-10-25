@@ -3,7 +3,8 @@ import { Navigate } from 'react-router-dom';
 import MinimalLayout from 'containers/layouts/MinimalLayout';
 import Loadable from 'components/ui/Loadable/Loadable';
 const Login = Loadable(lazy(() => import('pages/auth/Login/Login')));
-const Register = Loadable(lazy(() => import('pages/auth/Register')));
+const ResetPassword = Loadable(lazy(() => import('pages/auth/ResetPassword/ResetPassword')));
+const ResetPasswordEdit = Loadable(lazy(() => import('pages/auth/ResetPasswordEdit/ResetPasswordEdit')));
 
 // ==============================|| AUTHENTICATION ROUTING ||============================== //
 
@@ -20,8 +21,12 @@ export const AuthenticationRoutes = {
       element: <Login />
     },
     {
-      path: 'signup',
-      element: <Register />
+      path: 'password',
+      element: <ResetPassword />
+    },
+    {
+      path: 'password/edit',
+      element: <ResetPasswordEdit />
     },
   ]
 };

@@ -96,7 +96,7 @@ const UserProfileChangePasswordForm = () => {
   const submit_label = isLoading ? t("global.updating_button") : t("global.update_button");
 
   return (
-    <Stack maxWidth="400px" spacing={4}>
+    <Stack maxWidth="400px" width="100%" spacing={4}>
       <Grid container justifyContent="center" gap={2}>
         <Grid item xs={12}>
           <Input 

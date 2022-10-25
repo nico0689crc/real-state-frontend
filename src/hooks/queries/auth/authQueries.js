@@ -1,25 +1,33 @@
 import { useMutation } from "react-query";
-import { AuthService } from "lib/AuthService";
+import { QueryService } from "lib/QueryService";
+import API_ENDPOINTS from "constants/endpoints";
+
+
 
 export const useLoginMutation = (onSuccessHandler, onErrorHandler) => {
-  return useMutation(input => AuthService.login(input),{
+  const loginQueryServices = new QueryService(API_ENDPOINTS.LOGIN);
+
+  return useMutation(input => loginQueryServices.login(input),{
     onSuccess: (data) => onSuccessHandler(data),
     onError: (data) => onErrorHandler(data)
   });
 };
 
-export const useRegisterMutation = () => {
-  return useMutation(input => AuthService.register(input));
+export const useResetPasswordMutation = (onSuccessHandler, onErrorHandler) => {
+  const resetPasswordQueryServices = new QueryService(API_ENDPOINTS.RESET_PASSWORD);
+
+  return useMutation(input => resetPasswordQueryServices.resetPassword(input),{
+    onSuccess: (data) => onSuccessHandler(data),
+    onError: (data) => onErrorHandler(data)
+  });
 };
 
-export const useForgotPasswordMutation = () => {
-  return useMutation(input => AuthService.forgotPassword(input));
-};
+export const useResetPasswordEditMutation = (onSuccessHandler, onErrorHandler, headers) => {
+  const pathRequireAuthentication = false;
+  const resetPasswordEditQueryServices = new QueryService(API_ENDPOINTS.RESET_PASSWORD, pathRequireAuthentication, headers);
 
-export const useResetPasswordMutation = () => {
-  return useMutation(input => AuthService.resetPassword(input));
-};
-
-export const useActivateAccountMutation = () => {
-  return useMutation(input => AuthService.activateAccount(input));
+  return useMutation(input => resetPasswordEditQueryServices.resetPasswordEdit(input),{
+    onSuccess: (data) => onSuccessHandler(data),
+    onError: (data) => onErrorHandler(data)
+  });
 };
