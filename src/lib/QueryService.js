@@ -1,8 +1,8 @@
 import { axiosAdminPath, axiosPublicPath } from "./axios.js";
 
 export class QueryService {
-  constructor(basePath, adminPath = false) {
-    this.http = adminPath ? axiosAdminPath() : axiosPublicPath();
+  constructor(basePath, adminPath = false, headers = {}) {
+    this.http = adminPath ? axiosAdminPath(headers) : axiosPublicPath(headers);
     this.basePath = basePath;
   }
 
@@ -55,4 +55,20 @@ export class QueryService {
   deleteCustom = async (url) => {
     return this.http.delete(url).then(res => res.data);
   };
+
+  async login(input) {
+    return this.http.post(this.basePath, input).then(res => res);
+  }
+
+  async resetPassword(input) {
+    return this.http
+      .post(this.basePath, input)
+      .then(res => res.data);
+  }
+
+  async resetPasswordEdit(input) {
+    return this.http
+      .put(this.basePath, input)
+      .then(res => res.data);
+  }
 }

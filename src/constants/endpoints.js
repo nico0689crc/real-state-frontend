@@ -8,7 +8,7 @@ const API_ENDPOINTS = {
   USERS: "/users",
   USERS_PROFILE: "/users/profile",
   FORGOT_PASSWORD: "",
-  RESET_PASSWORD: "",
+  RESET_PASSWORD: "auth/password",
   ACTIVATE_ACCOUNT: "",
 };
 
