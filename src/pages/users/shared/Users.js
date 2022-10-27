@@ -15,10 +15,10 @@ const getFormSchema = (t, item) => {
   });
 
   const defaultValues = {
-    "first_name": item ? item.first_name : "",
-    "last_name": item ? item.last_name : "",
+    "first_name": item ? item.first_name : "adsasd",
+    "last_name": item ? item.last_name : "adsads",
     "user_role": item ? item.user_role : "",
-    "email": item ? item.email : "",
+    "email": item ? item.email : "nico0689crcde@gmail.com",
     "phone_number": item ? item.phone_number : "",
     "address": item ? item.address : "",
     "date_of_birth": item ? item.date_of_birth : "",
@@ -39,7 +39,7 @@ const Users = ({ isLoading, mutate, error, item = null, openDialog, setOpenDialo
   const resetDefaultValues = () => Object.keys(defaultValues).forEach(key => resetField(key));
 
   useEffect(() => {
-    error && Object.keys(error.data).forEach(key => setError(key, {message: error.data[key]}));
+    error && Object.keys(error?.data).forEach(key => setError(key, {message: error.data[key]}));
   },[error, setError]);
 
   const onSubmit = async (data) => {
@@ -54,6 +54,7 @@ const Users = ({ isLoading, mutate, error, item = null, openDialog, setOpenDialo
     formData.append("user[address]", data['address']);
     formData.append("user[date_of_birth]", data['date_of_birth']);
     formData.append("user[gender]", data['gender']);
+    !item && formData.append("redirect_url", `${process.env.REACT_APP_FRONTEND_URL}auth/password/edit`);
 
     mutate({id: item?.id, data: formData});
   }
