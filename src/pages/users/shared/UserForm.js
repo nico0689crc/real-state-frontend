@@ -5,7 +5,6 @@ import { Button, InputAdornment, Grid } from '@mui/material';
 import LoadingButton from '@mui/lab/LoadingButton';
 import Input from "components/ui/Inputs/Input";
 import InputSelect from "components/ui/Inputs/InputSelect";
-import AppTypography from "components/ui/Typography/AppTypography";
 import UserFormDialog from "./UserFormDialog";
 import UserFormNormal from "./UserFormNormal";
 
@@ -13,7 +12,7 @@ const UserFormHeader = ({ item, isProfileUpdate }) => {
   const { t } = useTranslation();
   const title = item ? t("users.create_edit.title_edit") : t("users.create_edit.title_create");
 
-  return !isProfileUpdate ? <AppTypography variant="h6">{title}</AppTypography> : null;
+  return !isProfileUpdate ? title : null;
 }
 
 const UserFormBody = ({ form, isProfileUpdate }) => {

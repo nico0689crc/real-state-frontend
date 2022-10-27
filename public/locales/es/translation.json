@@ -16,6 +16,33 @@
       }
     }
   },
+  "reset_password": {
+    "title": "Recuperar Contraseña",
+    "log_in": "Iniciar sesión?",
+    "submit_button": "Enviar Solicutud",
+    "submiting_button": "Enviando Solicitud...",
+    "fields": {
+      "email": {
+        "placeholder": "Ingrese su correo electrónico",
+        "label": "Correo Electrónico"
+      }
+    }
+  },
+  "reset_password_edit": {
+    "title": "Editar Contraseña",
+    "submit_button": "Editar Contraseña",
+    "submiting_button": "Editando Contraseña...",
+    "fields": {
+      "password": {
+        "placeholder": "Nueva Contraseña",
+        "label": "Nueva Contraseña"
+      },
+      "password_confirmation": {
+        "placeholder": "Repetir Nueva Contraseña",
+        "label": "Repetir Contraseña"
+      }
+    }
+  },
   "home": {
     "index": {
       "title": "Inicio"

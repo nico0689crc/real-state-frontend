@@ -15,7 +15,7 @@ const ProfileSection = () => {
   const theme = useTheme();
   const dispatch = useDispatch();
   const anchorRef = useRef(null);
-  const { t,  } = useTranslation();
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const [open, setOpen] = useState(false);
   const {attributes: { first_name, last_name, image }} = useSelector(state => state.authStore); 
@@ -41,7 +41,7 @@ const ProfileSection = () => {
   };
 
   return (
-    <>
+    <Stack>
       <Stack direction="row" spacing={1}>
         <Avatar src={image} sx={{ ...theme.typography.mediumAvatar, cursor: 'pointer' }} />
         <TranslationButton />
@@ -63,7 +63,7 @@ const ProfileSection = () => {
           icon: <Logout />
         }]}
       />
-    </>
+    </Stack>
   );
 };
 
