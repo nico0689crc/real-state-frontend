@@ -1,6 +1,6 @@
 // assets
 import { IconBuildingWarehouse, IconHome } from '@tabler/icons';
-import PeopleAltIcon from '@mui/icons-material/PeopleAlt';
+import { PeopleAlt, Store } from '@mui/icons-material';
 
 // ==============================|| DASHBOARD MENU ITEMS ||============================== //
 
@@ -16,7 +16,7 @@ const dashboard = {
       url: '',
       icon: IconHome,
       breadcrumbs: false,
-      roles: ["super_administrator", "administrator"]
+      roles: ["super_administrator", "administrator", "real_estate_administrator", "agent"]
     },
     {
       id: 'properties',
@@ -25,6 +25,15 @@ const dashboard = {
       url: 'properties',
       icon: IconBuildingWarehouse,
       breadcrumbs: false,
+      roles: ["super_administrator", "administrator", "real_estate_administrator", "agent"]
+    },
+    {
+      id: 'real_estates',
+      title: 'real_estates.index.title',
+      type: 'item',
+      url: 'real_estates',
+      icon: Store,
+      breadcrumbs: false,
       roles: ["super_administrator", "administrator"]
     },
     {
@@ -32,9 +41,9 @@ const dashboard = {
       title: 'users.index.title',
       type: 'item',
       url: 'users',
-      icon: PeopleAltIcon,
+      icon: PeopleAlt,
       breadcrumbs: false,
-      roles: ["super_administrator"]
+      roles: ["super_administrator", "real_estate_administrator"]
     }
   ]
 };

@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useSelector } from "react-redux";
 import PropTypes from 'prop-types';
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
@@ -6,7 +7,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useTranslation } from "react-i18next";
 import PropertyForm from "./PropertyForm";
 
-const getFormSchema = (t, item) => {
+const getFormSchema = (t, item, user_role) => {
   const formSchema = yup.object().shape({
     "title": yup
       .string()
@@ -43,6 +44,12 @@ const getFormSchema = (t, item) => {
       .number()
       .typeError(t("properties.validations.property_size.type_error_number"))
       .positive(t("properties.validations.property_size.positive_field")),
+    ...(user_role === "super_administrator" ? ({
+      "real_estate": yup
+        .number()
+        .min(1)
+        .positive(t("properties.validations.real_estate.positive_field"))
+    }) : ({}))
   });
 
   const defaultValues = {
@@ -56,6 +63,9 @@ const getFormSchema = (t, item) => {
     "property_size": item ? item.sq_mts : "",
     "type": item ? item.p_type : "",
     "status": item ? item.p_status : "",
+    ...(user_role === "super_administrator" ? (
+      {"real_estate": item ? item.real_estate_id : 0}
+    ) : ({}))
   };
 
   return {
@@ -67,8 +77,9 @@ const getFormSchema = (t, item) => {
 const Properties = ({ item, isLoading, mutate }) => {
   const [uploadedFiles, setUploadedFiles] = useState([]);
   const { t } = useTranslation();
+  const { attributes: { user_role }} = useSelector(state => state.authStore);
 
-  const form = useForm(getFormSchema(t, item));
+  const form = useForm(getFormSchema(t, item, user_role));
 
   const onSubmit = async (data) => {
     const facilities = [
@@ -124,6 +135,10 @@ const Properties = ({ item, isLoading, mutate }) => {
     formData.append("property[operating_since]", data['operating_since']);
     formData.append("property[price]", data['price']);
     formData.append("property[sq_mts]", data['property_size']);
+    
+    if(user_role === "super_administrator"){
+      formData.append("property[real_estate]", data['real_estate']);
+    }
 
     uploadedFiles.forEach(file => {
       formData.append("property[medias][]", file);

@@ -10,11 +10,8 @@ export class QueryService {
     return await this.http.get(this.basePath).then(res => res.data);
   };
 
-  find = async params => {
-    const { page = {
-      size: "10",
-      number: "1"
-    } } = params;
+  find = async (params = { page: { size: "10", number: "1" } }) => {
+    const { page } = params;
 
     const queries = {
       "page[size]": page.size,

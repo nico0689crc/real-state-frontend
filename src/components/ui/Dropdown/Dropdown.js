@@ -51,7 +51,6 @@ const Dropdown = ({ anchorRef, handleClose, open, headerTitle = null, items = []
                         </ListItemIcon>
                         <ListItemText primary={<Typography sx={{ lineHeight: 1}}>{item.label}</Typography>} />
                       </ListItemButton>
-                      {item.additionalElement && item.additionalElement}
                     </Fragment>
                   ))}
                 </List>

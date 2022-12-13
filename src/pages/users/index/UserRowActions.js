@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { IconButton, useMediaQuery, useTheme } from '@mui/material';
 import { DeleteTwoTone, VisibilityTwoTone, CreateTwoTone, MoreVert } from '@mui/icons-material';
@@ -45,58 +45,58 @@ const MobileRowActions = ({
   onEditHandler,
   onShowHandler
 }) => {
-  const [open, setOpen] = useState(false);
+  const [openDropdownActions, setOpenDropdownActions] = useState(false);
   const { t } = useTranslation();
   const anchorRef = useRef(null);
   const handleToggle = () => {
-    setOpen((prevState) => !prevState);
+    setOpenDropdownActions((prevState) => !prevState);
   };
 
   const handleClose = (event) => {
     if (anchorRef.current && anchorRef.current.contains(event.target)) {
       return;
     }
-    setOpen(false);
+    setOpenDropdownActions(false);
   };
+
+  useEffect(()=> {
+    if((openDeleteDialog || openEditDialog || openShowDialog) && openDropdownActions) {
+      setOpenDropdownActions(false);
+    }
+  },[openDeleteDialog, openEditDialog, openShowDialog, openDropdownActions]);
 
   return (
     <>
       <IconButton 
         onClick={handleToggle} 
         ref={anchorRef} 
-        aria-controls={open ? 'menu-list-grow' : undefined} 
+        aria-controls={openDropdownActions ? 'menu-list-grow' : undefined} 
         aria-haspopup="true"
       >
         <MoreVert stroke={1.5} size="1.5rem" />
       </IconButton>
       <Dropdown
-        open={open}
+        open={openDropdownActions}
         anchorRef={anchorRef}
         handleClose={handleClose}
         placement="left"
         items={[{
           label: t("global.show"),
           onClick: onShowHandler,
-          icon: <VisibilityTwoTone stroke={1.5} size="1.3rem" />,
-          additionalElement: (
-            <UserShow user={user} handleToggleShowDialog={onShowHandler} openShowDialog={openShowDialog} />
-          )
+          icon: <VisibilityTwoTone stroke={1.5} size="1.3rem" />
         }, {
           label: t("global.edit"),
           onClick: onEditHandler,
-          icon: <CreateTwoTone stroke={1.5} size="1.3rem" />,
-          additionalElement: (
-            <UserEdit user={user} setOpenDialog={onEditHandler} openDialog={openEditDialog} />
-          )
+          icon: <CreateTwoTone stroke={1.5} size="1.3rem" />
         }, {
           label: t("global.delete"),
           onClick: onDeleteHandler,
-          icon: <DeleteTwoTone stroke={1.5} size="1.3rem" />,
-          additionalElement: (
-            <UserDelete user={user} handleToggleDeleteDialog={onDeleteHandler} openDeleteDialog={openDeleteDialog} />
-          )
+          icon: <DeleteTwoTone stroke={1.5} size="1.3rem" />
         }]}
       />
+      <UserShow user={user} handleToggleShowDialog={onShowHandler} openShowDialog={openShowDialog} />
+      <UserEdit user={user} setOpenDialog={onEditHandler} openDialog={openEditDialog} />
+      <UserDelete user={user} handleToggleDeleteDialog={onDeleteHandler} openDeleteDialog={openDeleteDialog} />
     </>
   )
 };

@@ -4,6 +4,8 @@ const API_ENDPOINTS = {
   REGISTER: "auth",
   DASHBOARD: "/",
   PROPERTIES: "/properties",
+  REAL_ESTATES: "/real_estates",
+  CREATE_REAL_ESTATES: "/real_estates/create",
   CREATE_PROPERTIES: "/properties/create",
   USERS: "/users",
   USERS_PROFILE: "/users/profile",

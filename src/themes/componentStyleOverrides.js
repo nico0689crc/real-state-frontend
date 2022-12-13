@@ -7,6 +7,11 @@ const componentStyleOverrides = ({isDarkMode, colors, theme}) => {
         root: {
           fontFamily: '"Montserrat","Roboto","Rubik",sans-serif',
           "&.MuiTypographyCustomized": {
+            "&.MuiTypographyEllipsis": {
+              overflow: 'hidden',
+              textOverflow: 'ellipsis',
+              whiteSpace: 'nowrap'
+            },
             "&.MuiTypographyEllipsisThirdLine": {
               textOverflow: 'ellipsis',
               overflow: 'hidden',
@@ -245,6 +250,9 @@ const componentStyleOverrides = ({isDarkMode, colors, theme}) => {
             borderRadius: `${borderRadius}px`,
             boxShadow: '3.3px 3.7px 22.5px rgb(0 0 0 / 7%)',
             backgroundImage: "none",
+            [theme.breakpoints.down('md')]: {
+              width: "100%"
+            },
             "&.MuiCardFullScreen": {
               display: "flex",
               flexDirection: "column",

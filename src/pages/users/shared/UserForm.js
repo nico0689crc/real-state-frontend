@@ -1,5 +1,6 @@
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 import { Close, PersonAdd, Badge, Email, PhoneAndroid, Business, Cake } from '@mui/icons-material';
 import { Button, InputAdornment, Grid } from '@mui/material';
 import LoadingButton from '@mui/lab/LoadingButton';
@@ -7,9 +8,12 @@ import Input from "components/ui/Inputs/Input";
 import InputSelect from "components/ui/Inputs/InputSelect";
 import UserFormDialog from "./UserFormDialog";
 import UserFormNormal from "./UserFormNormal";
+import useUserRole from "hooks/useUserRole";
+
 
 const UserFormHeader = ({ item, isProfileUpdate }) => {
   const { t } = useTranslation();
+  
   const title = item ? t("users.create_edit.title_edit") : t("users.create_edit.title_create");
 
   return !isProfileUpdate ? title : null;
@@ -17,6 +21,8 @@ const UserFormHeader = ({ item, isProfileUpdate }) => {
 
 const UserFormBody = ({ form, isProfileUpdate }) => {
   const { t } = useTranslation();
+  const {attributes: {user_role}} = useSelector(state => state.authStore);
+  const { userRoles } = useUserRole();
   const { register, formState: { errors } } = form;
 
   return (
@@ -85,10 +91,7 @@ const UserFormBody = ({ form, isProfileUpdate }) => {
               error={!!errors.user_role}
               helperText={errors.user_role?.message}
               control={form.control}
-              options={[
-                { value: "administrator", text: t("users.create_edit.labels.user_role_administrator") },
-                { value: "super_administrator", text: t("users.create_edit.labels.user_role_super_administrator") }
-              ]}
+              options={userRoles(user_role)}
             />
           </Grid>
         </>

@@ -69,7 +69,8 @@
         "bedrooms": "Habitaciones",
         "property_size": "Dimensiones",
         "bathrooms": "Baños",
-        "dropzone_label": "Arrastre y suelte algunos archivos aquí, o haga clic para seleccionar archivos."
+        "dropzone_label": "Arrastre y suelte algunos archivos aquí, o haga clic para seleccionar archivos.",
+        "real_estate": "Inmobiliaria"
       },
       "success_created_title": "Propiedad creada",
       "success_created_message": "La propiedad ha sido creada correctamente.",
@@ -125,6 +126,9 @@
       "property_size": {
         "type_error_number": "Un número es requerido.",
         "positive_field": "Un número positivo es requerido."
+      },
+      "real_estate": {
+        "positive_field": "Una Inmobiliaria deber ser seleccionada."
       }
     },
     "global": {
@@ -132,6 +136,44 @@
       "property_size": "SQ FT",
       "bathrooms": "Baños"
     }
+  },
+  "real_estates": {
+    "create_edit": {
+      "title_create": "Agregar Inmobiliaria",
+      "title_edit": "Editar Inmobiliaria",
+      "labels": {
+        "name": "Nombre",
+        "address": "Dirección",
+        "contact_phone": "Teléfono de Contacto",
+        "contact_email": "C. Electrónico de Contacto",
+        "description": "Descripción",
+        "user_responsible": "Usuario Responsable"
+      },
+      "success_created_title": "Inmobiliaria creada",
+      "success_created_message": "La inmobiliaria ha sido creada correctamente.",
+      "success_updated_title": "Inmobiliaria actualizada",
+      "success_updated_message": "La inmobiliaria ha sido actualizada correctamente."
+    },
+    "index": {
+      "title": "Inmobiliarias",
+      "real_estate_item": {
+        "details_button_label": "Detalles"
+      }
+    },
+    "show": {
+      "title": "Detalles de Inmobiliaria",
+      "description": "Descripción"
+    },
+    "delete": {
+      "title": "Eliminar Inmobiliaria",
+      "content": "Está a punto de eliminar la Inmobiliaria <1><0>{{name}}</0></1>. ¿Quieres continuar con esta acción?",
+      "success_title": "Inmobiliaria eliminada",
+      "success_message": "La Inmobiliaria se ha eliminado correctamente."
+    },
+    "validations": {
+      "required": "Campo requerido."
+    },
+    "global": {}
   },
   "users": {
     "create_edit": {
@@ -153,9 +195,12 @@
         "address": "Dirección",
         "date_of_birth": "Fecha de Nacimiento",
         "gender": "Género",
-        "user_role_administrator": "Administrador",
         "user_role_super_administrator": "Súper Administrador",
+        "user_role_administrator": "Administrador",
+        "user_role_real_estate_administrator": "Administrador Inmobiliario",
+        "user_role_agent": "Agente",
         "user_role_user_regular": "Regular",
+        "user_role_banned": "Baneado",
         "gender_male": "Másculino",
         "gender_female": "Fémenino"
       }
@@ -229,6 +274,7 @@
     "update_button": "Actualizar",
     "updating_button": "Actualizando",
     "cancel_button": "Descartar",
-    "show": "Ver"
+    "show": "Ver",
+    "back": "Volver"
   }
 }
