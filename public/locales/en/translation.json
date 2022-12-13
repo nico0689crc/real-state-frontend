@@ -69,7 +69,8 @@
         "bedrooms": "Bedrooms",
         "property_size": "Property Size",
         "bathrooms": "Bathrooms",
-        "dropzone_label": "Drag and drop some files here, or click to select files."
+        "dropzone_label": "Drag and drop some files here, or click to select files.",
+        "real_estate": "Real Estate"
       },
       "success_created_title": "Property created",
       "success_created_message": "The property has been created successfully.",
@@ -125,6 +126,9 @@
       "property_size": {
         "type_error_number": "A number is required.",
         "positive_field": "A positive number is required."
+      },
+      "real_estate": {
+        "positive_field": "A Real Estate must be selected."
       }
     },
     "global": {
@@ -132,6 +136,44 @@
       "property_size": "SQ FT",
       "bathrooms": "Bathrooms"
     }
+  },
+  "real_estates": {
+    "create_edit": {
+      "title_create": "Create Real Estate",
+      "title_edit": "Edit Real Estate",
+      "labels": {
+        "name": "Name",
+        "address": "Address",
+        "contact_phone": "Contact Phone",
+        "contact_email": "Contact Email",
+        "description": "Description",
+        "user_responsible": "User Responsable"
+      },
+      "success_created_title": "Real Estate created",
+      "success_created_message": "The real estate has been created successfully.",
+      "success_updated_title": "Real Estate updated",
+      "success_updated_message": "The real estate has been updated successfully."
+    },
+    "index": {
+      "title": "Real Estates",
+      "real_estate_item": {
+        "details_button_label": "Details"
+      }
+    },
+    "show": {
+      "title": "Real Estates Details",
+      "description": "Description"
+    },
+    "delete": {
+      "title": "Delete Real Estate",
+      "content": "You are about to delete the Real Estate <1><0>{{name}}</0></1>. Do you want to continue this action?",
+      "success_title": "Real Estate deleted",
+      "success_message": "The Real Estate has been deleted successfully."
+    },
+    "validations": {
+      "required": "Required field."
+    },
+    "global": {}
   },
   "users": {
     "create_edit": {
@@ -151,9 +193,12 @@
         "address": "Address",
         "date_of_birth": "Date of Birth",
         "gender": "Gender",
-        "user_role_administrator": "Administrator",
         "user_role_super_administrator": "Super Administrator",
+        "user_role_administrator": "Administrator",
+        "user_role_real_estate_administrator": "Real Estate Administrator",
+        "user_role_agent": "Agent",
         "user_role_user_regular": "Regular",
+        "user_role_banned": "Banned",
         "gender_male": "Male",
         "gender_female": "Female"
       }
@@ -227,6 +272,7 @@
     "update_button": "Update",
     "updating_button": "Updating",
     "cancel_button": "Discard",
-    "show": "Show"
+    "show": "Show",
+    "back": "Back"
   }
 }

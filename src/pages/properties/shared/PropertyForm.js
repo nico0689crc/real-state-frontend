@@ -1,7 +1,7 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { CalendarMonth, AttachMoney,BathroomOutlined, BedroomParentOutlined, SquareFootOutlined, MapOutlined, TextFormatOutlined, Close, Title } from '@mui/icons-material';
 import { Stack, InputAdornment, Button, CircularProgress } from '@mui/material';
 import { snackBarAlertActions } from "store/snackBarAlertSlice";
@@ -10,20 +10,25 @@ import ImageUploadDropzone from "components/ui/ImageUploadDropzone";
 import MainCard from "components/ui/Card/MainCard";
 import Input from "components/ui/Inputs/Input";
 import InputSelect from "components/ui/Inputs/InputSelect";
+import useRealEstatesQuery from "hooks/queries/real_estates/useRealEstatesQuery";
 import useDestroyPropertyImageMutation from "hooks/queries/properties/useDestroyPropertyImageMutation";
 
 const PropertyForm = ({ form, onSubmit, isLoading, setUploadedFiles, uploadedFiles, item }) => {
   let submit_label;
+  const [realEstates, setRealEstates] = useState(null);
   const { t } = useTranslation();
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { setSnackBarAlert } = snackBarAlertActions;
+  const { attributes: { user_role }} = useSelector(state => state.authStore);
+
   const [existingFiles, setExistingFiles] = useState(item?.media.map(file => ({
     id: file.id,
     path: file.media_path,
     onDelete: () => onDeleteExistingFileHandler(file),
     isLoading: false
   })));
+  
   const { register, handleSubmit, formState: { errors } } = form;
   
   const onDiscardHandler = () => {
@@ -61,6 +66,7 @@ const PropertyForm = ({ form, onSubmit, isLoading, setUploadedFiles, uploadedFil
   }
 
   const { mutate: detroyPropertyImage } = useDestroyPropertyImageMutation(onSuccessHandler, onErrorHandler);
+  const { data: dataRealEstate } = useRealEstatesQuery();
 
   function onDeleteExistingFileHandler(file) {    
     setExistingFiles(prev => prev.map(f => {
@@ -69,6 +75,18 @@ const PropertyForm = ({ form, onSubmit, isLoading, setUploadedFiles, uploadedFil
     }));
     detroyPropertyImage({ property_id: item.id, media_id: file.id });
   }
+
+  useEffect(() => {
+    if(dataRealEstate){
+      setRealEstates([
+        {value: "0", text: "Select one Real Estate"},
+        ...dataRealEstate.data.map(realEstate => ({ 
+          value: realEstate.id, 
+          text: realEstate.name
+        }))
+      ]);
+    }
+  },[dataRealEstate]);
 
   if(item){
     submit_label = isLoading ? t("global.updating_button") : t("global.update_button");
@@ -125,6 +143,19 @@ const PropertyForm = ({ form, onSubmit, isLoading, setUploadedFiles, uploadedFil
               ]}
             />
           </Stack>
+          {(realEstates && user_role === "super_administrator") && (
+            <Stack direction={{xs: 'column', sm: 'row'}} spacing={2}>
+              <InputSelect
+                name="real_estate"
+                id="real_estatereal_estate"
+                label={t("properties.create_edit.labels.real_estate")}
+                error={!!errors.real_estate}
+                helperText={errors.real_estate?.message}
+                control={form.control}
+                options={realEstates}
+              />
+            </Stack>
+          )}
           <Input
             id="description"
             label={t("properties.create_edit.labels.description")}

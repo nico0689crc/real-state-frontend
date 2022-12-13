@@ -10,7 +10,7 @@ const ShowMore = ({row}) => {
   const theme = useTheme();
   const { t } = useTranslation();
   const [open, setOpen] = useState(false);
-  const { userRole } = useUserRole();
+  const { userRoleLabel } = useUserRole();
 
   const onToggleHandler = () => {
     setOpen(prevState => !prevState);
@@ -30,7 +30,7 @@ const ShowMore = ({row}) => {
         ) : (
           <Stack>
             <AppTypography variant="button">{`${row.last_name}, ${row.first_name}`}</AppTypography>
-            <AppTypography variant="overline">{userRole(row.user_role)}</AppTypography>
+            <AppTypography variant="overline">{userRoleLabel(row.user_role)}</AppTypography>
           </Stack>
         )}
         <Stack 
@@ -50,7 +50,7 @@ const ShowMore = ({row}) => {
           </Stack>
           <Stack>
             <AppTypography variant='body1' fontWeight="bold">{t('users.global.user_role')}:</AppTypography>
-            <AppTypography variant='body2'>{userRole(row.user_role)}</AppTypography>
+            <AppTypography variant='body2'>{userRoleLabel(row.user_role)}</AppTypography>
           </Stack>
         </Stack>
       </Stack>

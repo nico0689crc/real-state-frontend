@@ -2,30 +2,31 @@ import { useCallback } from 'react';
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { useTranslation } from "react-i18next";
-import { Typography, Box, Pagination, CircularProgress, Grid, useMediaQuery, useTheme, Stack, Button } from '@mui/material';
+import { useMediaQuery, useTheme } from '@mui/material';
+import { Typography, Box, Pagination, CircularProgress, Grid, Stack, Button } from '@mui/material';
 import { Add } from "@mui/icons-material";
-import { propertiesActions } from "store/properties/propertiesSlice";
-import { retrievePropertiesActionCreator } from "store/properties/propertiesActionCreators";
-import PropertyItem from "./PropertyItem";
+import { realEstatesActions } from "store/real_estates/realEstateSlice";
+import { retrieveRealEstatesActionCreator } from "store/real_estates/realEstateActionCreators";
+import RealEstateItem from './RealEstatesItem';
 import API_ENDPOINTS from "constants/endpoints";
 
-const PropertiesList = () => {
+const RealEstateList = () => {
   let content;
   const theme = useTheme();
   const navigate = useNavigate();
   const { t } = useTranslation();
   const isDownSm = useMediaQuery(theme.breakpoints.down('sm'));
   const dispatch = useDispatch();
-  const { properties, currentPage, isFetching, totalPages, error } = useSelector(state => state.propertiesStore);
+  const { realEstates, currentPage, isFetching, totalPages, error } = useSelector(state => state.realEstatesStore);
   
-  dispatch(retrievePropertiesActionCreator({currentPage}));
+  dispatch(retrieveRealEstatesActionCreator({currentPage}));
 
   const paginationOnChangeHandler = useCallback((event, page) => {
-    dispatch(propertiesActions.setCurrentPage({ currentPage: page }));
+    dispatch(realEstatesActions.setCurrentPage({ currentPage: page }));
   }, [dispatch]);
 
-  const addPropertyHandler = () => {
-    navigate(API_ENDPOINTS.CREATE_PROPERTIES);
+  const createRealEstateHandler = () => {
+    navigate(API_ENDPOINTS.CREATE_REAL_ESTATES);
   }
   
   if (error) {
@@ -43,11 +44,11 @@ const PropertiesList = () => {
       </Box>
     );
   } else {
-    content = properties.length > 0 ? (
+    content = realEstates.length > 0 ? (
       <Stack spacing={2}>
-        <Grid container rowSpacing={2} columnSpacing={{xs: 0, md: 2}} sx={{ width: '100%', marginBottom: 3 }}>
-          {properties.map((property, index) => (
-            <PropertyItem property={property} key={index} />
+        <Grid container rowSpacing={2} columnSpacing={{xs: 0, md: 2}} sx={{ width: '100%' }}>
+          {realEstates.map((real_estate, index) => (
+            <RealEstateItem real_estate={real_estate} key={index} />
           ))}
         </Grid>
         <Stack direction="row" justifyContent="center">
@@ -70,16 +71,16 @@ const PropertiesList = () => {
   return (
     <Stack spacing={5}>
       <Stack direction={{xs: 'column', sm: 'row'}} justifyContent="space-between" alignItems={{sm: "center"}} spacing={2}>
-        <Typography variant='h4'>{t("properties.index.title")}</Typography>
+        <Typography variant='h4'>{t("real_estates.index.title")}</Typography>
         {!error && (
-          <Button variant="contained" size='small' onClick={addPropertyHandler} startIcon={<Add />}>
-            {t("properties.create_edit.title_create")}
+          <Button variant="contained" size='small' onClick={createRealEstateHandler} startIcon={<Add />}>
+            {t("real_estates.create_edit.title_create")}
           </Button>
         )}
       </Stack>
       { content }
     </Stack>
   );
-};
+}
 
-export default PropertiesList;
+export default RealEstateList;
